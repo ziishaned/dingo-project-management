@@ -1,0 +1,101 @@
+body {
+    font-family: 'Lato';
+}
+
+.board-con {
+    background-color: #0067A3;
+    border-radius: 5px;
+    height: 150px;
+}
+
+.board-star {
+    font-size: 20px !important;
+    top: 27px !important;
+}
+
+.board-title {
+    padding-left: 20px;
+    color: #FFFFFF;
+}
+
+h1 .starred-boards {
+    font-size: 22px;
+    top: -2px;
+    margin-right: 15px;
+}
+
+.boards-col {
+    margin-top: 28px;
+}
+
+.board-create {
+    background-color: #E2E4E6;
+    border-radius: 5px;
+    height: 150px;
+}
+
+.board-create-link {
+    font-size: 20px;
+    color: #959596;
+}
+
+.board-create-link:hover {
+    color: #959596;
+    text-decoration: none;
+}
+
+.board-create-head {
+    margin-top: 45px;
+    padding-left: 19px;
+}
+
+.my-board {
+    margin-top: 38px;
+}
+
+.dingo-dropdown {
+    width: 325px !important;
+    margin-top: 5px !important;
+    border-radius: 5px !important;
+    padding: 8px !important;
+}
+
+.brand-logo {
+    font-size: 18px;
+    font-family: Leelawadee;
+    font-weight: bold;
+}
+
+.brand-logo span {
+    position: relative;
+    top: 4px;
+}
+
+.brand-logo-con {
+    width: 500px;
+    padding-left: 250px;
+    position: relative;
+    top: 5px;
+}
+
+.profile-dropdown {
+    width: 325px !important;
+    margin-top: 5px !important;
+    border-radius: 5px !important;
+    padding: 8px !important;
+}
+
+.tm80 {
+    margin-top: 80px;
+}
+
+.panel-custom {
+    border-color: #9F9F9F;
+    border-style: dashed;
+    border-radius: 6px;
+    background-color: #EFEFEF;
+}
+
+.dingo-dropdown .panel-title a {
+    text-decoration: none;
+}

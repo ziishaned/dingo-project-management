@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <div class="alert alert-success">
+                        <div class="alert alert-info">
                             <li class="list-unstyled">{{ Session::get('alert') }}</li>
                         </div>
                     </div>

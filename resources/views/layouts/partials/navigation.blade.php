@@ -104,7 +104,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('user.profile') }}">
                                     Profile
                                 </a>
                             </li>

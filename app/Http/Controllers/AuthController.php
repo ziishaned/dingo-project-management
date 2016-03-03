@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \Auth;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -21,10 +22,12 @@ class AuthController extends Controller
             'email' =>  'required',
             'password' => 'required',
         ]);
-        if (User::attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
-            dd('Login User');
+
+
+        if (!Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
+            return redirect()->back()->with('alert', 'Can\'t log you in with given information.');
         }
-        dd('Fuck');
+        return redirect()->route('user.dashboard')->with('info', 'You are logged in.');
     }
 
     public function getRegister()
@@ -43,7 +46,7 @@ class AuthController extends Controller
         User::create([
             'name'      => $request->get('name'),
             'email'     => $request->get('email'),
-            'password'  => $request->get('password'),
+            'password'  => \Hash::make($request->get('password')),
         ]);
         return redirect()->route('auth.login')->with('alert', 'Your account has been created.');
     }

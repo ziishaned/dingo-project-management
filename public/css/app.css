@@ -2,6 +2,10 @@ body {
     font-family: 'Lato';
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .board-con {
     background-color: #0067A3;
     border-radius: 5px;
@@ -86,7 +90,7 @@ h1 .starred-boards {
 }
 
 .tm80 {
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .panel-custom {
@@ -98,4 +102,80 @@ h1 .starred-boards {
 
 .dingo-dropdown .panel-title a {
     text-decoration: none;
+}
+
+.user-board-title, .user-board-privacy-type {
+    font-size: 18px;
+}
+
+.user-board-title span, .user-board-privacy-type span {
+    top: 2px;
+}
+
+.user-board-privacy-type, .user-board-privacy-type:hover, .user-board-privacy-type:visited {
+    color: #333333;
+}
+
+.board-panel-title {
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.board-list-items {
+    margin-bottom: 7px;
+    border-radius: 3px;
+}
+.container {
+    width: 100%;
+}
+.row {
+    margin: 0;
+}
+.bcategory-list {
+    width: 330px;
+    float: left;
+    margin: 0 10px;
+}
+
+.horizontal-container {
+    padding: 5px 19px;
+    overflow-x: scroll;
+    width: 100% !important;
+}
+
+.horizontal-row {
+    display: inline-flex;
+}
+
+.well-cus {
+    border-radius: 0px !important;
+    height: 205px;
+}
+
+.profile-img {
+    background-color: rgba(146, 146, 146, 0.78);
+    height: 100px;
+    border-radius: 4px;
+}
+
+.profile-img-con {
+    padding: 0;
+}
+
+
+.user-pro-name {
+    margin: 0;
+}
+
+.edit-user-data-btn {
+    margin-top: 20px;
+}
+
+a.nav-profile {
+    border-bottom: 0px !important;
+    border-radius: 4px 4px 1px 1px !important;
+}
+
+.nav-profile-con {
+    margin-top: 47px;
 }

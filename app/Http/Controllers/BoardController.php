@@ -11,6 +11,14 @@ class BoardController extends Controller
 {
     public function postBoard(Request $request)
     {
-        return $request->get();  
+        $this->validate($request, [
+            'boardTitle'        => 'required|unique:board,boardTitle',
+            'boardPrivacyType'  => 'required',   
+        ]);
+        
+        $boardPrivacyType = $request->get('boardPrivacyType');  
+        $boardTitle = $request->get('boardTitle');  
+
+        
     }   
 }

@@ -7,8 +7,8 @@
             </div>
             <div class="modal-body">
                 <form action="" method="POST" role="form">
-                    <div class="form-group">
-                        <label for="title">Title</label>
+                    <div class="form-group" id="boardTitleCon">
+                        <label for="title" class="control-label">Title</label>
                         <input type="text" class="form-control" id="boardTitle" placeholder='Like "Home Construction" for example...' name="boardName">
                     </div>
                     <div class="form-group">
@@ -18,7 +18,7 @@
                             It does't look like you are a member of any teams <a data-toggle="modal" href='#create-team'>Create a team</a>.
                         </p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="boardPrivacyTypeCon">
                         <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private.</p>
                         <select name="boardPrivacyType" id="boardPrivacyType" class="form-control" required="required">
                             <option value="private">Private</option>

@@ -92,7 +92,15 @@
                         boardPrivacyType: boardPrivacyType 
                     },
                     success: function (data) {
-                        console.table(data);
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        var response = JSON.parse(error.responseText);
+                        var errors = {};
+                        $.each(response, function(index, val) {
+                            $('#' + index + 'Con').addClass('has-error');
+                            $('#' + index + 'Con').prepend('<div class="alert alert-danger"><li>'+ val +'</li></div>');
+                        });
                     }
                 });
                 

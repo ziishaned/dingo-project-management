@@ -7,6 +7,10 @@ a, a:hover, a:visited, a:focus, a:active {
     outline: none !important;
 }
 
+li {
+    list-style: none;
+}
+
 .board-con {
     background-color: #0067A3;
     border-radius: 5px;

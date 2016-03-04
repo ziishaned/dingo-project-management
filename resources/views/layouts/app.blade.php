@@ -9,6 +9,7 @@
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dragula.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -31,6 +32,7 @@
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery.toast.js') }}"></script>  
+    <script src="{{ asset('js/dragula.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script>
         jQuery(document).ready(function($) {
@@ -54,9 +56,46 @@
                     && $('.mega-dingo-dropdown').has(e.target).length === 0 
                     && $('.open').has(e.target).length === 0
                 ) {
-                console.log('ok');
                     $('.mega-dingo-dropdown').parent().removeClass('open');
                 }
+            });
+        });
+        window.onload = function() {
+            dragula([document.getElementById('left1'), document.getElementById('right1')]);
+        }
+        jQuery(document).ready(function($) {
+            var ancherToAddInput = $('#show-input-field');
+            var appendInput = '<form action="" method="POST" role="form" id="form-to-add-list"> <div class="form-group" style="margin-bottom: 8px;"> <input type="text" class="form-control" id="" placeholder="Input field"> </div> <div class="form-group" style="margin-bottom: 0px;"> <button type="submit" class="btn btn-primary">Save</button> <span class="glyphicon glyphicon-remove close-input-add-list" aria-hidden="true"></span> </div> </form>';
+            $('#show-input-field').click(function(){
+                $(this).hide();
+                $(this).closest('.panel-body').append(appendInput);
+                $('.close-input-add-list').on('click', function() { 
+                    $('#form-to-add-list').hide();
+                    $(this).closest('.panel-body').prepend(ancherToAddInput);
+                });
+            });
+        });
+
+        // Ajax Requests
+        jQuery(document).ready(function($) {
+            $('#save-board').on('click', function(event) {
+                event.preventDefault();
+                var boardTitle = $('#boardTitle').val();
+                var boardPrivacyType = $('#boardPrivacyType').val();
+
+                $.ajax({
+                    url: 'postBoard',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        boardTitle: boardTitle,
+                        boardPrivacyType: boardPrivacyType 
+                    },
+                    success: function (data) {
+                        console.table(data);
+                    }
+                });
+                
             });
         });
     </script>

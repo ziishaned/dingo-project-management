@@ -26,9 +26,9 @@
                                             </a>
                                         </h4>
                                     </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="panel-body">
-                                        <a href="{{ url('board') }}">ok</a>
+                                        {{-- <a href="{{ url('board') }}">ok</a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                     <div class="panel-body">
-                                        okok
+                                        {{-- okok --}}
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                     <div class="panel-body">
-                                        ok
+                                        {{-- ok --}}
                                     </div>
                                 </div>
                             </div>

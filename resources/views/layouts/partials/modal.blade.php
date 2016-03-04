@@ -9,7 +9,7 @@
                 <form action="" method="POST" role="form">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder='Like "Home Construction" for example...'>
+                        <input type="text" class="form-control" id="boardTitle" placeholder='Like "Home Construction" for example...' name="boardName">
                     </div>
                     <div class="form-group">
                         <h4>Team</h4>
@@ -19,13 +19,18 @@
                         </p>
                     </div>
                     <div class="form-group">
-                        <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private. <a href="#">Change</a></p>
+                        <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private.</p>
+                        <select name="boardPrivacyType" id="boardPrivacyType" class="form-control" required="required">
+                            <option value="private">Private</option>
+                            <option value="team">Team</option>
+                            <option value="public">Public</option>
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-change">Save changes</button>
+                <button type="button" class="btn btn-primary" id="save-board">Save changes</button>
             </div>
         </div>
     </div>
@@ -117,6 +122,38 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="save-change">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="card-detail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center">Create Board</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder='Like "Home Construction" for example...'>
+                    </div>
+                    <div class="form-group">
+                        <h4>Team</h4>
+                        <p>
+                            Teams make sharing and working within a group even easier.
+                            It does't look like you are a member of any teams <a data-toggle="modal" href='#create-team'>Create a team</a>.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <p><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> This board will be Private. <a href="#">Change</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="save-change">Save changes</button>
             </div>
         </div>

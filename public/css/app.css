@@ -2,8 +2,9 @@ body {
     font-family: 'Lato';
 }
 
-a {
+a, a:hover, a:visited, a:focus, a:active {
     text-decoration: none !important;
+    outline: none !important;
 }
 
 .board-con {
@@ -178,4 +179,11 @@ a.nav-profile {
 
 .nav-profile-con {
     margin-top: 47px;
+}
+
+.close-input-add-list {
+    font-size: 25px;
+    top: 8px;
+    left: 25px;
+    cursor: pointer;
 }

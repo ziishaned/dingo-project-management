@@ -11,6 +11,6 @@ class BoardController extends Controller
 {
     public function postBoard(Request $request)
     {
-        return $request->all();  
+        return $request->get();  
     }   
 }

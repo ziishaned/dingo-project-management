@@ -12,8 +12,10 @@ class CreateBoardTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('board');
         Schema::create('board', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('boardTitle');
             $table->string('boardPrivacyType');

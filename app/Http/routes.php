@@ -14,5 +14,6 @@ Route::post('register', ['uses' => 'AuthController@postRegister', ]);
 Route::get('home', ['uses' => 'UserController@getDashboard', 'as' => 'user.dashboard', ]);
 Route::get('profile', ['uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
 
-Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
 Route::get('board', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
+Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
+Route::post('postListName', ['uses' => 'BoardController@postListName', ]);

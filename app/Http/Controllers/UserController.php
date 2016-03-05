@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Board;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,7 +12,8 @@ class UserController extends Controller
 {
     public function getDashboard()
     {
-        return view('user.home');
+        $boards = Board::all();
+        return view('user.home', compact('boards'));
     }
 
     public function getBoard()

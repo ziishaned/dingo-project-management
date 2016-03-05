@@ -29,5 +29,10 @@ class BoardController extends Controller
         ]);
 
         return Board::all();
+    }
+
+    public function getBoardDetail(Request $request)
+    {
+       $boardId = $request->id;
     }   
 }

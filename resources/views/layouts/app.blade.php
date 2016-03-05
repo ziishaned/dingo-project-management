@@ -93,18 +93,37 @@
                     },
                     success: function (data) {
                         console.log(data);
+                        $('#create-new-board').modal('hide');
+                        $('#boardTitle').val('');
+                        $('#boardTitleCon').removeClass('has-error');
+                        $('#boardTitleCon').find('.alert').remove()
                     },
                     error: function (error) {
                         var response = JSON.parse(error.responseText);
                         var errors = {};
+                        $('#boardTitleCon').find('.alert').empty()
                         $.each(response, function(index, val) {
                             $('#' + index + 'Con').addClass('has-error');
                             $('#' + index + 'Con').prepend('<div class="alert alert-danger"><li>'+ val +'</li></div>');
                         });
                     }
-                });
+                });                
                 
             });
+        });
+        $.ajaxSetup({
+            beforeSend: function() {
+                if ($("#loadingbar").length === 0) {
+                    $("body").append("<div id='loadingbar'></div>")
+                    $("#loadingbar").addClass("waiting").append($("<dt/><dd/>"));
+                    $("#loadingbar").width((50 + Math.random() * 30) + "%");
+                }
+            },
+            complete : function() {
+                $("#loadingbar").width("101%").delay(200).fadeOut(400, function() {
+                    $(this).remove();
+                });
+            }
         });
     </script>
 </body>

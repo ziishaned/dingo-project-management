@@ -1,6 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use Auth;
+use \App\BoardCard;
 use \App\BoardList;
 use App\Board;
 use Illuminate\Http\Request;
@@ -41,11 +43,11 @@ class BoardController extends Controller
     public function postListName(Request $request)
     {
         $this->validate($request, [
-            'listName' => 'required|unique:board_lists,list_name',
+            'list_name' => 'required|unique:board_lists,list_name',
         ]);
 
-        $boardId = $request->boardId;
-        $listName = $request->listName;
+        $listName = $request->get('list_name');
+        $boardId = $request->get('board_id');
         $userId = Auth::id();
         
         return BoardList::create([
@@ -53,6 +55,24 @@ class BoardController extends Controller
             'list_name' => $listName,
             'user_id' => $userId,
         ]);
+    }  
 
-    }   
+    public function postCard(Request $request)
+    {
+        $this->validate($request, [
+            'card-title' => 'required|unique:board_cards,card_title',
+        ]);
+
+        $cardTitle = $request->get('card-title');
+        $listId = $request->get('list_id');
+        $boardId = $request->get('board_id');
+        $userId = Auth::id();
+
+        return BoardCard::create([
+            'board_id' => $boardId,
+            'user_id' => $userId,
+            'list_id' => $listId,
+            'card_title' => $cardTitle,  
+        ]);
+    }
 }

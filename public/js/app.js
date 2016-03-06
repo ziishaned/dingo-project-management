@@ -26,14 +26,14 @@ jQuery(document).ready(function($) {
 window.onload = function() {
     dragula([document.getElementById('left1'), document.getElementById('right1')]);
 }
-jQuery(document).ready(function($) {
-    var ancherToAddInput = $('#show-input-field');
-    $('#show-input-field').on('click', function() { 
-        $('.addListInputForm').show(); 
-        $('#show-input-field').hide();
-    });
-    $('.close-input-add-list').on('click', function() { 
-        $('#show-input-field').show();
-        $('.addListInputForm').hide(); 
-    });
-});
+// jQuery(document).ready(function($) {
+//     var ancherToAddInput = $('#show-input-field');
+//     $('#show-input-field').on('click', function() { 
+//         $('.addListInputForm').show(); 
+//         $('#show-input-field').hide();
+//     });
+//     $('.close-input-add-list').on('click', function() { 
+//         $('#show-input-field').show();
+//         $('.addListInputForm').hide(); 
+//     });
+// });

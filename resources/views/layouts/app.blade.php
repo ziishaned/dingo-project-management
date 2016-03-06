@@ -35,6 +35,6 @@
     <script src="{{ asset('js/dragula.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/app.ajax.js') }}"></script>
+    <script src="{{ asset('js/board.js') }}"></script>
 </body>
 </html>

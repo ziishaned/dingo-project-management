@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<input type="hidden" id="boardId" value="{{ $boardDetail['id'] }}">
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -40,11 +39,21 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <div id="left1">
+                            <div data-id="{{ $list->id }}">
                                 {{-- <li class="list-group-item board-list-items"><a data-toggle="modal" href="#card-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero unde labore voluptates numquam</a></li> --}}
                             </div>
                         </ul>
-                        <a href="#">Add a card...</a>
+                        <a href="#" class="show-input-field">Add a card...</a>
+                        <form action="" method="POST" role="form" style="display: none;">
+                            <div class="form-group" id="dynamic-board-input-con" style="margin-bottom: 8px;">
+                                <textarea name="card-title" class="form-control" rows="3"></textarea>
+                                <input type="hidden" name="list_id" value="{{ $list->id }}">
+                                <input type="hidden" name="board_id" value="{{ $boardDetail['id'] }}">    
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0px;">
+                                <button type="submit" class="btn btn-primary" id="saveCard">Save</button> <span class="glyphicon glyphicon-remove close-input-field" aria-hidden="true"></span>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -52,13 +61,14 @@
         <div class="bcategory-list">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="#" id="show-input-field">Add a list...</a>
-                    <form action="" class="addListInputForm" method="POST" role="form" style="display: none;">
-                        <div class="form-group" id="listNameCon" style="margin-bottom: 8px;">
-                            <input type="text" class="form-control" id="listNameInput">
+                    <a href="#" class="show-input-field">Add a list...</a>
+                    <form action="" class="add-board-list-form" method="POST" role="form" style="display: none;">
+                        <div class="form-group" id="dynamic-board-input-con" style="margin-bottom: 8px;">
+                            <input type="text" class="form-control" name="list_name">
+                            <input type="hidden" name="board_id" value="{{ $boardDetail['id'] }}">
                         </div>
                         <div class="form-group" style="margin-bottom: 0px;">
-                            <button type="submit" class="btn btn-primary" id="saveListName">Save</button> <span class="glyphicon glyphicon-remove close-input-add-list" aria-hidden="true"></span>
+                            <button type="submit" class="btn btn-primary" id="saveListName">Save</button> <span class="glyphicon glyphicon-remove close-input-field" aria-hidden="true"></span>
                         </div>
                     </form>
                 </div>

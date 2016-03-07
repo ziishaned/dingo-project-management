@@ -82,12 +82,11 @@ $(document).ready(function() {
                         listId: listId 
                     },
                     success: function (data) {
-                        console.log(data);
+                        $(that).closest(".bcategory-list").remove();
                         swal("Deleted!", "Your file was successfully deleted!", "success");
                     },
                     error: function (error) {
                         var response = JSON.parse(error.responseText);
-                        console.log(response);
                         swal("Oops", "We couldn't connect to the server!", "error");
                     }
                 });

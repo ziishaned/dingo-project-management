@@ -88,6 +88,9 @@ class BoardController extends Controller
     {
         $listId = $request->get("listId");
         $list = BoardList::find($listId);
-        return $list->delete();
+        $list->delete();
+        return [
+            'success' => 'success', 
+        ];
     }
 }

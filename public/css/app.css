@@ -377,3 +377,7 @@ clip: rect(-6px,185px,14px,25px);
 }
 
 /* Stop Ajax loading animation*/
+
+.card-con {
+  min-height: 10px;
+}

@@ -15,6 +15,8 @@ Route::get('home', ['uses' => 'UserController@getDashboard', 'as' => 'user.dashb
 Route::get('profile', ['uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
 
 Route::get('board', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
+
 Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
 Route::post('postListName', ['uses' => 'BoardController@postListName', ]);
 Route::post('postCard', ['uses' => 'BoardController@postCard', ]);
+Route::post('changeCardList', ['uses' => 'BoardController@changeCardList', ]);

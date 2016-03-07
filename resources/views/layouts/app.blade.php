@@ -11,6 +11,7 @@
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dragula.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 </head>
 <body>
     @include('layouts.partials.modal')
@@ -36,5 +37,6 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/board.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
 </body>
 </html>

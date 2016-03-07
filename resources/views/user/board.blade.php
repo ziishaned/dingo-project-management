@@ -32,15 +32,19 @@
 <div class="horizontal-container">
     <div class="row horizontal-row list-sortable">
         @foreach($lists as $list)
-            <div class="bcategory-list">
+            <div class="bcategory-list" data-list-id="{{ $list['id'] }}">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title board-panel-title">{{ $list['list_name'] }}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <div data-id="{{ $list->id }}">
-                                {{-- <li class="list-group-item board-list-items"><a data-toggle="modal" href="#card-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero unde labore voluptates numquam</a></li> --}}
+                            <div class="card-con" data-listid="{{ $list->id }}">
+                                @foreach($cards as $card)
+                                    @if($card['list_id'] === $list['id']) 
+                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" ><a data-toggle="modal" href="#card-detail"> {{ $card['card_title'] }} </a></li>
+                                    @endif
+                                @endforeach
                             </div>
                         </ul>
                         <a href="#" class="show-input-field">Add a card...</a>

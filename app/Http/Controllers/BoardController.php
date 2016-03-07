@@ -37,13 +37,15 @@ class BoardController extends Controller
        $boardId = $request->id;
        $boardDetail = Board::findOrFail(['id' => $boardId])->first();
        $lists = BoardList::where(["board_id" => $boardId,])->get();
-       return view('user.board', compact('boardDetail', 'lists'));
+       $cards = BoardCard::where(["board_id" => $boardId,])->get();
+       return view('user.board', compact('boardDetail', 'lists', 'cards'));
     }
 
     public function postListName(Request $request)
     {
+        // Made this unique for his board not to other
         $this->validate($request, [
-            'list_name' => 'required|unique:board_lists,list_name',
+            'list_name' => 'required',
         ]);
 
         $listName = $request->get('list_name');
@@ -60,7 +62,7 @@ class BoardController extends Controller
     public function postCard(Request $request)
     {
         $this->validate($request, [
-            'card-title' => 'required|unique:board_cards,card_title',
+            'card-title' => 'required',
         ]);
 
         $cardTitle = $request->get('card-title');
@@ -74,5 +76,12 @@ class BoardController extends Controller
             'list_id' => $listId,
             'card_title' => $cardTitle,  
         ]);
+    }
+    public function changeCardList(Request $request)
+    {
+        $listId = $request->get('listId');
+        $cardId = $request->get('cardId');
+        return BoardCard::where('id', $cardId)
+          ->update(['list_id' => $listId]);
     }
 }

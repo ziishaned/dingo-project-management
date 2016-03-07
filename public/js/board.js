@@ -35,9 +35,10 @@ $(document).ready(function() {
         saveCard: function (data, curentBtnClicked) {
             that = this;
             $.ajax({
-                url: 'postCard?' + data,
+                url: 'postCard',
                 type: 'POST',
                 dataType: 'json',
+                data: data,
                 success: function (data) {
                     console.log(data);
                 },
@@ -80,9 +81,10 @@ $(document).ready(function() {
         saveList: function (data, curentBtnClicked) {
             that = this;
             $.ajax({
-                url: 'postListName?' + data,
+                url: 'postListName',
                 type: 'POST',
                 dataType: 'json',
+                data: data,
                 success: function (data) {
                     that.params['createNewBoardModal'].modal('hide');
                     that.params['boardTitle'].val('');

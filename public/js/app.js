@@ -23,17 +23,60 @@ jQuery(document).ready(function($) {
         }
     });
 });
-window.onload = function() {
-    dragula([document.getElementById('left1'), document.getElementById('right1')]);
-}
-// jQuery(document).ready(function($) {
-//     var ancherToAddInput = $('#show-input-field');
-//     $('#show-input-field').on('click', function() { 
-//         $('.addListInputForm').show(); 
-//         $('#show-input-field').hide();
+// $(document).ready(function() {
+//     var ok = $('.card-con').toArray();
+//     dragula(ok, {
+//         isContainer: function (el) {
+//             return el.classList.contains('card-con');
+//         }
 //     });
-//     $('.close-input-add-list').on('click', function() { 
-//         $('#show-input-field').show();
-//         $('.addListInputForm').hide(); 
+// });
+// $(function() {
+//     $( "#sortable1, #sortable2" ).sortable({
+//         connectWith: ".card-con"
+//     }).disableSelection();
+// });
+// 
+$(document).ready(function() {
+    $(".card-con").each(function(index, el) {
+        
+        $(el).sortable({
+            connectWith: ".card-con",
+            receive: function( event, ui ) {
+                var targetList = event.target;
+                var targetCard = ui.item[0];
+                var listId = $(targetList).data('listid');
+                var cardId = $(targetCard).data('cardid');
+
+                $.ajax({
+                    url: 'changeCardList',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        listId: listId, 
+                        cardId: cardId
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        var response = JSON.parse(error.responseText);
+                        console.log(response);
+                    }
+                });
+
+            },
+        }).disableSelection();
+    });
+});
+
+// var listCards = [];
+
+// $('.bcategory-list').each(function(index, list){
+//     var updateListId = $(list).data('listId');
+//     var cards = $(list).find('.ui-sortable').sortable('toArray');
+//     listCards.push({
+//         listId: updateListId,
+//         cards: cards 
 //     });
 // });

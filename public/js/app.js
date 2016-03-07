@@ -22,21 +22,7 @@ jQuery(document).ready(function($) {
             $('.mega-dingo-dropdown').parent().removeClass('open');
         }
     });
-});
-// $(document).ready(function() {
-//     var ok = $('.card-con').toArray();
-//     dragula(ok, {
-//         isContainer: function (el) {
-//             return el.classList.contains('card-con');
-//         }
-//     });
-// });
-// $(function() {
-//     $( "#sortable1, #sortable2" ).sortable({
-//         connectWith: ".card-con"
-//     }).disableSelection();
-// });
-// 
+}); 
 $(document).ready(function() {
     $(".card-con").each(function(index, el) {
         

@@ -9,14 +9,13 @@
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dragula.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 </head>
 <body>
     @include('layouts.partials.modal')
     @include('layouts.partials.navigation')
-    <div class="tm80">
+    <div class="tm70">
         @if(Session::has('alert'))
             <div class="container">
                 <div class="row">
@@ -33,7 +32,6 @@
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery.toast.js') }}"></script>  
-    <script src="{{ asset('js/dragula.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/board.js') }}"></script>

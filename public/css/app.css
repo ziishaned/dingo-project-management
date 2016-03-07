@@ -98,7 +98,7 @@ h1 .starred-boards {
 
 .brand-logo-con {
     width: 500px;
-    padding-left: 250px;
+    margin-left: 370px;
     position: relative;
     top: 5px;
 }
@@ -160,7 +160,7 @@ h1 .starred-boards {
 
 .horizontal-container {
     padding: 5px 19px;
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
     width: 100% !important;
 }
 
@@ -380,4 +380,13 @@ clip: rect(-6px,185px,14px,25px);
 
 .card-con {
   min-height: 10px;
+}
+
+.list-group-item a {
+    color: #4d4d4d !important;
+}
+
+.list-group-item:hover {
+    background-color: #d6dadc;
+    cursor: pointer;
 }

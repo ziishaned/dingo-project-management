@@ -11,6 +11,8 @@
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet"/>
 </head>
 <body>
     @include('layouts.partials.modal')
@@ -36,5 +38,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/board.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 </body>
 </html>

@@ -84,4 +84,9 @@ class BoardController extends Controller
         return BoardCard::where('id', $cardId)
           ->update(['list_id' => $listId]);
     }
+    public function deleteList(Request $request)
+    {
+        $listId = $request->get("listId");
+        return BoardList::find($listId);
+    }
 }

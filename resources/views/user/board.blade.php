@@ -35,7 +35,14 @@
             <div class="bcategory-list" data-list-id="{{ $list['id'] }}">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title board-panel-title">{{ $list['list_name'] }}</h3>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h3 class="panel-title board-panel-title">{{ $list['list_name'] }}</h3>
+                            </div>
+                            <div class="col-lg-2">
+                                <span data-listid="{{ $list['id'] }}" class="glyphicon glyphicon-trash delete-list" aria-hidden="true" style="cursor: pointer;"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">

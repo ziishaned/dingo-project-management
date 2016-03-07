@@ -55,6 +55,45 @@ $(document).ready(function() {
         }).disableSelection();
     });
 });
+$(document).ready(function() {
+    $(".board-panel-title").each(function(index, el) {
+        $(el).editable();
+    });
+});
+
+$(document).ready(function() {
+    $('.delete-list').on('click', function() {
+        var that = this;
+        swal({   
+            title: "Are you sure?",   
+            text: "You will not be able to recover this List with cards!",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "Yes, delete it!",   
+            closeOnConfirm: false 
+            }, function(){   
+                var listId = $(that).data("listid");
+                $.ajax({
+                    url: 'delete-list',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        listId: listId 
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        swal("Deleted!", "Your file was successfully deleted!", "success");
+                    },
+                    error: function (error) {
+                        var response = JSON.parse(error.responseText);
+                        console.log(response);
+                        swal("Oops", "We couldn't connect to the server!", "error");
+                    }
+                });
+        });
+    });
+});
 
 // var listCards = [];
 

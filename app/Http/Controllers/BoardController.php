@@ -87,6 +87,7 @@ class BoardController extends Controller
     public function deleteList(Request $request)
     {
         $listId = $request->get("listId");
-        return BoardList::find($listId);
+        $list = BoardList::find($listId);
+        return $list->delete();
     }
 }

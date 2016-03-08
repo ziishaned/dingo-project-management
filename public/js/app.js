@@ -57,7 +57,21 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
     $(".board-panel-title").each(function(index, el) {
-        $(el).editable();
+        $.fn.editable.defaults.mode = 'popup';
+        $(el).editable({
+            validate: function(value) {
+                if($.trim(value) == '') 
+                    return 'Value is required.';
+            },
+            type: 'text',
+            url:'update-list-name',  
+            title: 'Edit List Name',
+            placement: 'top', 
+            send:'always',
+            ajaxOptions: {
+                dataType: 'json'
+            }
+        });
     });
 });
 

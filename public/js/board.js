@@ -86,6 +86,7 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: data,
                 success: function (data) {
+                    console.log(data);
                     that.params['createNewBoardModal'].modal('hide');
                     that.params['boardTitle'].val('');
                     that.params['boardTitleCon'].removeClass('has-error');

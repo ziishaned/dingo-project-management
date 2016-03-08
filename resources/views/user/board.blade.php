@@ -37,7 +37,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-lg-10">
-                                <h3 class="panel-title board-panel-title">{{ $list['list_name'] }}</h3>
+                                <h3 class="panel-title board-panel-title" data-pk="{{ $list['id'] }}">{{ $list['list_name'] }}</h3>
                             </div>
                             <div class="col-lg-2">
                                 <span data-listid="{{ $list['id'] }}" class="glyphicon glyphicon-trash delete-list" aria-hidden="true" style="cursor: pointer;"></span>

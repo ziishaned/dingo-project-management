@@ -26,3 +26,4 @@ Route::post('postListName', ['uses' => 'BoardController@postListName', ]);
 Route::post('postCard', ['uses' => 'BoardController@postCard', ]);
 Route::post('changeCardList', ['uses' => 'BoardController@changeCardList', ]);
 Route::post('delete-list', ['uses' => 'BoardController@deleteList', ]);
+Route::post('update-list-name', ['uses' => 'BoardController@updateListName', ]);

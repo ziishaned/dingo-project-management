@@ -6,6 +6,7 @@ use \App\BoardCard;
 use \App\BoardList;
 use App\Board;
 use Illuminate\Http\Request;
+use Response;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -92,5 +93,20 @@ class BoardController extends Controller
         return [
             'success' => 'success', 
         ];
+    }
+
+    public function updateListName(Request $request)
+    {
+        $listName = $request->get('value');
+        $listId = $request->get('pk');
+        
+        $updatedData =  BoardList::where('id', $listId)
+          ->update(['list_name' => $listName]);        
+
+        if($updatedData) {
+            return Response::json(array('status'=>1));
+        } else {
+            return Response::json(array('status'=>0));
+        }
     }
 }

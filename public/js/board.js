@@ -96,6 +96,7 @@ $(document).ready(function() {
                         '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'"><a data-toggle="modal" href="#card-detail">'+ data.card_title +'</a></li>'
                     );
                     $(that.targetList).find('form').hide();
+                    $(that.targetList).find('form textarea').val('');
                     $(that.targetList).find('a.show-input-field').show();
                 },
                 error: function (error) {
@@ -193,7 +194,10 @@ $(document).ready(function() {
                     );
                     that.initCradDrag();
                     that.initEditableListName();
-                    // that.params['createNewBoardModal'].modal('hide');
+                    that.params['createNewBoardModal'].modal('hide');
+                    $('.show-input-field').show();
+                    $('.add-board-list-form').hide();
+                    $('.add-board-list-form').find('input[type="text"]').val('');
                     that.params['boardTitle'].val('');
                     that.params['boardTitleCon'].removeClass('has-error');
                     that.params['boardTitleCon'].find('.alert').remove();

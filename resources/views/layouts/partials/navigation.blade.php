@@ -56,7 +56,11 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                     <div class="panel-body">
-                                        {{-- ok --}}
+                                        <ul class="list-group" style="margin-bottom: 0px;">
+                                            @foreach($boards as $board)
+                                                <li class="list-group-item" href="sdgsfh"><a href="{{ url('board?id=' . $board->id) }}">{{ $board['boardTitle'] }}</a></li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -66,11 +70,11 @@
                                     <a class="btn btn-default form-control" data-toggle="modal" href='#create-new-board'>Create new board</a>
                                 </div>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <div class="form-group">
                                     <a class="btn btn-default form-control" href="#" role="button">Always keep this menu open</a>
                                 </div>
-                            </li>
+                            </li> --}}
                             <li>
                                 <div class="form-group">
                                     <a class="btn btn-default form-control" data-toggle="modal" href='#see-closed-board'>See closed board</a>
@@ -109,19 +113,19 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('user.dashboard') }}">
                                     Cards
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#">
                                     Settings
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="divider"></li>
-                            <li>
+                            {{-- <li>
                                 <a href="#">Help</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ url('/logout') }}">Logout</a>
                             </li>

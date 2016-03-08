@@ -37,7 +37,10 @@ class BoardController extends Controller
        $boardDetail = Board::findOrFail(['id' => $boardId])->first();
        $lists = BoardList::where(["board_id" => $boardId,])->get();
        $cards = BoardCard::where(["board_id" => $boardId,])->get();
-       return view('user.board', compact('boardDetail', 'lists', 'cards'));
+       
+       $boards = Board::all();
+
+       return view('user.board', compact('boardDetail', 'lists', 'cards', 'boards'));
     }
 
     public function postListName(Request $request)

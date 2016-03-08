@@ -24,59 +24,7 @@ jQuery(document).ready(function($) {
     });
 }); 
 $(document).ready(function() {
-    $(".card-con").each(function(index, el) {
-        
-        $(el).sortable({
-            connectWith: ".card-con",
-            receive: function( event, ui ) {
-                var targetList = event.target;
-                var targetCard = ui.item[0];
-                var listId = $(targetList).data('listid');
-                var cardId = $(targetCard).data('cardid');
-
-                $.ajax({
-                    url: 'changeCardList',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        listId: listId, 
-                        cardId: cardId
-                    },
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (error) {
-                        var response = JSON.parse(error.responseText);
-                        console.log(response);
-                    }
-                });
-
-            },
-        }).disableSelection();
-    });
-});
-$(document).ready(function() {
-    $(".board-panel-title").each(function(index, el) {
-        $.fn.editable.defaults.mode = 'popup';
-        $(el).editable({
-            validate: function(value) {
-                if($.trim(value) == '') 
-                    return 'Value is required.';
-            },
-            type: 'text',
-            url:'update-list-name',  
-            title: 'Edit List Name',
-            placement: 'top', 
-            send:'always',
-            ajaxOptions: {
-                dataType: 'json'
-            }
-        });
-    });
-});
-
-$(document).ready(function() {
-    $('.delete-list').on('click', function() {
+    $(document).on('click', '.delete-list', function() {
         var that = this;
         swal({   
             title: "Are you sure?",   

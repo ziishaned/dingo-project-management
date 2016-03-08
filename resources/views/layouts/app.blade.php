@@ -33,11 +33,11 @@
     </div>    
 
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/jquery.toast.js') }}"></script>  
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/board.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.toast.js') }}"></script>  
+    <script src="{{ asset('js/board.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 </body>

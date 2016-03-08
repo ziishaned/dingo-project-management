@@ -23,7 +23,7 @@ class CreateBoardCardsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('list_id')->references('id')->on('board_lists')->onDelete('cascade');
             
-            $table->string('card_title')->unique();
+            $table->string('card_title');
             $table->timestamps();
         });
     }

@@ -24,13 +24,11 @@ class BoardController extends Controller
         $boardTitle = $request->get('boardTitle');  
         $userId = Auth::id();
         
-        Board::create([
+        return Board::create([
             'user_id' => $userId,
             'boardTitle' => $boardTitle,
             'boardPrivacyType' => $boardPrivacyType,  
         ]);
-
-        return Board::all();
     }
 
     public function getBoardDetail(Request $request)

@@ -10,28 +10,13 @@
                 </button>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle mega-dingo-dropdown"  role="button" aria-expanded="false">Dingo</a>
-                        <ul class="dropdown-menu dingo-dropdown" role="menu">
+                        <a href="{{ route('user.dashboard') }}" class="dropdown-toggle mega-dingo-dropdown"  role="button" aria-expanded="false">Dingo</a>
+                        {{-- <ul class="dropdown-menu dingo-dropdown" role="menu">
                             <li>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="" placeholder="Find boards by name...">
                                 </div>
                             </li>
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Starred Boards <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body">
-                                        {{-- <a href="{{ url('board') }}">ok</a> --}}
-                                    </div>
-                                </div>
-                            </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
@@ -42,7 +27,11 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                     <div class="panel-body">
-                                        {{-- okok --}}
+                                        <ul class="list-group" style="margin-bottom: 0px;">
+                                            @foreach($recentBoards as $board)
+                                                <li class="list-group-item"><a href="{{ url('board?id=' . $board->id) }}">{{ $board['boardTitle'] }}</a></li>
+                                            @endforeach
+                                        </ul> 
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +47,7 @@
                                     <div class="panel-body">
                                         <ul class="list-group" style="margin-bottom: 0px;">
                                             @foreach($boards as $board)
-                                                <li class="list-group-item" href="sdgsfh"><a href="{{ url('board?id=' . $board->id) }}">{{ $board['boardTitle'] }}</a></li>
+                                                <li class="list-group-item"><a href="{{ url('board?id=' . $board->id) }}">{{ $board['boardTitle'] }}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -69,20 +58,20 @@
                                 <div class="form-group">
                                     <a class="btn btn-default form-control" data-toggle="modal" href='#create-new-board'>Create new board</a>
                                 </div>
-                            </li>
+                            </li> --}}
                             {{-- <li>
                                 <div class="form-group">
                                     <a class="btn btn-default form-control" href="#" role="button">Always keep this menu open</a>
                                 </div>
                             </li> --}}
-                            <li>
+                            {{-- <li>
                                 <div class="form-group">
                                     <a class="btn btn-default form-control" data-toggle="modal" href='#see-closed-board'>See closed board</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav">

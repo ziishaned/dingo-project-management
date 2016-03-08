@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Board;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,9 @@ class UserController extends Controller
 {
     public function getDashboard()
     {
-        $boards = Board::all();
-        return view('user.home', compact('boards'));
+        $boards = Board::where(['user_id' => Auth::id(), ])->get();
+        $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
+        return view('user.home', compact('boards', 'recentBoards'));
     }
 
     public function getBoard()

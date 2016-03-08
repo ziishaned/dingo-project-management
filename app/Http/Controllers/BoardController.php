@@ -38,9 +38,10 @@ class BoardController extends Controller
        $lists = BoardList::where(["board_id" => $boardId,])->get();
        $cards = BoardCard::where(["board_id" => $boardId,])->get();
        
-       $boards = Board::all();
+       $boards = Board::where(['user_id' => Auth::id(), ])->get();
+       $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
 
-       return view('user.board', compact('boardDetail', 'lists', 'cards', 'boards'));
+       return view('user.board', compact('boardDetail', 'lists', 'cards', 'boards', 'recentBoards'));
     }
 
     public function postListName(Request $request)

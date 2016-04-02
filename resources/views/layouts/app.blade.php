@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Dingo</title>
-
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/tagIt.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/magic-check.min.css') }}" rel="stylesheet"/>
 </head>
 <body>
     @include('layouts.partials.modal')
@@ -40,5 +42,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/tagIt.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 </body>
 </html>

@@ -1,5 +1,12 @@
 body {
-    font-family: 'Lato';
+    font-family: arial, Helvetica;
+}
+
+label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
 }
 
 a, a:hover, a:visited, a:focus, a:active {
@@ -125,19 +132,9 @@ h1 .starred-boards {
     text-decoration: none;
 }
 
-.user-board-title, .user-board-privacy-type {
-    font-size: 18px;
-}
-
-.user-board-title span, .user-board-privacy-type span {
-    top: 2px;
-}
-
-.user-board-privacy-type, .user-board-privacy-type:hover, .user-board-privacy-type:visited {
-    color: #333333;
-}
-
 .board-panel-title {
+    cursor: text;
+    padding-bottom: 3px;
     font-size: 17px;
     font-weight: 800;
 }
@@ -159,9 +156,10 @@ h1 .starred-boards {
 }
 
 .horizontal-container {
-    padding: 5px 19px;
+    padding: 5px 0px 0px 20px;
+    height: 565px;  
     /*overflow-x: scroll;*/
-    width: 100% !important;
+    /*width: 100% !important;*/
 }
 
 .horizontal-row {
@@ -389,4 +387,47 @@ clip: rect(-6px,185px,14px,25px);
 .list-group-item:hover {
     background-color: #d6dadc;
     cursor: pointer;
+}
+
+.frame {
+    overflow-y: auto;
+}
+
+.frame::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.frame::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.frame::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+.frame::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.card-list-con {
+    max-height: 455px !important;
+    background-color: whitesmoke;
+}
+
+.dashed-placeholder {
+    border: 2px dashed #999;
+    width: 298px;
+    height: 42px;
+    background: #ccc;
+    margin-bottom: 5px;
+/*    margin: 10px 0px 50px 0px;
+    padding: 8px 0px 10px 6px;*/
+}
+
+.addSubTaskCon {
+    padding: 0px 20px 30px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

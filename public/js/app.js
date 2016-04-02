@@ -56,6 +56,22 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $('#cardTagsInput').tagIt({
+        allowDuplicates: false,
+        defaultText: '',
+        maxLength: 14,
+        width: '528px'
+    });
+});
+
+$(function () {
+    $('#datetimepicker12').datetimepicker({
+        inline: true,
+        sideBySide: true
+    });
+});
+
 // var listCards = [];
 
 // $('.bcategory-list').each(function(index, list){

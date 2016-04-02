@@ -10,6 +10,8 @@ $(document).ready(function() {
             $(".card-con").each(function(index, el) {
                 $(el).sortable({
                     connectWith: ".card-con",
+                    placeholder: "dashed-placeholder",
+                    revert: 200,
                     receive: function( event, ui ) {
                         var targetList = event.target;
                         var targetCard = ui.item[0];
@@ -48,7 +50,7 @@ $(document).ready(function() {
                     type: 'text',
                     url:'update-list-name',  
                     title: 'Edit List Name',
-                    placement: 'top', 
+                    placement: 'right', 
                     send:'always',
                     ajaxOptions: {
                         dataType: 'json'
@@ -58,6 +60,7 @@ $(document).ready(function() {
         },
         bindUI: function () {
             var that = this;
+
             this.params['saveBoardBtn'].on('click', function(event) {
                 event.preventDefault();
                 that.saveBoard();
@@ -83,9 +86,66 @@ $(document).ready(function() {
                 event.preventDefault();
                 that.saveCard($(this).closest('.panel-body').find('form').serialize(), this);
             });
+
+            $(document).on('click', '.board-list-items', function() {
+                var cardId = $(this).data('cardid');
+                $('.modal#card-detail').find('button#delete-card').data('cardid', cardId);
+                that.putCardDetailInModal(cardId);
+            });
+
+            $(document).on('click', 'button#delete-card', function() {
+                var cardId = $(this).data('cardid');
+                var cardIdCon = $(".list-group-item").filter("[data-cardid="+cardId+"]");
+                that.deleteCard(cardId, cardIdCon);
+            });
+        },
+        putCardDetailInModal: function (cardId) {
+            $.ajax({
+                url: 'getCardDetail',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    cardId: cardId
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        },
+        deleteCard: function (cardId, cardIdCon) {
+            swal({   
+                title: "Are you sure?",   
+                text: "You will not be able to recover this List with cards!",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: false 
+                }, function(){   
+                    $.ajax({
+                        url: 'deleteCard',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            cardId: cardId
+                        },
+                        success: function (data) {
+                            $(cardIdCon).remove();
+                            $('.modal#card-detail').modal("hide");
+                            swal("Deleted!", "Your file was successfully deleted!", "success");
+                        },
+                        error: function (error) {
+                            var response = JSON.parse(error.responseText);
+                            swal("Oops", "We couldn't connect to the server!", "error");
+                        }
+                    });
+            });   
         },
         saveCard: function (data, curentBtnClicked) {
-            that = this;
+            var that = this;
             $.ajax({
                 url: 'postCard',
                 type: 'POST',
@@ -162,7 +222,7 @@ $(document).ready(function() {
                     $(curentBtnClicked).closest(".bcategory-list").before(
                         '<div class="bcategory-list" data-list-id="' + data.id + '">'+
                             '<div class="panel panel-default">'+
-                                '<div class="panel-heading">'+
+                                '<div class="panel-heading" style="border-bottom: 0px; ">'+
                                     '<div class="row">'+
                                         '<div class="col-lg-10">'+
                                             '<h3 class="panel-title board-panel-title editable editable-click" data-pk="' + data.id + '">' + data.list_name + '</h3>'+
@@ -172,7 +232,7 @@ $(document).ready(function() {
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
-                                '<div class="panel-body">'+
+                                '<div class="panel-body card-list-con frame">'+
                                     '<ul class="list-group">'+
                                         '<div class="card-con ui-sortable" data-listid="' + data.id + '">'+
                                         '</div>'+

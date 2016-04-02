@@ -1,55 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="user-board-title pull-left">{{ $boardDetail['boardTitle'] }} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></h2>   
-            <h2 class="user-board-privacy-type pull-right">
-                <a  class="dropdown-toggle user-board-privacy-type" data-toggle="dropdown" role="button" aria-expanded="false" href="{{ url('/register') }}"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> {{ $boardDetail['boardPrivacyType'] }}</a>
-                <ul class="dropdown-menu profile-dropdown" role="menu">
-                    <li class="text-center">Change Visibility</li>
-                    <li class="divider"></li>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h5><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Private <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h5>   
-                            <p>The Board is private. Only people added to the board can view and edit it.</p>
-                        </li>
-                        <li class="list-group-item">
-                            <h5><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Private</h5>   
-                            <p>The Board is private. Only people added to the board can view and edit it.</p>
-                        </li>
-                        <li class="list-group-item">
-                            <h5><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Private</h5>   
-                            <p>The Board is private. Only people added to the board can view and edit it.</p>
-                        </li>
-                    </ul>
-                </ul>
-            </h2>
-        </div>
-    </div>
-</div>
-<div class="horizontal-container">
+<div class="horizontal-container frame">
     <div class="row horizontal-row list-sortable">
         @foreach($lists as $list)
             <div class="bcategory-list" data-list-id="{{ $list['id'] }}">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="border-bottom: 0px; ">
                         <div class="row">
                             <div class="col-lg-10">
                                 <h3 class="panel-title board-panel-title" data-pk="{{ $list['id'] }}">{{ $list['list_name'] }}</h3>
                             </div>
                             <div class="col-lg-2">
-                                <span data-listid="{{ $list['id'] }}" class="glyphicon glyphicon-trash delete-list" aria-hidden="true" style="cursor: pointer;"></span>
+                                <span data-listid="{{ $list['id'] }}" class="glyphicon glyphicon-trash delete-list" aria-hidden="true" style="cursor: pointer; top: 3px;"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body card-list-con frame">
                         <ul class="list-group">
                             <div class="card-con" data-listid="{{ $list->id }}">
                                 @foreach($cards as $card)
                                     @if($card['list_id'] === $list['id']) 
-                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" ><a data-toggle="modal" href="#card-detail"> {{ $card['card_title'] }} </a></li>
+                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" data-toggle="modal" href="#card-detail">{{ $card['card_title'] }}</li>
                                     @endif
                                 @endforeach
                             </div>

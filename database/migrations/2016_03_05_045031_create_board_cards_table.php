@@ -24,6 +24,9 @@ class CreateBoardCardsTable extends Migration
             $table->foreign('list_id')->references('id')->on('board_lists')->onDelete('cascade');
             
             $table->string('card_title');
+            $table->string('card_description');
+            $table->string('card_color');
+            $table->timestamp('due_date');
             $table->timestamps();
         });
     }

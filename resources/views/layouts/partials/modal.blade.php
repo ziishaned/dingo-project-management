@@ -153,7 +153,7 @@
                             <form action="" method="POST" role="form">
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="board_title">
                                 </div>           
                                 <div class="form-group">
                                     <label for="">Description</label>

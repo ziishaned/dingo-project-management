@@ -1,0 +1,69 @@
+.input-group 
+{
+ /* font-size: 15px;
+  line-height: 35px;*/
+  /*margin-bottom: 5px;*/
+   transition:all 0.15s ease-in;
+  -webkit-transition:all 0.15s ease-in;
+  -moz-transition:all 0.15s ease-in;
+  -o-transition:all 0.15s ease-in;
+  -ms-transition:all 0.15s ease-in;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto
+}
+.just_edit .input-group
+{
+  margin: 0
+}
+@-webkit-keyframes spaceboots {
+  0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+  10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+  30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+  40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+  50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+  70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+  80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+  90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+  100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.input-group .icon_container
+{
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+.input-group input, .input-group textarea, .input-group select
+{
+  width: 100%;
+}
+.input-group input:focus
+{
+  outline: 0
+}
+.input-group .error-text
+{
+  display: none;
+  transition:all 0.3s ease-in;
+  -webkit-transition:all 0.3s ease-in;
+}
+
+.error-text
+{
+  display: none;
+  font-size: 12px;
+  color: #d9534f;
+}
+.input-group.error .error-text
+{
+  display: block;
+}
+.input-group.error
+{
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.5s;
+  -webkit-transform-origin:50% 50%;
+  -webkit-animation-timing-function: linear;
+}

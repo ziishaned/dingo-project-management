@@ -15,6 +15,10 @@
     <link href="{{ asset('css/tagIt.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/magic-check.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/tm-basic-theme.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/tm_editable.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/tm_validator.css') }}" rel="stylesheet"/>
 </head>
 <body>
     @include('layouts.partials.modal')
@@ -45,5 +49,7 @@
     <script src="{{ asset('js/tagIt.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/tm_editable.js') }}"></script>
+    <script src="{{ asset('js/tm_validator.js') }}"></script>
 </body>
 </html>

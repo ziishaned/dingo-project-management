@@ -1,0 +1,72 @@
+.basic-theme{
+  min-height: 46px;
+}
+.basic-theme .just_edit, .basic-theme .just_edit input, .basic-theme .just_edit textarea, .basic-theme .ibtn_container, .basic-theme .no_edit, .basic-theme .no_edit .i_text, .basic-theme .i_edit{
+  font-size: 14px;
+  line-height: 22px;
+}
+.basic-theme .no_edit{
+  padding: 12px 10px
+}
+.basic-theme .just_edit{
+  padding: 7px 10px;
+}
+.basic-theme .no_edit:hover{
+  background: #eee
+}
+.basic-theme .i_edit{
+  color: #aaa;
+  font-weight: bold;
+}
+.basic-theme .no_edit:hover .i_edit{
+  color: #555;
+}
+.basic-theme .just_edit input, .basic-theme .just_edit textarea{
+  background: #fff;
+  position: relative;
+  vertical-align: top;
+  border: 2px solid #bdc3c7;
+  display: -moz-inline-stack;
+  display: inline-block;
+  color: #34495e;
+  outline: 0;
+  font-size: 12px;
+  line-height: 16px;
+  width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  outline: 0;
+  font-weight: 400;
+  padding: 5px 8px;
+}
+.basic-theme .just_edit input[type="checkbox"],.basic-theme .just_edit input[type="radio"]{
+  width: auto;
+  height: auto;
+}
+.basic-theme .no_edit .i_edit:hover{
+  text-decoration: none;
+}
+.basic-theme input:focus{
+  outline: #3c948b
+}
+.basic-theme .ibtn_container{
+  padding-left: 10px; 
+}
+.basic-theme .i_ok, .basic-theme .i_cancel{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 26px;
+  padding-left: 1px;
+  text-align: center;
+  margin-right: 0
+}
+.basic-theme .i_ok{
+  color: #5cb85c
+}
+.basic-theme .i_cancel{
+  color: #d9534f
+}

@@ -153,7 +153,9 @@
                             <form action="" method="POST" role="form">
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input type="text" class="form-control" id="board_title">
+                                    <div class="tm_editable_container input-group theme1" id="board_title">
+                                        <input type="text">
+                                    </div>
                                 </div>           
                                 <div class="form-group">
                                     <label for="">Description</label>

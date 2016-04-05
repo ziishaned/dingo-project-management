@@ -72,6 +72,10 @@ $(function () {
     });
 });
 
+$(document).ready(function() {
+    $('#board_title').tm_editbale('init',{});
+});
+
 // var listCards = [];
 
 // $('.bcategory-list').each(function(index, list){

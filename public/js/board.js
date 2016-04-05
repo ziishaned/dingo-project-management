@@ -108,9 +108,7 @@ $(document).ready(function() {
                     cardId: cardId
                 },
                 success: function (data) {
-                    if (data.card_title.length != 0) {
-                        // $("#board_title")
-                    };
+                    console.log(data);
                 },
                 error: function (error) {
                     console.log(error);

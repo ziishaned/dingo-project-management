@@ -1,0 +1,109 @@
+/*I Editable START*/
+.full_row
+{
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+}
+.i_text, .i_edit, .i_subtask
+{
+  display: inline-block;
+  float: left;
+  position: relative;
+}
+.i_edit.right, .ibtn_container.right, .outside_btncontainer.right{
+  float: right;
+}
+.i_edit.left, .ibtn_container.left, .outside_btncontainer.left{
+  float: left;
+}
+.just_edit
+{
+  display: none;
+  padding: 10px;
+}
+.i_edit_input
+{
+  float: left;
+  padding-left: 5px !important;
+}
+.i_editable_checkbox .ibtn_container
+{
+  margin-top: 0
+}
+.i_ok, .i_cancel
+{
+  margin:0 5px;
+}
+.i_ok
+{
+  color:green;
+}
+.i_cancel, .i_remover, .delete_feed, .color_red
+{
+  color: red
+}
+.delete_feed
+{
+  padding-left: 7px;
+}
+.just_edit .input-group
+{
+  width: 100%; 
+}
+.i_remover
+{
+  margin-left: 2px;
+}
+.i_subtask
+{
+  margin-right: 10px;
+}
+.i_loading
+{
+  position: absolute;
+  background: rgba(225,225,225,0.8);
+  color: #555;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+}
+.i_edit
+{
+  color: #ccc;
+}
+.i_edit_text
+{
+  display: none;
+}
+.no_edit:hover .i_edit
+{
+  color: #003C66
+}
+.no_edit:hover .i_edit_text
+{
+  display: inline;
+}
+.no_edit
+{
+  cursor: pointer;
+  padding: 10px;
+}
+.no_edit:hover
+{
+  background: #eee
+}
+.outside_btncontainer{
+  display: inline-block;
+  width: auto;
+}
+.just_edit input, .just_edit textarea{
+   -webkit-box-sizing : border-box !important;‌ 
+    -moz-box-sizing : border-box !important;
+    box-sizing : border-box !important;
+}
+/*I Editable END*/

@@ -1,28 +1,3 @@
-jQuery(document).ready(function($) {
-    $('#save-change').on('click', function(event) {
-        event.preventDefault();
-        $("#create-new-board [data-dismiss='modal']").trigger('click');
-        $.toast({
-            heading: 'Success',
-            text: 'And these were just the basic demos! Scroll down to check further details on how to customize the output.',
-            showHideTransition: 'slide',
-            icon: 'success'
-        }); 
-    });
-});
-jQuery(document).ready(function($) {
-    $('.mega-dingo-dropdown').on('click', function (event) {
-        $(this).parent().toggleClass('open');
-    });
-    $('body').on('click', function (e) {
-        if (!$('.mega-dingo-dropdown').is(e.target) 
-            && $('.mega-dingo-dropdown').has(e.target).length === 0 
-            && $('.open').has(e.target).length === 0
-        ) {
-            $('.mega-dingo-dropdown').parent().removeClass('open');
-        }
-    });
-}); 
 $(document).ready(function() {
     $(document).on('click', '.delete-list', function() {
         var that = this;
@@ -57,23 +32,37 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#cardTagsInput').tagIt({
-        allowDuplicates: false,
-        defaultText: '',
-        maxLength: 14,
-        width: '528px'
-    });
-});
-
-$(function () {
-    $('#datetimepicker12').datetimepicker({
-        inline: true,
-        sideBySide: true
-    });
+    $.fn.editable.defaults.mode = 'popup';
+    // $('#card_color').editable({
+    //     inputclass: 'select-input',
+    //     value: 1,    
+    //     source: [
+    //           {value: 1, text: ''},
+    //           {value: 2, text: 'Yellow'},
+    //           {value: 3, text: 'Green'},
+    //           {value: 4, text: 'Red'},
+    //           {value: 5, text: 'Blue'},
+    //           {value: 6, text: 'Purple'}
+    //        ],
+    //     placement: 'right',
+    // });
+    $('#event').editable({
+        placement: 'top',
+        combodate: {
+            firstItem: 'name'
+        }
+    }); 
 });
 
 $(document).ready(function() {
-    $('#board_title').tm_editbale('init',{});
+    $(document).on('mouseenter', '.sub-task-con', function(event) {
+        event.preventDefault();
+        $(this).find("a.delete-task").show();
+    });
+    $(document).on('mouseleave', '.sub-task-con', function(event) {
+        event.preventDefault();
+        $(this).find("a.delete-task").hide();
+    });
 });
 
 // var listCards = [];

@@ -100,6 +100,7 @@ $(document).ready(function() {
             });
         },
         putCardDetailInModal: function (cardId) {
+            var that = this;
             $.ajax({
                 url: 'getCardDetail',
                 type: 'POST',
@@ -108,12 +109,75 @@ $(document).ready(function() {
                     cardId: cardId
                 },
                 success: function (data) {
-                    console.log(data);
+                    $("#card-detail").find("#card_title_editable").text(data.card.card_title);
+                    that.makeEditable("#card_title_editable");
+                    $("#card-detail").find("#card_description_editable").text(data.card.card_description);
+                    that.makeEditable("#card_description_editable");
+                    // that.makeEditable("#card-tags-input");
+                    that.makeEditable("#card_color", data.card.card_color);
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
+        },
+        makeEditable: function (elementId, opt) {
+            switch (elementId) {
+                case "#card_title_editable":
+                    var cardTitle = $(elementId).text();
+                    $("#card-detail").find(elementId).editable({
+                        validate: function(value) {
+                            if($.trim(value) == '') 
+                                return 'Value is required.';
+                        },  
+                        inputclass: "x-editable-input",
+                        type: 'text', 
+                        placement: 'right',
+                    });
+                    $("#card-detail").find(elementId).editable("setValue", cardTitle);
+                    break;
+                case "#card_description_editable":
+                    var cardDescription = $(elementId).text();
+                    $("#card-detail").find(elementId).editable({
+                        validate: function(value) {
+                            if($.trim(value) == '') 
+                                return 'Value is required.';
+                        },
+                        inputclass: "x-editable-input", 
+                        type: 'text', 
+                        placement: 'right',
+                    });
+                    $("#card-detail").find(elementId).editable("setValue", cardDescription);
+                    break;
+                case "#card-tags-input":
+                    $("#card-detail").find(elementId).editable({
+                        inputclass: 'tags-input',
+                        select2: {
+                            tags: [],
+                            tokenSeparators: [",", " "]
+                        },
+                        placement: 'right',
+                    });
+                    break;
+                case "#card_color":
+                    $("#card-detail").find('#card_color').editable({
+                        inputclass: 'select-input',
+                        value: opt,    
+                        source: [
+                              {value: 1, text: ''},
+                              {value: "yellow", text: 'Yellow'},
+                              {value: "green", text: 'Green'},
+                              {value: 4, text: 'Red'},
+                              {value: 5, text: 'Blue'},
+                              {value: 6, text: 'Purple'}
+                           ],
+                        placement: 'right',
+                    });
+                    break;
+                default:
+                    console.log('Default');
+                    break;
+            }
         },
         deleteCard: function (cardId, cardIdCon) {
             swal({   
@@ -281,19 +345,5 @@ $(document).ready(function() {
         boardTitleCon       :   $('#boardTitleCon'),
         saveListNameBtn     :   $('#saveListName'),
         createBoardLink     :   $('.board-create-link')
-    });
-    $.ajaxSetup({
-        beforeSend: function() {
-            if ($("#loadingbar").length === 0) {
-                $("body").append("<div id='loadingbar'></div>")
-                $("#loadingbar").addClass("waiting").append($("<dt/><dd/>"));
-                $("#loadingbar").width((50 + Math.random() * 30) + "%");
-            }
-        },
-        complete : function() {
-            $("#loadingbar").width("101%").delay(200).fadeOut(400, function() {
-                $(this).remove();
-            });
-        }
     });
 });

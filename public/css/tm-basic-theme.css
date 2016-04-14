@@ -5,6 +5,11 @@
   font-size: 14px;
   line-height: 22px;
 }
+
+.just_edit input {
+  width: 450px !important;
+}
+
 .basic-theme .no_edit{
   padding: 12px 10px
 }
@@ -12,7 +17,7 @@
   padding: 7px 10px;
 }
 .basic-theme .no_edit:hover{
-  background: #eee
+    background-color: white;
 }
 .basic-theme .i_edit{
   color: #aaa;

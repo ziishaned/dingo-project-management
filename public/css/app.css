@@ -431,3 +431,72 @@ clip: rect(-6px,185px,14px,25px);
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.sub-task-content {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: monospace;
+    font-style: italic;
+    line-height: 1.5em;
+    color: rgb(95, 90, 85);
+}
+
+.delete-task {
+  color: #a94442;
+  display: none;
+}
+
+/* Comment */
+
+.detailBox {
+    margin-bottom: 15px;
+}
+.comment-user-name h1{
+  margin: 0 !important;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: tahoma;
+}
+ul.commentList {
+  padding-left: 0px;
+}
+ul.commentList li {
+  margin-bottom: 15px;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    padding:10px;
+}
+
+.input-editable {
+  display: block;
+  border-bottom: 1px dashed;
+  border-width: 0px 0px 1px 0px;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.input-editable:hover {
+  border-width: 0px 0px 1px 0px;
+  border-radius: 0px;
+  box-shadow: none; 
+}
+
+.tags-input {
+    width: 255px;
+}
+
+.select-input {
+  width: 185px !important; 
+}
+
+.x-editable-input {
+    width: 220px !important;
+}

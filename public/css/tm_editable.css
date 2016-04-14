@@ -6,6 +6,11 @@
   float: left;
   width: 100%;
 }
+
+.i_text {
+    width: 450px !important;
+}
+
 .i_text, .i_edit, .i_subtask
 {
   display: inline-block;
@@ -50,7 +55,8 @@
 }
 .just_edit .input-group
 {
-  width: 100%; 
+  /*width: 100%;*/ 
+    width: 450px !important;
 }
 .i_remover
 {
@@ -107,3 +113,7 @@
     box-sizing : border-box !important;
 }
 /*I Editable END*/
+
+.just_edit textarea {
+    width: 450px !important;
+}

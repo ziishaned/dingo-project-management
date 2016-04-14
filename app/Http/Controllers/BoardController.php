@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use \App\BoardCard;
 use \App\BoardList;
+use \App\CardLabel;
 use App\Board;
 use Illuminate\Http\Request;
 use Response;
@@ -112,7 +113,11 @@ class BoardController extends Controller
     {
         $cardId = $request->get("cardId");
         $card = BoardCard::find($cardId);
-        return $card;     
+        $label = CardLabel::where('card_id', '=', $cardId)->get();
+        return [
+            "card" => $card,
+            "label" => $label,
+        ];     
     }
 
     public function updateListName(Request $request)
@@ -128,5 +133,10 @@ class BoardController extends Controller
         } else {
             return Response::json(array('status'=>0));
         }
+    }
+
+    public function UpdateCardName(Request $request)
+    {
+        dd($request->all());
     }
 }

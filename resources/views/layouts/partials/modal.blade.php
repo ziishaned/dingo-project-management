@@ -128,7 +128,7 @@
     </div>
 </div>
 <div class="modal fade" id="card-detail">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 720px;">
         <div class="modal-content">
             <div role="tabpanel">
                 <div class="modal-header" style="border-bottom: none; padding-bottom: 0px !important;">
@@ -137,7 +137,7 @@
                             <a href="#general" aria-controls="tab" role="tab" data-toggle="tab">General</a>
                         </li>
                         <li role="presentation">
-                            <a href="#dates" aria-controls="tab" role="tab" data-toggle="tab">Dates</a>
+                            <a href="#date" aria-controls="tab" role="tab" data-toggle="tab">Date</a>
                         </li>
                         <li role="presentation">
                             <a href="#subtasks" aria-controls="tab" role="tab" data-toggle="tab">Subtasks</a>
@@ -153,54 +153,36 @@
                             <form action="" method="POST" role="form">
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <div class="tm_editable_container input-group theme1" id="board_title">
-                                        <input type="text">
-                                    </div>
+                                    <a href="#" data-type="text" class="input-editable editable-click" title="Enter Card Title" id="card_title_editable">Empty</a>
                                 </div>           
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+                                    <a href="#" data-type="textarea" class="input-editable editable-click" title="Enter Card Description" id="card_description_editable">Empty</a>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Labels</label>
-                                    <input type="text" class="form-control" id="cardTagsInput">
+                                    <a href="#" class="input-editable" id="card-tags-input" data-type="select2" data-title="Enter Labels"></a>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Color</label>
-                                    <select name="" id="input" class="form-control" required="required">
-                                        <option value=""></option>
-                                    </select>
+                                    <a href="#" class="input-editable" id="card_color" data-type="select" data-url="/post" data-title="Select Color of Card" style="color: #333333; font-weight: 100; font-style: italic;"></a>
                                 </div>
                             </form>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="dates">
+                        <div role="tabpanel" class="tab-pane" id="date">
                             <h1>Add due date and Time</h1>
                             <hr>
                             <form action="" method="POST" role="form">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div id="datetimepicker12"></div>
+                                            <a href="#" class="input-editable" id="event" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="MMM D, YYYY, HH:mm" data-title="Setup event date and time">Empty</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="subtasks">
-                            <form action="" method="POST" role="form">
-                                <div class="form-group">
-                                    <input class="magic-checkbox" type="checkbox" name="layout" id="1" value="option">
-                                    <label for="1">OKOK</label>
-                                </div>
-                                <div class="form-group">
-                                    <input class="magic-checkbox" type="checkbox" name="layout" id="2" value="option">
-                                    <label for="2">OKOK</label>
-                                </div>
-                                <div class="form-group">
-                                    <input class="magic-checkbox" type="checkbox" name="layout" id="3" value="option">
-                                    <label for="3">OKOK</label>
-                                </div>
-                            </form>
                             <div class="addSubTaskCon">
                                 <h2>Add subtask</h2>
                                 <div class="input-group">
@@ -210,30 +192,116 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="comments">
-                            <h2><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Add Comment</h2>
-                            <form action="" method="POST" role="form" style="height: 123px;">
-                                <div class="form-group">
-                                    <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary pull-right">Send</button>
-                            </form>
-                            <div class="panel panel-primary" style="margin-top: 20px;">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Comments</h3>
-                                </div>
-                                <div class="panel-body">
+                            <form action="" method="POST" role="form" style="margin-top: 12px;">
+                                <div class="form-group sub-task-con">
                                     <div class="row">
-                                        <div class="col-lg-1" style="top: 8px;">
-                                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                        </div>
                                         <div class="col-lg-11">
-                                            <h5><strong>Zeeshan Ahmed</strong></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam voluptas deserunt amet magnam consectetur praesentium nam animi facilis eius rem, neque molestiae a, dolorum velit ipsam, inventore maxime numquam laudantium.</p>
-                                            <p><span>an hour ago</span> - <span><a href="#">Edit</a></span> - <span><a href="#">Delete</a></span></p>
+                                            <input class="magic-checkbox" type="checkbox" name="layout" id="1" value="option" data-taskid="1">
+                                            <label for="1" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group sub-task-con">
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <input class="magic-checkbox" type="checkbox" name="layout" id="2" value="option">
+                                            <label for="2" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group sub-task-con">
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <input class="magic-checkbox" type="checkbox" name="layout" id="3" value="option">
+                                            <label for="3" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="comments">
+                            <div class="row" style="margin-top: 13px;">
+                                <div class="col-lg-12">
+                                    <form  method="POST" role="form" role="form">
+                                        <div class="row">
+                                            <div class="col-lg-9">
+                                                <div class="form-group">
+                                                    <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+                                                </div>  
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <button class="btn btn-default">Submit</button>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="detailBox">
+                                        <div class="actionBox">
+                                            <ul class="commentList">
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <div class="commenterImage">
+                                                              <img src="{{ asset('img/user_1.jpg') }}" class="img-responsive" />
+                                                            </div>  
+                                                        </div>
+                                                        <div class="col-lg-10">
+                                                            <div class="comment-user-name">
+                                                                <h1>Zeeshan Ahmed</h1>
+                                                            </div>
+                                                            <div class="commentText">
+                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <div class="commenterImage">
+                                                              <img src="{{ asset('img/user_1.jpg') }}" class="img-responsive" />
+                                                            </div>  
+                                                        </div>
+                                                        <div class="col-lg-10">
+                                                            <div class="comment-user-name">
+                                                                <h1>Zeeshan Ahmed</h1>
+                                                            </div>
+                                                            <div class="commentText">
+                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <div class="commenterImage">
+                                                              <img src="{{ asset('img/user_2.jpg') }}" class="img-responsive" />
+                                                            </div>  
+                                                        </div>
+                                                        <div class="col-lg-10">
+                                                            <div class="comment-user-name">
+                                                                <h1>Zeeshan Ahmed</h1>
+                                                            </div>
+                                                            <div class="commentText">
+                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>       
                                 </div>
                             </div>
                         </div>

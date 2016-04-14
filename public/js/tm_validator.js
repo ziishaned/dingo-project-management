@@ -1,4 +1,5 @@
 function validate(container_id) {
+    var valid_type = "nullable";
     var final_flag = [];
     var final_answer;
     $(container_id + ' .input-group').each(function(k3, v3) {
@@ -10,7 +11,7 @@ function validate(container_id) {
         {
             method = 'select';
         }
-         else if($(this).children('textarea').length != 0)
+        else if($(this).children('textarea').length != 0)
         {
             method = 'textarea';
         }

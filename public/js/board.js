@@ -157,6 +157,7 @@ $(document).ready(function() {
                             tokenSeparators: [",", " "]
                         },
                         placement: 'right',
+     
                     });
                     break;
                 case "#card_color":

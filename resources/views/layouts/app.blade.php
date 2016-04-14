@@ -14,9 +14,6 @@
     <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/magic-check.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/tm-basic-theme.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/tm_editable.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/tm_validator.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet"/>
 </head>
 <body>

@@ -2,10 +2,14 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use \App\User;
 use \App\BoardCard;
 use \App\BoardList;
-use \App\CardLabel;
+use \App\CardTag;
+use \App\CardTask;
+use \App\Comment;
 use App\Board;
+use DB;
 use Illuminate\Http\Request;
 use Response;
 
@@ -112,11 +116,23 @@ class BoardController extends Controller
     public function getCardDetail(Request $request)
     {
         $cardId = $request->get("cardId");
+        $userId = Auth::id();
+
         $card = BoardCard::find($cardId);
-        $label = CardLabel::where('card_id', '=', $cardId)->get();
+        $label = CardTag::where('card_id', '=', $cardId)->get();
+        $task = CardTask::where('card_id', '=', $cardId)->get();
+        $comment = DB::table('comment')
+          ->select('comment.*', 'users.name')
+          ->join('users','users.id','=','comment.user_id')
+          ->where('card_id','=',$cardId)
+          ->latest()
+          ->get();
+
         return [
             "card" => $card,
             "label" => $label,
+            "task" => $task,
+            "comment" => $comment,
         ];     
     }
 
@@ -135,8 +151,53 @@ class BoardController extends Controller
         }
     }
 
-    public function UpdateCardName(Request $request)
+    public function saveComment(Request $request)
     {
-        dd($request->all());
+        $comment = $request->get("comment");
+        $cardId = $request->get("cardId");
+        $userId  = Auth::id();
+
+        $commenrDetail = Comment::create([
+            'card_id' => $cardId,
+            'user_id' => $userId,
+            'comment_description' => $comment,  
+        ]);
+
+        return DB::table('comment')
+          ->select('comment.*', 'users.name')
+          ->join('users','users.id','=','comment.user_id')
+          ->where('comment.id','=',$commenrDetail["id"])
+          ->get();
+    }
+
+    public function updateCardData(Request $request)
+    {
+        $cardId = $request->get("cardId");
+        $cardTitle = $request->get("cardName");
+        $cardDescription = $request->get("cardDescription");
+        $cardTags = $request->get("cardTags");
+        $cardColor = $request->get("cardColor");
+        $cardDueDate = date("Y-m-d H:i:s", strtotime($request->get("cardDueDate")));
+
+        $cardTagsList = explode(",", $cardTags);
+        CardTag::where("card_id", '=', $cardId)->delete();
+        foreach ($cardTagsList as $value) {
+            CardTag::create([
+                "card_id" => $cardId,
+                "tag_title" => $value,
+            ]);
+        }
+
+        BoardCard::where('id', $cardId)->update([
+            "card_title" => $cardTitle,
+            "card_description" => $cardDescription,
+            "card_color" => $cardColor,
+            "due_date" => $cardDueDate,
+        ]);
+
+        return [
+            "cardTitle" => $cardTitle,
+            "cardId" => $cardId,
+        ];
     }
 }

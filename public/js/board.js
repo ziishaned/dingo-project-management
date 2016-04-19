@@ -98,6 +98,120 @@ $(document).ready(function() {
                 var cardIdCon = $(".list-group-item").filter("[data-cardid="+cardId+"]");
                 that.deleteCard(cardId, cardIdCon);
             });
+
+            $(document).on('click', 'a.delete-task', function(event) {
+                event.preventDefault();
+                var taskId = $(this).data("taskId");
+                that.deleteTask(taskId);
+            });
+
+            $(document).on('click', '#save-change', function(event) {
+                event.preventDefault();
+                var cardId = $(document).find('#card-detail').attr("data-cardid");
+                that.saveChanges(cardId);
+            });
+
+            $(document).on('click', '#submit-comment', function() {
+                var comment = $('#card-detail').find("#comment-input").val();
+                var cardId = $(document).find('#card-detail').attr("data-cardid");
+                if (comment.length > 0) {
+                    event.preventDefault();
+                    that.postComment(comment, cardId);
+                };
+            });
+        },
+        postComment: function (comment, cardId) {
+            var that = this;
+            $.ajax({
+                url: 'save-comment',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    comment: comment,
+                    cardId: cardId
+                },
+                success: function (data) {
+                    comment = '<li>'+
+                            '<div class="row">'+
+                                '<div class="col-lg-2">'+
+                                    '<div class="commenterImage">'+
+                                      '<img src="'+assetUserImage+'" class="img-responsive" />'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-lg-10">'+
+                                    '<div class="comment-user-name">'+
+                                        '<h1>'+ data[0].name +'</h1>'+
+                                    '</div>'+
+                                    '<div class="commentText">'+
+                                        '<p class="">' + data[0].comment_description + '</p> <span class="date sub-text">'+that.time_ago(data[0].created_at)+'</span>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</li>';
+                    $("#card-detail").find("ul.commentList").prepend(comment);
+                    $('#card-detail').find("#comment-input").val("");
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        },
+        saveChanges: function (cardId) {
+            var cardName = $(document).find("#card_title_editable").text();  
+            var cardDescription = $(document).find("#card_description_editable").text();
+            var cardTags = $(document).find("#card-tags-input").val();
+            var cardColor = $(document).find("#card_color").val();
+            var cardDueDate = $(document).find("#due-date").val();
+            var cardId = $(document).find('#card-detail').attr("data-cardid");
+
+            $.ajax({
+                url: 'update-card-data',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    cardName: cardName,
+                    cardDescription: cardDescription,
+                    cardTags: cardTags,
+                    cardColor: cardColor,
+                    cardDueDate: cardDueDate,
+                    cardId: cardId
+                },
+                success: function (data) {
+                    $(".list-group-item").filter("[data-cardid="+data.cardId+"]").text(data.cardTitle);
+                    $('.modal#card-detail').modal("hide");
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        },
+        deleteTask: function (taskId) {
+            swal({   
+                    title: "Are you sure?",   
+                    text: "You will not be able to recover this Task!",   
+                    type: "warning",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes, delete it!",   
+                    closeOnConfirm: false 
+                }, function(){   
+                    $.ajax({
+                        url: 'delete-task',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            taskId: taskId 
+                        },
+                        success: function (data) {
+                            // $(that).closest(".bcategory-list").remove();
+                            swal("Deleted!", "Your file was successfully deleted!", "success");
+                        },
+                        error: function (error) {
+                            var response = JSON.parse(error.responseText);
+                            swal("Oops", "We couldn't connect to the server!", "error");
+                        }
+                    });
+            });
         },
         putCardDetailInModal: function (cardId) {
             var that = this;
@@ -109,17 +223,135 @@ $(document).ready(function() {
                     cardId: cardId
                 },
                 success: function (data) {
+                    $(document).find("#card-detail").attr("data-cardid", data.card.id);
+
                     $("#card-detail").find("#card_title_editable").text(data.card.card_title);
                     that.makeEditable("#card_title_editable");
+                  
                     $("#card-detail").find("#card_description_editable").text(data.card.card_description);
                     that.makeEditable("#card_description_editable");
-                    // that.makeEditable("#card-tags-input");
-                    that.makeEditable("#card_color", data.card.card_color);
+
+                    var labels = "";
+                    $.each(data.label, function(index, val) {
+                        labels += val.tag_title + ", ";
+                    });
+                    labels = labels.substr(0, labels.length-2);
+                    $("#card-tags-input").attr("value", labels);                    
+                    that.makeEditable("#card-tags-input", labels);  
+                    
+                    var cardColor = data.card.card_color;                    
+                    that.makeEditable("#card_color", cardColor);
+
+                    var createdAt = data.card.created_at;
+                    createdAt = that.formatDate(createdAt);
+                    var createdAtInput = $('#created-at').datetimepicker();
+                    createdAtInput.val(createdAt).change();
+
+                    var dueDate = data.card.due_date;
+                    dueDate = that.formatDate(dueDate);
+                    var dueDateInput = $('#due-date').datetimepicker();
+                    dueDateInput.val(dueDate).change();
+
+                    var taskList = "";
+                    $.each(data.task, function(index, val) {
+                        taskList += '<div class="form-group sub-task-con">'+
+                            '<div class="row">'+
+                                '<div class="col-lg-11">'+
+                                    '<input class="magic-checkbox" type="checkbox" name="layout" id="' + val.id + '" value="option">'+
+                                    '<label for="' + val.id + '" class="sub-task-content">' + val.task_title + '</label>'+
+                                '</div>'+
+                                '<div class="col-lg-1">'+
+                                    '<a href="" class="delete-task" data-taskId="' + val.id + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    });
+                    $("#card-detail").find(".task-list-con").empty();
+                    $("#card-detail").find(".task-list-con").append(taskList);
+
+                    var commentList = "";
+                    $.each(data.comment, function(index, val) {
+                        commentList += '<li>'+
+                            '<div class="row">'+
+                                '<div class="col-lg-2">'+
+                                    '<div class="commenterImage">'+
+                                      '<img src="'+assetUserImage+'" class="img-responsive" />'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-lg-10">'+
+                                    '<div class="comment-user-name">'+
+                                        '<h1>'+ val.name +'</h1>'+
+                                    '</div>'+
+                                    '<div class="commentText">'+
+                                        '<p class="">' + val.comment_description + '</p> <span class="date sub-text">'+that.time_ago(val.created_at)+'</span>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</li>';
+                    });
+                    $("#card-detail").find("ul.commentList").empty();
+                    $("#card-detail").find("ul.commentList").append(commentList);
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
+        },
+        time_ago: function (time){
+            switch (typeof time) {
+                case 'number': break;
+                case 'string': time = +new Date(time); break;
+                case 'object': if (time.constructor === Date) time = time.getTime(); break;
+                default: time = +new Date();
+            }
+            var time_formats = [
+                [60, 'seconds', 1], // 60
+                [120, '1 minute ago', '1 minute from now'], // 60*2
+                [3600, 'minutes', 60], // 60*60, 60
+                [7200, '1 hour ago', '1 hour from now'], // 60*60*2
+                [86400, 'hours', 3600], // 60*60*24, 60*60
+                [172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
+                [604800, 'days', 86400], // 60*60*24*7, 60*60*24
+                [1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
+                [2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
+                [4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
+                [29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
+                [58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
+                [2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
+                [5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
+                [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+            ];
+            var seconds = (+new Date() - time) / 1000,
+                token = 'ago', list_choice = 1;
+
+            if (seconds == 0) {
+                return 'Just now'
+            }
+            if (seconds < 0) {
+                seconds = Math.abs(seconds);
+                token = 'from now';
+                list_choice = 2;
+            }
+            var i = 0, format;
+            while (format = time_formats[i++])
+                if (seconds < format[0]) {
+                    if (typeof format[2] == 'string')
+                        return format[list_choice];
+                    else
+                        return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
+                }
+            return time;
+        },
+        formatDate: function (dueDate) {
+            var d = new Date(dueDate),
+            dformat = [d.getMonth()+1,
+                       d.getDate(),
+                       d.getFullYear()].join('/')+' '+
+                      [d.getHours(),
+                       d.getMinutes(),
+                       d.getSeconds()].join(':');
+
+            return dformat;
         },
         makeEditable: function (elementId, opt) {
             switch (elementId) {
@@ -150,30 +382,29 @@ $(document).ready(function() {
                     $("#card-detail").find(elementId).editable("setValue", cardDescription);
                     break;
                 case "#card-tags-input":
-                    $("#card-detail").find(elementId).editable({
-                        inputclass: 'tags-input',
-                        select2: {
-                            tags: [],
-                            tokenSeparators: [",", " "]
-                        },
-                        placement: 'right',
-     
-                    });
+                    if ($('#card-tags-input').hasClass('selectized') === false) {
+                        if ($('#card-detail').hasClass('selectized') === false)
+                        {
+                            $("#card-detail").find(elementId).selectize({
+                                persist: false,
+                                createOnBlur: true,
+                                create: true
+                            });
+                        }
+                    } else {
+                        var opt = opt.split(',');
+                        var selectize = $("#card-tags-input")[0].selectize;
+                        selectize.clearOptions()
+                        $(opt).each(function(index, lalbe){
+                            label = $.trim(lalbe);
+                            selectize.addOption({value:label,text:label});
+                            selectize.addItem(label); 
+                        });
+                    }                     
                     break;
                 case "#card_color":
-                    $("#card-detail").find('#card_color').editable({
-                        inputclass: 'select-input',
-                        value: opt,    
-                        source: [
-                              {value: 1, text: ''},
-                              {value: "yellow", text: 'Yellow'},
-                              {value: "green", text: 'Green'},
-                              {value: 4, text: 'Red'},
-                              {value: 5, text: 'Blue'},
-                              {value: 6, text: 'Purple'}
-                           ],
-                        placement: 'right',
-                    });
+                    var $select = $("#card-detail").find(elementId).selectize();
+                    $select[0].selectize.setValue(opt);
                     break;
                 default:
                     console.log('Default');

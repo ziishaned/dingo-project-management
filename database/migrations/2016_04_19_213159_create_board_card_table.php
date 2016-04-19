@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoardCardsTable extends Migration
+class CreateBoardCardTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBoardCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('board_cards', function (Blueprint $table) {
+        Schema::create('board_card', function (Blueprint $table) {
             $table->increments('id');
             
             $table->integer('board_id')->unsigned();
@@ -21,7 +21,7 @@ class CreateBoardCardsTable extends Migration
             
             $table->foreign('board_id')->references('id')->on('board')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('list_id')->references('id')->on('board_lists')->onDelete('cascade');
+            $table->foreign('list_id')->references('id')->on('board_list')->onDelete('cascade');
             
             $table->string('card_title');
             $table->string('card_description');
@@ -38,6 +38,6 @@ class CreateBoardCardsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('board_cards');
+        Schema::drop('board_card');
     }
 }

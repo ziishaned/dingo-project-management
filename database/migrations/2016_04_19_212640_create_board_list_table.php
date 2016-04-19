@@ -3,16 +3,16 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoardListsTable extends Migration
+class CreateBoardListTable extends Migration
 {
-    /**
+   /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('board_lists', function (Blueprint $table) {
+        Schema::create('board_list', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('board_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -30,6 +30,6 @@ class CreateBoardListsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('board_lists');
+        Schema::drop('board_list');
     }
 }

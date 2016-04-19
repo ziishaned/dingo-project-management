@@ -161,22 +161,39 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Labels</label>
-                                    <a href="#" class="input-editable" id="card-tags-input" data-type="select2" data-title="Enter Labels"></a>
+                                    <input type="text" id="card-tags-input">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Color</label>
-                                    <a href="#" class="input-editable" id="card_color" data-type="select" data-url="/post" data-title="Select Color of Card" style="color: #333333; font-weight: 100; font-style: italic;"></a>
+                                    <select id="card_color">
+                                        <option value="">Select a color...</option>
+                                        <option value="61BD4F">Green</option>
+                                        <option value="F2D600">Yellow</option>
+                                        <option value="FFAB4A">Orange</option>
+                                        <option value="EB5A46">Red</option>
+                                        <option value="C377E0">Purple</option>
+                                        <option value="0079BF">Blue</option>
+                                    </select>
                                 </div>
                             </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="date">
                             <h1>Add due date and Time</h1>
                             <hr>
-                            <form action="" method="POST" role="form">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="#" class="input-editable" id="event" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="MMM D, YYYY, HH:mm" data-title="Setup event date and time">Empty</a>
+                            <form action="" method="POST" role="form" style="height: 65px;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h1 class="label" style="color: #333333; padding-left: 0px; font-size: 16px;">Created at: </h1>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                            <input type='text' class="form-control" id='created-at' aria-describedby="basic-addon1" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h1 class="label" style="color: #333333; padding-left: 0px; font-size: 16px;">Due Date: </h1>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                            <input type='text' class="form-control" data-format="dd-MM-yyyy hh:mm:ss" id='due-date' aria-describedby="basic-addon1"/>
                                         </div>
                                     </div>
                                 </div>
@@ -192,113 +209,30 @@
                                     </span>
                                 </div>
                             </div>
-                            <form action="" method="POST" role="form" style="margin-top: 12px;">
-                                <div class="form-group sub-task-con">
-                                    <div class="row">
-                                        <div class="col-lg-11">
-                                            <input class="magic-checkbox" type="checkbox" name="layout" id="1" value="option" data-taskid="1">
-                                            <label for="1" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
-                                        </div>
-                                        <div class="col-lg-1">
-                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group sub-task-con">
-                                    <div class="row">
-                                        <div class="col-lg-11">
-                                            <input class="magic-checkbox" type="checkbox" name="layout" id="2" value="option">
-                                            <label for="2" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
-                                        </div>
-                                        <div class="col-lg-1">
-                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group sub-task-con">
-                                    <div class="row">
-                                        <div class="col-lg-11">
-                                            <input class="magic-checkbox" type="checkbox" name="layout" id="3" value="option">
-                                            <label for="3" class="sub-task-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
-                                        </div>
-                                        <div class="col-lg-1">
-                                            <a href="" class="delete-task"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="task-list-con" style="margin-top: 12px;"></div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="comments">
                             <div class="row" style="margin-top: 13px;">
                                 <div class="col-lg-12">
+                                    <h1 style="font-family: monospace; font-size: 23px; font-weight: 700; margin: 0;">Post a Comment: </h1>
+                                    <hr style="margin-top: 5px;">
                                     <form  method="POST" role="form" role="form">
                                         <div class="row">
-                                            <div class="col-lg-9">
+                                            <div class="col-lg-10">
                                                 <div class="form-group">
-                                                    <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+                                                    <textarea name="adasd" id="comment-input" class="form-control" rows="3" required="required"></textarea>
                                                 </div>  
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <button class="btn btn-default">Submit</button>
+                                                    <button class="btn btn-default" id="submit-comment">Submit</button>
                                                 </div>  
                                             </div>
                                         </div>
                                     </form>
                                     <div class="detailBox">
                                         <div class="actionBox">
-                                            <ul class="commentList">
-                                                <li>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <div class="commenterImage">
-                                                              <img src="{{ asset('img/user_1.jpg') }}" class="img-responsive" />
-                                                            </div>  
-                                                        </div>
-                                                        <div class="col-lg-10">
-                                                            <div class="comment-user-name">
-                                                                <h1>Zeeshan Ahmed</h1>
-                                                            </div>
-                                                            <div class="commentText">
-                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <div class="commenterImage">
-                                                              <img src="{{ asset('img/user_1.jpg') }}" class="img-responsive" />
-                                                            </div>  
-                                                        </div>
-                                                        <div class="col-lg-10">
-                                                            <div class="comment-user-name">
-                                                                <h1>Zeeshan Ahmed</h1>
-                                                            </div>
-                                                            <div class="commentText">
-                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <div class="commenterImage">
-                                                              <img src="{{ asset('img/user_2.jpg') }}" class="img-responsive" />
-                                                            </div>  
-                                                        </div>
-                                                        <div class="col-lg-10">
-                                                            <div class="comment-user-name">
-                                                                <h1>Zeeshan Ahmed</h1>
-                                                            </div>
-                                                            <div class="commentText">
-                                                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                            <ul class="commentList frame">
                                             </ul>
                                         </div>
                                     </div>       
@@ -308,9 +242,10 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="save-change" data-dismiss="modal">Save & Close</button>
-                    <button type="button" class="btn btn-default" id="delete-card">Delete</button>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-change">Save Changes</button>
+                    <button type="button" class="btn btn-danger" id="delete-card"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                 </div>            
             </div>
         </div>

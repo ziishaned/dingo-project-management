@@ -29,4 +29,5 @@ Route::post('delete-list', ['uses' => 'BoardController@deleteList', ]);
 Route::post('update-list-name', ['uses' => 'BoardController@updateListName', ]);
 Route::post('deleteCard', ['uses' => 'BoardController@deleteCard', ]);
 Route::post('getCardDetail', ['uses' => 'BoardController@getCardDetail', ]);
-Route::post('updateCardName', ['uses' => 'BoardController@UpdateCardName', ]);
+Route::post('save-comment', ['uses' => 'BoardController@saveComment', ]);
+Route::post('update-card-data', ['uses' => 'BoardController@updateCardData', ]);

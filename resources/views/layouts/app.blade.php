@@ -11,10 +11,13 @@
     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-editable.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/magic-check.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/select2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+    <script>
+        var assetUserImage = "{{ asset('img/user_1.jpg') }}";
+    </script>
 </head>
 <body>
     @include('layouts.partials.modal')
@@ -37,15 +40,14 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/board.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-    <script src="{{ asset('js/tm_editable.js') }}"></script>
-    <script src="{{ asset('js/tm_validator.js') }}"></script>
-    <script src="{{ asset('js/select2.js') }}"></script>
     <script src="{{ asset('js/ajax-loading.js') }}"></script>
+    <script src="{{ asset('js/selectize.js') }}"></script>
+    <script src="{{ asset('js/board.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 </body>
 </html>

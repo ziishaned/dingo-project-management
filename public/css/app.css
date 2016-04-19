@@ -456,6 +456,7 @@ clip: rect(-6px,185px,14px,25px);
   font-size: 17px;
   font-weight: 600;
   font-family: tahoma;
+  text-transform: capitalize;
 }
 ul.commentList {
   padding-left: 0px;
@@ -472,7 +473,7 @@ ul.commentList li {
     font-size:11px;
 }
 .actionBox {
-    padding:10px;
+    padding: 10px 0px 10px 0px;
 }
 
 .input-editable {
@@ -499,4 +500,9 @@ ul.commentList li {
 
 .x-editable-input {
     width: 220px !important;
+}
+
+.commentList {
+    max-height: 235px;
+    overflow: scroll;
 }

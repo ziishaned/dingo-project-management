@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CardLabel extends Model
+class CardTag extends Model
 {
-    protected $table = "card_label";
+    protected $table = "card_tag";
 
     protected $fillable = [
-        'card_id', 'label_title',
+        'card_id', 'tag_title',
     ];
 }

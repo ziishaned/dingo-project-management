@@ -46,12 +46,12 @@ $(document).ready(function() {
     //        ],
     //     placement: 'right',
     // });
-    $('#event').editable({
-        placement: 'top',
-        combodate: {
-            firstItem: 'name'
-        }
-    }); 
+    // $('#event').editable({
+    //     placement: 'top',
+    //     combodate: {
+    //         firstItem: 'name'
+    //     }
+    // }); 
 });
 
 $(document).ready(function() {
@@ -64,6 +64,9 @@ $(document).ready(function() {
         $(this).find("a.delete-task").hide();
     });
 });
+
+// $('#myPleaseWait').modal('show');
+// $('#myPleaseWait').modal('hide');
 
 // var listCards = [];
 

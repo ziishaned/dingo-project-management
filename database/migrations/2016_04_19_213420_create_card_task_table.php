@@ -16,7 +16,7 @@ class CreateCardTaskTable extends Migration
             $table->increments('id');
             
             $table->integer('card_id')->unsigned();
-            $table->foreign('card_id')->references('id')->on('board_cards')->onDelete('cascade');
+            $table->foreign('card_id')->references('id')->on('board_card')->onDelete('cascade');
 
             $table->string('task_title');
             $table->boolean('is_completed');

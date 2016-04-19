@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCardLabelTable extends Migration
+class CreateCardTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreateCardLabelTable extends Migration
      */
     public function up()
     {
-        Schema::create('card_label', function (Blueprint $table) {
+        Schema::create('card_tag', function (Blueprint $table) {
             $table->increments('id');
             
             $table->integer('card_id')->unsigned();
-            $table->foreign('card_id')->references('id')->on('board_cards')->onDelete('cascade');
+            $table->foreign('card_id')->references('id')->on('board_card')->onDelete('cascade');
 
-            $table->string('label_title');
+            $table->string('tag_title');
+            $table->nullableTimestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateCardLabelTable extends Migration
      */
     public function down()
     {
-        Schema::drop('card_label');
+        Schema::dropIfExists('card_tag');
     }
 }

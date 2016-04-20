@@ -101,8 +101,8 @@ $(document).ready(function() {
 
             $(document).on('click', 'a.delete-task', function(event) {
                 event.preventDefault();
-                var taskId = $(this).data("taskId");
-                that.deleteTask(taskId);
+                var taskId = $(this).attr("data-taskId");
+                that.deleteTask(taskId, this);
             });
 
             $(document).on('click', '#save-change', function(event) {
@@ -119,6 +119,77 @@ $(document).ready(function() {
                     that.postComment(comment, cardId);
                 };
             });
+
+            $(document).on('click', '#submit-task', function() {
+                var taskTitle = $('#card-detail').find("#task-description-input").val();
+                var cardId = $(document).find('#card-detail').attr("data-cardid");
+                if (taskTitle.length > 0) {
+                    event.preventDefault();
+                    that.saveTask(taskTitle, cardId);
+                };
+            });
+
+            $(document).on("click", ".sub-task-content", function() {
+                var isCompleted;
+                var isChecked = $(this).closest("div").find('input.sub-task-title-input').attr("checked");
+                var taskId = $(this).attr("data-taskid");
+
+                if (typeof isChecked == typeof undefined) {
+                    isCompleted = 1;
+                    that.updateTaskCompleted(taskId, isCompleted);
+                } else {
+                    $(this).closest("div").find('input.sub-task-title-input').attr('checked', 0);
+                    isCompleted = 0;
+                    that.updateTaskCompleted(taskId, isCompleted);
+                }
+            });
+
+        },
+        updateTaskCompleted: function (taskId, isCompleted) {
+            $.ajax({
+                url: 'update-task-completed',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    taskId: taskId, 
+                    isCompleted: isCompleted
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        },
+        saveTask: function (taskTitle, cardId) {
+            $.ajax({
+                url: 'save-task',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    taskTitle: taskTitle,
+                    cardId: cardId
+                },
+                success: function (data) {
+                    var task = '<div class="form-group sub-task-con">'+
+                            '<div class="row">'+
+                                '<div class="col-lg-11">'+
+                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + data.id + '" value="option" ' + ((data.is_completed == 1) ? ' checked="checked"' : '') + '>'+
+                                    '<label for="' + data.id + '" class="sub-task-content" data-taskid="' + data.id + '">' + data.task_title + '</label>'+
+                                '</div>'+
+                                '<div class="col-lg-1">'+
+                                    '<a href="" class="delete-task" data-taskId="' + data.id + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    $("#card-detail").find(".task-list-con").prepend(task); 
+                    $('#card-detail').find("#task-description-input").val("");
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }); 
         },
         postComment: function (comment, cardId) {
             var that = this;
@@ -185,7 +256,7 @@ $(document).ready(function() {
                 }
             });
         },
-        deleteTask: function (taskId) {
+        deleteTask: function (taskId, deleteTaskBtn) {
             swal({   
                     title: "Are you sure?",   
                     text: "You will not be able to recover this Task!",   
@@ -203,7 +274,7 @@ $(document).ready(function() {
                             taskId: taskId 
                         },
                         success: function (data) {
-                            // $(that).closest(".bcategory-list").remove();
+                            $(deleteTaskBtn).closest('.form-group').remove();
                             swal("Deleted!", "Your file was successfully deleted!", "success");
                         },
                         error: function (error) {
@@ -252,13 +323,14 @@ $(document).ready(function() {
                     var dueDateInput = $('#due-date').datetimepicker();
                     dueDateInput.val(dueDate).change();
 
+
                     var taskList = "";
                     $.each(data.task, function(index, val) {
                         taskList += '<div class="form-group sub-task-con">'+
                             '<div class="row">'+
                                 '<div class="col-lg-11">'+
-                                    '<input class="magic-checkbox" type="checkbox" name="layout" id="' + val.id + '" value="option">'+
-                                    '<label for="' + val.id + '" class="sub-task-content">' + val.task_title + '</label>'+
+                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + val.id + '" value="option" ' + ((val.is_completed == 1) ? ' checked="checked"' : '') + '>'+
+                                    '<label for="' + val.id + '" class="sub-task-content" data-taskid="' + val.id + '">' + val.task_title + '</label>'+
                                 '</div>'+
                                 '<div class="col-lg-1">'+
                                     '<a href="" class="delete-task" data-taskId="' + val.id + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>'+

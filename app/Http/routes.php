@@ -31,3 +31,6 @@ Route::post('deleteCard', ['uses' => 'BoardController@deleteCard', ]);
 Route::post('getCardDetail', ['uses' => 'BoardController@getCardDetail', ]);
 Route::post('save-comment', ['uses' => 'BoardController@saveComment', ]);
 Route::post('update-card-data', ['uses' => 'BoardController@updateCardData', ]);
+Route::post('save-task', ['uses' => 'BoardController@saveTask', ]);
+Route::post('delete-task', ['uses' => 'BoardController@deleteTask', ]);
+Route::post('update-task-completed', ['uses' => 'BoardController@updateTaskCompleted', ]);

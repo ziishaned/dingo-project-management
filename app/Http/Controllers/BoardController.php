@@ -120,7 +120,7 @@ class BoardController extends Controller
 
         $card = BoardCard::find($cardId);
         $label = CardTag::where('card_id', '=', $cardId)->get();
-        $task = CardTask::where('card_id', '=', $cardId)->get();
+        $task = CardTask::where('card_id', '=', $cardId)->latest()->get();
         $comment = DB::table('comment')
           ->select('comment.*', 'users.name')
           ->join('users','users.id','=','comment.user_id')
@@ -200,4 +200,36 @@ class BoardController extends Controller
             "cardId" => $cardId,
         ];
     }
+
+    public function saveTask(Request $request)
+    {
+        $taskTitle = $request->get("taskTitle");
+        $cardId = $request->get("cardId");
+        
+        return CardTask::create([
+            "task_title" => $taskTitle,
+            "card_id" => $cardId,
+            "is_completed" => 0,
+        ]);
+    }
+
+    public function deleteTask(Request $request)
+    {
+        $taskId = $request->get("taskId");   
+        CardTask::where("id", "=", $taskId)->delete();
+
+        return [
+            'success' => 'success', 
+        ];
+
+    }
+
+    public function updateTaskCompleted(Request $request)
+    {
+        $taskId = $request->get("taskId");
+        $isCompleted = $request->get("isCompleted");
+
+        return CardTask::where("id", "=", $taskId)->update(["is_completed" => $isCompleted,]);
+    }
+
 }

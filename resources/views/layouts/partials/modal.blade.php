@@ -203,13 +203,13 @@
                             <div class="addSubTaskCon">
                                 <h2>Add subtask</h2>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="exampleInputAmount">
+                                    <input type="text" class="form-control" id="task-description-input" required="required">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default">Add</button>
+                                        <button type="button" class="btn btn-default" id="submit-task">Add</button>
                                     </span>
                                 </div>
                             </div>
-                            <div class="task-list-con" style="margin-top: 12px;"></div>
+                            <div class="task-list-con frame" style="margin-top: 12px; max-height: 235px; overflow: scroll;"></div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="comments">
                             <div class="row" style="margin-top: 13px;">

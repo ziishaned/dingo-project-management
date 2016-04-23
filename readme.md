@@ -1,27 +1,36 @@
-# Laravel PHP Framework
+# Dingo Project Managment
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+__The support for assigning tasks to users is in progress, so for now you can use it for personal projects__
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Login Page
+![Login Page](http://i.imgur.com/qkjOckv.png)
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Register Page
+![Register Page](http://i.imgur.com/fc2qhAs.png)
 
-## Official Documentation
+## Dashboard Page
+![Dashboard Page](http://i.imgur.com/dykbObE.png)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Board Detail Page
+![Board Detail Page](http://i.imgur.com/SKGYw9r.png)
 
-## Contributing
+## Delete List
+![Delete List](http://i.imgur.com/KQ1opUC.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Card Detail Tab-1
+![Card Detail 1](http://i.imgur.com/uwPLJ8s.png)
 
-## Security Vulnerabilities
+## Card Detail Tab-2
+![Card Detail 2](http://i.imgur.com/QE67D0K.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Card Detail Tab-3
+![Card Detail 3](http://i.imgur.com/49f6ssq.png)
 
-## License
+## Card Detail Tab-4
+![Card Detail 4](http://i.imgur.com/Y9wwPnl.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## Add Card
+![Add Card](http://i.imgur.com/zuGcGjp.png)
+
+## Edit List Name
+![Edit List Name](http://i.imgur.com/GbI7ItV.png)

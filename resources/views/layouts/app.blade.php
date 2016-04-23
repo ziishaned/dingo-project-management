@@ -15,27 +15,31 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/selectize.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/animation.css') }}" rel="stylesheet"/>
     <script>
         var assetUserImage = "{{ asset('img/user_1.jpg') }}";
     </script>
 </head>
 <body>
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
     @include('layouts.partials.modal')
     @include('layouts.partials.navigation')
-    <div class="tm70">
         @if(Session::has('alert'))
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="alert alert-info">
-                            <li class="list-unstyled">{{ Session::get('alert') }}</li>
-                        </div>
-                    </div>
+            <div style="position: absolute; width: 375px; text-align: center; left: 480px;">
+                <div class="alert alert-info">
+                    <li class="list-unstyled">{{ Session::get('alert') }}</li>
                 </div>
             </div>
         @endif
         @yield('content')
-    </div>    
+    {{-- </div>     --}}
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
@@ -49,5 +53,6 @@
     <script src="{{ asset('js/selectize.js') }}"></script>
     <script src="{{ asset('js/board.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
 </body>
 </html>

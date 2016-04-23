@@ -1,5 +1,5 @@
 body {
-    font-family: arial, Helvetica;
+    font-family: "Open Sans";
 }
 
 label {
@@ -149,6 +149,11 @@ h1 .starred-boards {
 .row {
     margin: 0;
 }
+
+.bcategory-list:nth-of-type(1) {
+  margin-left: 0px;
+}
+
 .bcategory-list {
     width: 330px;
     float: left;
@@ -156,8 +161,13 @@ h1 .starred-boards {
 }
 
 .horizontal-container {
-    padding: 5px 0px 0px 20px;
-    height: 565px;  
+    padding-left: 10px !important;
+    padding-top: 40px !important;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    /*padding: 5px 0px 0px 20px;*/
+    /*height: 565px;  */
+    height: 640px;  
     /*overflow-x: scroll;*/
     /*width: 100% !important;*/
 }
@@ -505,4 +515,17 @@ ul.commentList li {
 .commentList {
     max-height: 235px;
     overflow: scroll;
+}
+
+.overlay {
+    opacity: 0.5;
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: black;
+    z-index:9999;
+    color:white;
 }

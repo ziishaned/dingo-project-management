@@ -65,6 +65,10 @@ $(document).ready(function() {
     });
 });
 
+$("button.navbar-toggle").on("click", function () {
+   $(".overlay").fadeIn('slow');
+});
+
 // $('#myPleaseWait').modal('show');
 // $('#myPleaseWait').modal('hide');
 

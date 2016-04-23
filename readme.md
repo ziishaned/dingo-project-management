@@ -1,5 +1,7 @@
 # Dingo Project Managment
 
+__The support for assigning tasks to users is in progress, so for now you can use it for personal projects__
+
 ## Login Page
 ![Login Page](http://i.imgur.com/qkjOckv.png)
 

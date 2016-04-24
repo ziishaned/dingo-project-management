@@ -69,8 +69,12 @@ $("button.navbar-toggle").on("click", function () {
    $(".overlay").fadeIn('slow');
 });
 
-// $('#myPleaseWait').modal('show');
-// $('#myPleaseWait').modal('hide');
+$(function(){
+    $("#brand-name").typed({
+        strings: ["Dingo Project Managment Tool", "Created using Laravel PHP Framework", "Dingo :)"],
+        typeSpeed: 100
+    });
+});
 
 // var listCards = [];
 

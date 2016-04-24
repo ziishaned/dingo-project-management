@@ -61,6 +61,11 @@ $(document).ready(function() {
         bindUI: function () {
             var that = this;
 
+            $(".create-board-form").on("submit", function(e) {
+                e.preventDefault();
+                that.saveBoard();
+            });
+
             this.params['saveBoardBtn'].on('click', function(event) {
                 event.preventDefault();
                 that.saveBoard();
@@ -566,14 +571,14 @@ $(document).ready(function() {
                     that.params['createNewBoardModal'].modal('hide') 
                     that.params['boardTitle'].val('');
                     that.params['boardTitleCon'].removeClass('has-error');
-                    that.params['boardTitleCon'].find('.alert').remove();
+                    that.params['boardTitleCon'].find('.help-block').remove();
                 },
                 error: function (error) {
                     var response = JSON.parse(error.responseText);
-                    that.params['boardTitleCon'].find('.alert').empty();
+                    that.params['boardTitleCon'].find('.help-block').remove();
                     $.each(response, function(index, val) {
                         that.params['boardTitleCon'].addClass('has-error');
-                        that.params['boardTitleCon'].prepend('<div class="alert alert-danger"><li>'+ val +'</li></div>');
+                        that.params['boardTitleCon'].append('<span class="help-block"><strong>'+ val +'</strong></span>');
                     });
                 }
             }); 

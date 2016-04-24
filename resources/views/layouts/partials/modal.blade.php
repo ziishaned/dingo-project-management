@@ -6,10 +6,10 @@
                 <h4 class="modal-title text-center">Create Board</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" role="form">
+                <form action="" method="POST" role="form" class="create-board-form">
                     <div class="form-group" id="boardTitleCon">
                         <label for="title" class="control-label">Title</label>
-                        <input type="text" class="form-control" id="boardTitle" placeholder='Like "Home Construction" for example...' name="boardName">
+                        <input type="text" class="form-control" id="boardTitle" name="boardName">
                     </div>
                     <div class="form-group">
                         <h4>Team</h4>

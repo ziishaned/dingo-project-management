@@ -54,5 +54,6 @@
     <script src="{{ asset('js/board.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
+    <script src="{{ asset('js/typed.min.js') }}"></script>
 </body>
 </html>

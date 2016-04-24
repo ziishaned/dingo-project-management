@@ -35,9 +35,9 @@ li {
 }
 
 h1 .starred-boards {
-    font-size: 22px;
+    /*font-size: 22px;
     top: -2px;
-    margin-right: 15px;
+    margin-right: 15px;*/
 }
 
 .boards-col {
@@ -45,7 +45,9 @@ h1 .starred-boards {
 }
 
 .board-create {
-    background-color: #E2E4E6;
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: 1px solid #D2D2D2;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
     border-radius: 5px;
     height: 150px;
 }
@@ -56,10 +58,6 @@ h1 .starred-boards {
     background-color: #0079BF;
     color: white;
     margin-bottom: 20px;
-}
-
-.board-create {
-    background-color: #E2E4E6 !important;
 }
 
 .board-link:hover {
@@ -77,12 +75,11 @@ h1 .starred-boards {
 }
 
 .board-create-head {
-    margin-top: 30px;
-    padding-left: 33px;
-}
-
-.my-board {
-    margin-top: 38px;
+    text-align: center;
+    color: rgba(51, 51, 51, 0.79);
+    font-size: 21px;
+    margin-top: 45px;
+    /*padding-left: 33px;*/
 }
 
 .dingo-dropdown {
@@ -528,4 +525,36 @@ ul.commentList li {
     background-color: black;
     z-index:9999;
     color:white;
+}
+
+.sidebar-inner ul li a {
+    color: #444; 
+    display: block; 
+    font-size: 15px; 
+    height: 64px; 
+    line-height: 64px; 
+    padding: 0 15px;
+}
+
+/* Type Js */
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }

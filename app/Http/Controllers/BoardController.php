@@ -233,10 +233,16 @@ class BoardController extends Controller
     public function deleteTask(Request $request)
     {
         $taskId = $request->get("taskId");   
+        $cardId = $request->get("cardId");
+        
         CardTask::where("id", "=", $taskId)->delete();
 
+        $totalTasksCompleted = CardTask::where(['card_id' => $cardId, "is_completed" => 1])->count();
+        $totalTasks = CardTask::where(['card_id' => $cardId])->count();
+
         return [
-            'success' => 'success', 
+            "totalTasksCompleted" => $totalTasksCompleted,
+            "totalTasks" => $totalTasks,
         ];
 
     }
@@ -244,9 +250,19 @@ class BoardController extends Controller
     public function updateTaskCompleted(Request $request)
     {
         $taskId = $request->get("taskId");
+        $cardId = $request->get("cardId");
         $isCompleted = $request->get("isCompleted");
 
-        return CardTask::where("id", "=", $taskId)->update(["is_completed" => $isCompleted,]);
+        CardTask::where("id", "=", $taskId)->update(["is_completed" => $isCompleted,]);
+
+        $totalTasksCompleted = CardTask::where(['card_id' => $cardId, "is_completed" => 1])->count();
+        $totalTasks = CardTask::where(['card_id' => $cardId])->count();
+
+        return [
+            "totalTasksCompleted" => $totalTasksCompleted,
+            "totalTasks" => $totalTasks,
+        ];
+
     }
 
 }

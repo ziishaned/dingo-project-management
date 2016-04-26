@@ -565,3 +565,15 @@ ul.commentList li {
 .horizontal-container .panel-heading, .horizontal-container .panel-body {
     background-color: #FFFFFF;
 }
+
+.progress {
+  position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: #333;
+    font-weight: 700;
+}

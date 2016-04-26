@@ -130,6 +130,9 @@ h1 .starred-boards {
 }
 
 .board-panel-title {
+    font-weight: 600 !important;
+    /*font-family: "open sans";*/
+    border-bottom-color: rgba(0, 0, 0, 0.65) !important;
     cursor: text;
     padding-bottom: 3px;
     font-size: 17px;
@@ -392,7 +395,7 @@ clip: rect(-6px,185px,14px,25px);
 }
 
 .list-group-item:hover {
-    background-color: #d6dadc;
+    background-color: #F5F5F5;
     cursor: pointer;
 }
 
@@ -424,13 +427,12 @@ clip: rect(-6px,185px,14px,25px);
 }
 
 .dashed-placeholder {
-    border: 2px dashed #999;
+    border-radius: 3px;
+    border: 1px dashed #999;
     width: 298px;
     height: 42px;
-    background: #ccc;
+    background: #f5f5f5;
     margin-bottom: 5px;
-/*    margin: 10px 0px 50px 0px;
-    padding: 8px 0px 10px 6px;*/
 }
 
 .addSubTaskCon {
@@ -557,4 +559,9 @@ ul.commentList li {
     0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+}
+/* Type Js */
+
+.horizontal-container .panel-heading, .horizontal-container .panel-body {
+    background-color: #FFFFFF;
 }

@@ -76,6 +76,10 @@ $(function(){
     });
 });
 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+
 // var listCards = [];
 
 // $('.bcategory-list').each(function(index, list){

@@ -168,6 +168,7 @@ $(document).ready(function() {
             });
         },
         saveTask: function (taskTitle, cardId) {
+            var that = this;
             $.ajax({
                 url: 'save-task',
                 type: 'POST',
@@ -190,6 +191,19 @@ $(document).ready(function() {
                         '</div>';
                     $("#card-detail").find(".task-list-con").prepend(task); 
                     $('#card-detail').find("#task-description-input").val("");
+                    if ($(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro #totalTasks').length == 0) {
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro').append(
+                            '<li id="totalTasks">'+
+                                '<a href="#" data-placement="bottom" data-toggle="tooltip" title="" data-totaltask="1" data-original-title="This card have 1 tasks."><span class="glyphicon glyphicon-check" aria-hidden="true"></span></a>'+
+                            '</li>'
+                        );
+                    } else {
+                        var totalTasks = $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask");
+                        totalTasks++;
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-original-title", "This card have "+ totalTasks +" tasks.");                                                            
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask", totalTasks);                                                            
+                    }
+                    that.reInitializeToolTip();
                 },
                 error: function (error) {
                     console.log(error);
@@ -226,6 +240,10 @@ $(document).ready(function() {
                         '</li>';
                     $("#card-detail").find("ul.commentList").prepend(comment);
                     $('#card-detail').find("#comment-input").val("");
+                    var totalComments = $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalcomments");
+                    totalComments++;
+                    $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-original-title", "This card have "+ totalComments +" comments.");                                                            
+                    $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalComments", totalComments);                                                            
                 },
                 error: function (error) {
                     console.log(error);
@@ -233,6 +251,7 @@ $(document).ready(function() {
             });
         },
         saveChanges: function (cardId) {
+            var that = this;
             var cardName = $(document).find("#card_title_editable").text();  
             var cardDescription = $(document).find("#card_description_editable").text();
             var cardTags = $(document).find("#card-tags-input").val();
@@ -253,13 +272,22 @@ $(document).ready(function() {
                     cardId: cardId
                 },
                 success: function (data) {
-                    $(".list-group-item").filter("[data-cardid="+data.cardId+"]").text(data.cardTitle);
+                    $(".list-group-item").filter("[data-cardid="+data.cardId+"]").find("p").text(data.cardTitle);
+                    if(cardDescription.length > 0) {
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro").append('<li id="card_description">'+
+                            '<a href="#" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="This card has a description."><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></a>'+
+                        '</li>');
+                    };
+                    that.reInitializeToolTip();
                     $('.modal#card-detail').modal("hide");
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
+        },
+        reInitializeToolTip: function () {
+            $('[data-toggle="tooltip"]').tooltip();
         },
         deleteTask: function (taskId, deleteTaskBtn) {
             swal({   
@@ -280,6 +308,11 @@ $(document).ready(function() {
                         },
                         success: function (data) {
                             $(deleteTaskBtn).closest('.form-group').remove();
+                            var cardId = $('.modal#card-detail').attr('data-cardid');
+                            var totalTasks = $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask");
+                            totalTasks--;
+                            $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-original-title", "This card have "+ totalTasks +" tasks.");                                                            
+                            $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask", totalTasks);                                                            
                             swal("Deleted!", "Your file was successfully deleted!", "success");
                         },
                         error: function (error) {
@@ -526,7 +559,15 @@ $(document).ready(function() {
                 data: data,
                 success: function (data) {
                     $(that.targetList).find('.card-con').append(
-                        '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'"><a data-toggle="modal" href="#card-detail">'+ data.card_title +'</a></li>'
+                        // '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'"><a data-toggle="modal" href="#card-detail">'+ data.card_title +'</a></li>'
+                        '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'" data-toggle="modal" href="#card-detail">'+
+                            '<div class="row">'+
+                                '<div class="col-lg-12">'+
+                                    '<p style="margin-bottom: 0px;" class="pull-left">'+data.card_title+'</p>'+
+                                    '<ul class="card-description-intro list-inline pull-right"></ul>'+
+                                '</div>'+
+                            '</div>'+                                            
+                        '</li>'
                     );
                     $(that.targetList).find('form').hide();
                     $(that.targetList).find('form textarea').val('');

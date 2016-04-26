@@ -41,12 +41,29 @@ class BoardController extends Controller
        $boardId = $request->id;
        $boardDetail = Board::findOrFail(['id' => $boardId])->first();
        $lists = BoardList::where(["board_id" => $boardId,])->get();
-       $cards = BoardCard::where(["board_id" => $boardId,])->get();
-       
-       $boards = Board::where(['user_id' => Auth::id(), ])->get();
-       $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
 
-       return view('user.board', compact('boardDetail', 'lists', 'cards', 'boards', 'recentBoards'));
+        $cards =  DB::table('board_card')->select([
+                'board_card.*',
+                DB::raw("COUNT(comment.id) as totalComments"),
+            ])
+            ->leftJoin('comment', 'board_card.id', '=', 'comment.card_id')
+            ->groupBy('board_card.id')
+            ->get();
+        $cards = json_decode(json_encode($cards), True);
+        
+        $cardTaskCount =  DB::table('board_card')->select([
+            'board_card.*',
+            DB::raw("COUNT(card_task.id) as totalTasks"),
+        ])
+        ->leftJoin('card_task', 'board_card.id', '=', 'card_task.card_id')
+        ->groupBy('board_card.id')
+        ->get();
+        $cardTaskCount = json_decode(json_encode($cardTaskCount), True);
+
+        $boards = Board::where(['user_id' => Auth::id(), ])->get();
+        $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
+
+        return view('user.board', compact('boardDetail', 'lists', 'cards', 'cardTaskCount', 'boards', 'recentBoards'));
     }
 
     public function postListName(Request $request)
@@ -157,7 +174,7 @@ class BoardController extends Controller
         $cardId = $request->get("cardId");
         $userId  = Auth::id();
 
-        $commenrDetail = Comment::create([
+        $commentDetail = Comment::create([
             'card_id' => $cardId,
             'user_id' => $userId,
             'comment_description' => $comment,  
@@ -166,7 +183,7 @@ class BoardController extends Controller
         return DB::table('comment')
           ->select('comment.*', 'users.name')
           ->join('users','users.id','=','comment.user_id')
-          ->where('comment.id','=',$commenrDetail["id"])
+          ->where('comment.id','=',$commentDetail["id"])
           ->get();
     }
 

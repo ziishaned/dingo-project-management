@@ -21,7 +21,34 @@
                             <div class="card-con" data-listid="{{ $list->id }}">
                                 @foreach($cards as $card)
                                     @if($card['list_id'] === $list['id']) 
-                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" data-toggle="modal" href="#card-detail">{{ $card['card_title'] }}</li>
+                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" data-toggle="modal" href="#card-detail">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p style="margin-bottom: 0px;" class="pull-left">{{ $card['card_title'] }}</p>    
+                                                    <ul class="card-description-intro list-inline pull-right">
+                                                        @if($card["card_description"] !== '')
+                                                            <li id="card_description">
+                                                                <a href="#" data-placement="bottom" data-toggle="tooltip" title="This card has a description." ><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></a>
+                                                            </li>
+                                                        @endif
+                                                        @foreach($cardTaskCount as $x) 
+                                                            @if($x["id"] === $card['id'])
+                                                                @if($x['totalTasks'] > 0)
+                                                                    <li id="totalTasks">
+                                                                        <a href="#" data-placement="bottom" data-toggle="tooltip" title="This card have {{ $x['totalTasks'] }} tasks." data-totaltask="{{ $x['totalTasks'] }}"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></a>
+                                                                    </li>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                        @if($card['totalComments'] > 0) 
+                                                            <li id="totalComments">
+                                                                <a href="#" data-placement="bottom" data-toggle="tooltip" title="This card have {{ $card['totalComments'] }} comments." data-totalComments="{{ $card['totalComments'] }}"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+                                                            </li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                            </div>                                            
+                                        </li>
                                     @endif
                                 @endforeach
                             </div>

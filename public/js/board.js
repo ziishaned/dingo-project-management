@@ -191,16 +191,26 @@ $(document).ready(function() {
                     var task = '<div class="form-group sub-task-con">'+
                             '<div class="row">'+
                                 '<div class="col-lg-11">'+
-                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + data.id + '" value="option" ' + ((data.is_completed == 1) ? ' checked="checked" data-checked="1"' : 'data-checked="0"') + '>'+
-                                    '<label for="' + data.id + '" class="sub-task-content" data-taskid="' + data.id + '">' + data.task_title + '</label>'+
+                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + data.card["id"] + '" value="option" ' + ((data.card["is_completed"] == 1) ? ' checked="checked" data-checked="1"' : 'data-checked="0"') + '>'+
+                                    '<label for="' + data.card["id"] + '" class="sub-task-content" data-taskid="' + data.card["id"] + '">' + data.card["task_title"] + '</label>'+
                                 '</div>'+
                                 '<div class="col-lg-1">'+
-                                    '<a href="" class="delete-task" data-taskId="' + data.id + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>'+
+                                    '<a href="" class="delete-task" data-taskId="' + data.card["id"] + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>'+
                                 '</div>'+
                             '</div>'+
                         '</div>';
                     $("#card-detail").find(".task-list-con").prepend(task); 
                     $('#card-detail').find("#task-description-input").val("");
+                    
+                    var perTaskCompleted = Math.floor(data.totalTasksCompleted/data.totalTasks*100);
+                    $(document).find(".per-tasks-completed").addClass('active');
+                    $(document).find(".per-tasks-completed").attr("aria-valuenow", perTaskCompleted);
+                    $(document).find(".per-tasks-completed").css('width', perTaskCompleted+"%");
+                    $(document).find(".per-tasks-completed").find(".show").text(perTaskCompleted+"% Tasks Completed");
+                    setTimeout(function () {
+                        $(document).find(".per-tasks-completed").removeClass('active');
+                    }, 2000);
+
                     if ($(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro #totalTasks').length == 0) {
                         $(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro').append(
                             '<li id="totalTasks">'+

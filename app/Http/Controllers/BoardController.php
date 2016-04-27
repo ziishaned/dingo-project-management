@@ -223,11 +223,21 @@ class BoardController extends Controller
         $taskTitle = $request->get("taskTitle");
         $cardId = $request->get("cardId");
         
-        return CardTask::create([
+
+        $card = CardTask::create([
             "task_title" => $taskTitle,
             "card_id" => $cardId,
             "is_completed" => 0,
         ]);
+        
+        $totalTasksCompleted = CardTask::where(['card_id' => $cardId, "is_completed" => 1])->count();
+        $totalTasks = CardTask::where(['card_id' => $cardId])->count();
+
+        return [
+            "totalTasksCompleted" => $totalTasksCompleted,
+            "totalTasks" => $totalTasks,
+            "card" => $card,
+        ];
     }
 
     public function deleteTask(Request $request)

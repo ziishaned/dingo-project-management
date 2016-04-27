@@ -414,7 +414,13 @@ $(document).ready(function() {
                             '</div>'+
                         '</div>';
                     });
-                    var perTaskCompleted = Math.floor(countCompletedTasks/countTotalTasks*100);
+                    var perTaskCompleted;
+                    if (countTotalTasks != 0) {
+                        perTaskCompleted = Math.floor(countCompletedTasks/countTotalTasks*100);
+                    } else {
+                        perTaskCompleted = 0;
+                    }
+                    
                     $(document).find(".per-tasks-completed").attr("aria-valuenow", perTaskCompleted);
                     $(document).find(".per-tasks-completed").css('width', perTaskCompleted+"%");
                     $(document).find(".per-tasks-completed").find(".show").text(perTaskCompleted+"% Tasks Completed");

@@ -212,7 +212,7 @@
                             <div class="row" style="margin-top: 19px; margin-bottom: 19px;">
                                 <div class="col-lg-8 col-lg-offset-2">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped per-tasks-completed" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                        <div class="progress-bar progress-bar-striped per-tasks-completed" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                           <span class="show"></span>
                                         </div>
                                       </div>

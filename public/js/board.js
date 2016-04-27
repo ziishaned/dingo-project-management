@@ -191,7 +191,7 @@ $(document).ready(function() {
                     var task = '<div class="form-group sub-task-con">'+
                             '<div class="row">'+
                                 '<div class="col-lg-11">'+
-                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + data.id + '" value="option" ' + ((data.is_completed == 1) ? ' checked="checked"' : '') + '>'+
+                                    '<input class="magic-checkbox sub-task-title-input" type="checkbox" name="layout" id="' + data.id + '" value="option" ' + ((data.is_completed == 1) ? ' checked="checked" data-checked="1"' : 'data-checked="0"') + '>'+
                                     '<label for="' + data.id + '" class="sub-task-content" data-taskid="' + data.id + '">' + data.task_title + '</label>'+
                                 '</div>'+
                                 '<div class="col-lg-1">'+

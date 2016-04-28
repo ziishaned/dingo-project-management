@@ -21,7 +21,7 @@
                             <div class="card-con" data-listid="{{ $list->id }}">
                                 @foreach($cards as $card)
                                     @if($card['list_id'] === $list['id']) 
-                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" data-toggle="modal" href="#card-detail">
+                                        <li class="list-group-item board-list-items" id="card_{{ $card['id'] }}" data-cardid ="{{ $card['id'] }}" data-toggle="modal" href="#card-detail" @if(!empty($card["card_color"])) style="border-top: 5px solid #{{ $card['card_color'] }};" @endif>
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <p style="margin-bottom: 0px;" class="pull-left">{{ $card['card_title'] }}</p>    

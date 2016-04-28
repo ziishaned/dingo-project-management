@@ -191,7 +191,7 @@ class BoardController extends Controller
     {
         $cardId = $request->get("cardId");
         $cardTitle = $request->get("cardName");
-        $cardDescription = $request->get("cardDescription");
+        $cardDescription = ($request->get("cardDescription") != "Empty") ? $request->get("cardDescription") : '';
         $cardTags = $request->get("cardTags");
         $cardColor = $request->get("cardColor");
         $cardDueDate = date("Y-m-d H:i:s", strtotime($request->get("cardDueDate")));

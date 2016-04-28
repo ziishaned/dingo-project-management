@@ -10,24 +10,26 @@
         <h1 style="text-align: center; font-family: arvo; font-weight: 800;"><a href="{{ route('user.dashboard') }}" style="color: #393333;">Dingo</a></h1>
         <ul class="nav navbar-stacked sidebar-inner">
             <li>
-                <div class="media" style="padding-left: 40px;">
-                    <a class="pull-left" href="#">
+                <div class="media" style="padding-left: 15px;">
+                    <div class="pull-left">
                         <img class="media-object img-responsive img-thumbnail" src="{{ asset('img/user_1.jpg') }}">
-                    </a>
+                    </div>
                     <div class="media-body">
                         <h4 class="media-heading" style="text-transform: capitalize; font-weight: bold;">{{ Auth::user()->name }}</h4>
+                        <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ Auth::user()->email }}</p>
+                        <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Joined on {{ Carbon\Carbon::parse(Auth::user()->created_at)->toFormattedDateString() }}</p>
                     </div>
                 </div>
             </li>
-            <li style="text-align: center;">
+            <li>
                 <form class="navbar-form" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" id="typeahead" class="form-control" data-provide="typeahead">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </li>
-            <li>
+            <li style="margin-top: 10px;">
                 <a href="{{ route('user.profile') }}" style="color: #393333;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Profile</a>
             </li>
             <li>

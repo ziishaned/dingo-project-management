@@ -39,7 +39,6 @@
             </div>
         @endif
         @yield('content')
-    {{-- </div>     --}}
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>

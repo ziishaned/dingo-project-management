@@ -293,11 +293,16 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $(".list-group-item").filter("[data-cardid="+data.cardId+"]").find("p").text(data.cardTitle);
-                    if(cardDescription.length > 0) {
-                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro").append('<li id="card_description">'+
+                    $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").css('border-top', '5px solid #'+cardColor);
+                    if(cardDescription != "Empty") {
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro #card_description").remove();
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro").prepend('<li id="card_description">'+
                             '<a href="#" data-placement="bottom" data-toggle="tooltip" title="" data-original-title="This card has a description."><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></a>'+
                         '</li>');
-                    };
+                    } else {
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro #card_description").remove();
+                    }
+
                     that.reInitializeToolTip();
                     $('.modal#card-detail').modal("hide");
                 },
@@ -530,10 +535,6 @@ $(document).ready(function() {
                 case "#card_description_editable":
                     var cardDescription = $(elementId).text();
                     $("#card-detail").find(elementId).editable({
-                        validate: function(value) {
-                            if($.trim(value) == '') 
-                                return 'Value is required.';
-                        },
                         inputclass: "x-editable-input", 
                         type: 'text', 
                         placement: 'right',

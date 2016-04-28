@@ -150,6 +150,8 @@ $(document).ready(function() {
                 }
             });
 
+            that.makeEditable('#select-board'); 
+
         },
         updateTaskCompleted: function (taskId, isCompleted) {
             var cardId = $(document).find('#card-detail').attr("data-cardid");
@@ -570,6 +572,10 @@ $(document).ready(function() {
                     var $select = $("#card-detail").find(elementId).selectize();
                     $select[0].selectize.setValue(opt);
                     break;
+                case "#select-board":
+                    var my = $(elementId).selectize();
+                    $(my).next(".selectize-control").find(".selectize-input").css('width', '218px');
+                    $(my).next(".selectize-control").find(".selectize-dropdown").css('width', '210px');
                 default:
                     console.log('Default');
                     break;

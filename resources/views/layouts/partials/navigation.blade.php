@@ -6,8 +6,8 @@
       <span class="icon-bar" style="background-color: #888;"></span>
     </button>
 
-    <div class="col-xs-7 col-sm-3 col-md-3 sidebar sidebar-left sidebar-animate" style="padding: 0px; background-color: #fff; border-right: 1px solid #eee;top: 0;box-shadow: 0px 0px 12px rgba(0,0,0,.175); z-index: 10000;">
-        <h1 style="text-align: center; font-family: arvo; font-weight: 800;"><a href="{{ route('user.dashboard') }}" style="color: #393333;">Dingo</a></h1>
+    <div class="col-xs-7 col-sm-3 col-md-3 frame sidebar sidebar-left sidebar-animate" style="padding: 0px; background-color: #fff; border-right: 1px solid #eee;top: 0;box-shadow: 0px 0px 12px rgba(0,0,0,.175); z-index: 10000;">
+        <h1 style="text-align: center; font-family: arvo; font-weight: 800; margin-bottom: 20px;"><a href="{{ route('user.dashboard') }}" style="color: #393333;">Dingo</a></h1>
         <ul class="nav navbar-stacked sidebar-inner">
             <li>
                 <div class="media" style="padding-left: 15px;">
@@ -24,58 +24,52 @@
             <li>
                 <form class="navbar-form" role="search">
                     <div class="form-group">
-                        <input type="text" id="typeahead" class="form-control" data-provide="typeahead">
+                        <select id="select-board">
+                        <option value="">Select a board...</option>
+                        @foreach($boards as $board)
+                            <option value="{{ $board['id'] }}">{{ $board["boardTitle"] }}</option>
+                        @endforeach
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" style="margin-bottom: 5px;">Submit</button>
+                    </div>
                 </form>
             </li>
-            <li style="margin-top: 10px;">
+            <li>
+                <div class="panel-group" style="padding-left: 15px; padding-right: 15px;">
+                    <div class="panel panel-default" style="width: 295px;">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" href="#starred-board">
+                                <h3 class="panel-title" style="color: #393333;">
+                                    Starred Boards <span class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
+                                </h3>
+                            </a>
+                        </div>
+                        <div id="starred-board" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @foreach($boards as $board)
+                                    <a href="{{ $board['id'] }}" style="color: #393333;">{{ $board["boardTitle"] }}</a>
+                                @endforeach
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="padding-left: 15px; padding-right: 30px;">
+                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Create a new Board</a>                
+            </li>
+            <hr>
+            <li style="padding-left: 15px; padding-right: 30px;">
+                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>                
+            </li>
+            <li style="padding-left: 15px; padding-right: 30px;">
                 <a href="{{ route('user.profile') }}" style="color: #393333;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Profile</a>
             </li>
-            <li>
-                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> About</a>
-            </li>
-            <li>
-                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Contact</a>
-            <li>
+            <li style="padding-left: 15px; padding-right: 30px;">
                 <a href="{{ url('/logout') }}" style="color: #393333;"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
             </li>
         </ul>
     </div>
 @endif
 <div class="overlay"></div>
-{{-- div overlay po f top 0 left 0 wid 100% hei 100% z-index 999  --}}
-{{-- @if (Auth::check())
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('user.dashboard') }}">Dingo</a>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="text-transform: capitalize;">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ Auth::user()->name }} <span class="caret"></span>
-                </a>    
-                <ul class="dropdown-menu profile-dropdown" role="menu">
-                    <li>
-                        <p class="text-center">{{ Auth::user()->name }}</p>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="{{ route('user.profile') }}">
-                            Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.dashboard') }}">
-                            Cards
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="{{ url('/logout') }}">Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
-@endif --}}

@@ -293,7 +293,11 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $(".list-group-item").filter("[data-cardid="+data.cardId+"]").find("p").text(data.cardTitle);
-                    $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").css('border-top', '5px solid #'+cardColor);
+                    if(cardColor.length > 0 ) {
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").css('border-top', '5px solid #'+cardColor);
+                    } else {
+                        $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").removeAttr("style");
+                    }
                     if(cardDescription != "Empty") {
                         $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro #card_description").remove();
                         $(document).find(".list-group-item").filter("[data-cardid="+data.cardId+"]").find(".card-description-intro").prepend('<li id="card_description">'+
@@ -682,7 +686,6 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: data,
                 success: function (data) {
-                    console.log(data);
                     $(curentBtnClicked).closest(".bcategory-list").before(
                         '<div class="bcategory-list" data-list-id="' + data.id + '">'+
                             '<div class="panel panel-default">'+

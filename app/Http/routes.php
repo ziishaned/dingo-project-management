@@ -1,36 +1,29 @@
 <?php
 
-Route::get('/', [
-    'uses' => 'AuthController@getLogin',
-    'as'   => 'auth.login',
-]);
-
-Route::get('login', ['uses' => 'AuthController@getLogin', 'as'   => 'auth.login', ]);
-Route::post('login', ['uses' => 'AuthController@postLogin', ]);
-
-Route::get('register', ['uses' => 'AuthController@getRegister', 'as'   => 'auth.register', ]);
-Route::post('register', ['uses' => 'AuthController@postRegister', ]);
-
-Route::get('logout', function() {
-    Auth::logout();
-    return redirect('/')->with('alert', 'You are logged out.');
-});
-
-Route::get('home', ['uses' => 'UserController@getDashboard', 'as' => 'user.dashboard', ]);
+Route::get('/', ['uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
+Route::get('login', ['uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
+Route::post('login', ['uses' => 'UserController@postLogin', ]);
+Route::get('logout', function() { Auth::logout(); return redirect('/'); });
+Route::get('register', ['uses' => 'UserController@getRegister', 'as'   => 'auth.register', ]);
+Route::post('register', ['uses' => 'UserController@postRegister', ]);
+Route::get('dashboard', ['uses' => 'UserController@getDashboard', 'as' => 'user.dashboard', ]);
 Route::get('profile', ['uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
 
-Route::get('board', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
+Route::get('board/{id?}', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
+Route::post('board/postBoard', ['uses' => 'BoardController@postBoard', ]);
 
-Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
-Route::post('postListName', ['uses' => 'BoardController@postListName', ]);
-Route::post('postCard', ['uses' => 'BoardController@postCard', ]);
-Route::post('changeCardList', ['uses' => 'BoardController@changeCardList', ]);
-Route::post('delete-list', ['uses' => 'BoardController@deleteList', ]);
-Route::post('update-list-name', ['uses' => 'BoardController@updateListName', ]);
-Route::post('deleteCard', ['uses' => 'BoardController@deleteCard', ]);
-Route::post('getCardDetail', ['uses' => 'BoardController@getCardDetail', ]);
-Route::post('save-comment', ['uses' => 'BoardController@saveComment', ]);
-Route::post('update-card-data', ['uses' => 'BoardController@updateCardData', ]);
-Route::post('save-task', ['uses' => 'BoardController@saveTask', ]);
-Route::post('delete-task', ['uses' => 'BoardController@deleteTask', ]);
-Route::post('update-task-completed', ['uses' => 'BoardController@updateTaskCompleted', ]);
+Route::post('board/postListName', ['uses' => 'ListController@postListName', ]);
+Route::post('board/delete-list', ['uses' => 'ListController@deleteList', ]);
+Route::post('board/update-list-name', ['uses' => 'ListController@updateListName', ]);
+
+Route::post('board/postCard', ['uses' => 'CardController@postCard', ]);
+Route::post('board/changeCardList', ['uses' => 'CardController@changeCardList', ]);
+Route::post('board/deleteCard', ['uses' => 'CardController@deleteCard', ]);
+Route::post('board/getCardDetail', ['uses' => 'CardController@getCardDetail', ]);
+Route::post('board/update-card-data', ['uses' => 'CardController@updateCardData', ]);
+
+Route::post('board/save-comment', ['uses' => 'CommentController@saveComment', ]);
+
+Route::post('board/save-task', ['uses' => 'TaskController@saveTask', ]);
+Route::post('board/delete-task', ['uses' => 'TaskController@deleteTask', ]);
+Route::post('board/update-task-completed', ['uses' => 'TaskController@updateTaskCompleted', ]);

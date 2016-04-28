@@ -31,14 +31,7 @@
     </div>
     @include('layouts.partials.modal')
     @include('layouts.partials.navigation')
-        @if(Session::has('alert'))
-            <div style="position: absolute; width: 375px; text-align: center; left: 480px;">
-                <div class="alert alert-info">
-                    <li class="list-unstyled">{{ Session::get('alert') }}</li>
-                </div>
-            </div>
-        @endif
-        @yield('content')
+    @yield('content')
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>

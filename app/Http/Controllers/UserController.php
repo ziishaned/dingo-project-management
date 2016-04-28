@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\Board;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use Auth;
+use \App\Models\User;
+use \App\Models\Board;
 
 class UserController extends Controller
 {
@@ -25,6 +27,47 @@ class UserController extends Controller
 
     public function getProfile()
     {
-        return view('user.profile');
+        $boards = Board::where(['user_id' => Auth::id(), ])->get();
+        return view('user.profile', compact('boards'));
+    }
+
+    public function getLogin()
+    {
+        return view('auth.login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' =>  'required',
+            'password' => 'required',
+        ]);
+
+
+        if (!Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')], $request->get('remember'))) {
+            return redirect()->back()->with('alert', 'Can\'t log you in with given information.');
+        }
+        return redirect()->route('user.dashboard')->with('info', 'You are logged in.');
+    }
+
+    public function getRegister()
+    {
+        return view('auth.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+        $this->validate($request, [
+            'name'  =>  'required|unique:users,name',
+            'email' =>  'required|unique:users,email',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+        User::create([
+            'name'      => $request->get('name'),
+            'email'     => $request->get('email'),
+            'password'  => \Hash::make($request->get('password')),
+        ]);
+        return redirect()->route('auth.login')->with('alert', 'Your account has been created.');
     }
 }

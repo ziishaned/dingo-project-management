@@ -6,8 +6,8 @@
             <h1 style="margin-bottom: 25px; font-family: Arvo; font-size: 24px; font-weight: 600; color: #666666; ">Login To Dingo</h1>
             <form role="form" method="POST" action="{{ url('/login') }}">
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label class="control-label"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="padding-right: 5px;"></span> E-Mail Address</label>
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                    <label for="account-email" class="control-label"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="padding-right: 5px;"></span> E-Mail Address</label>
+                    <input type="email" id="account-email" class="form-control" name="email" value="{{ old('email') }}">
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -15,8 +15,8 @@
                     @endif
                 </div>
                 <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label class="control-label"><span class="glyphicon glyphicon-lock" aria-hidden="true" style="padding-right: 5px;"></span> Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <label for="account-password" class="control-label"><span class="glyphicon glyphicon-lock" aria-hidden="true" style="padding-right: 5px;"></span> Password</label>
+                    <input type="password" id="account-password" class="form-control" name="password">
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-btn fa-sign-in"></i> Login
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login
                     </button>
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                 </div>

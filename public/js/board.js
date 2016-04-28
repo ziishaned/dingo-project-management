@@ -262,10 +262,20 @@ $(document).ready(function() {
                         '</li>';
                     $("#card-detail").find("ul.commentList").prepend(comment);
                     $('#card-detail').find("#comment-input").val("");
-                    var totalComments = $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalcomments");
-                    totalComments++;
-                    $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-original-title", "This card have "+ totalComments +" comments.");                                                            
-                    $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalComments", totalComments);                                                            
+                    
+                     if ($(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro  #totalComments').length == 0) {
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro').append(
+                            '<li id="totalComments">'+
+                                '<a href="#" data-placement="bottom" data-toggle="tooltip" title="" data-totalcomments="1" data-original-title="This card have 1 comments."><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>'+
+                            '</li>'
+                        );
+                    } else {
+                        var totalComments = $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalcomments");
+                        totalComments++;
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-original-title", "This card have "+ totalComments +" comments.");                                                            
+                        $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalComments", totalComments);                                                            
+                    }
+                    that.reInitializeToolTip();
                 },
                 error: function (error) {
                     console.log(error);
@@ -347,7 +357,14 @@ $(document).ready(function() {
                             $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-original-title", "This card have "+ totalTasks +" tasks.");                                                            
                             $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask", totalTasks);                                                            
 
-                            var perTaskCompleted = Math.floor(data.totalTasksCompleted/data.totalTasks*100);
+                            var perTaskCompleted;
+                            
+                            if (data.totalTasks != 0) {
+                                perTaskCompleted = Math.floor(data.totalTasksCompleted/data.totalTasks*100);
+                            } else {
+                                perTaskCompleted = 0;
+                            }
+
                             $(document).find(".per-tasks-completed").addClass('active');
                             $(document).find(".per-tasks-completed").attr("aria-valuenow", perTaskCompleted);
                             $(document).find(".per-tasks-completed").css('width', perTaskCompleted+"%");
@@ -577,7 +594,6 @@ $(document).ready(function() {
                     $(my).next(".selectize-control").find(".selectize-input").css('width', '218px');
                     $(my).next(".selectize-control").find(".selectize-dropdown").css('width', '210px');
                 default:
-                    console.log('Default');
                     break;
             }
         },

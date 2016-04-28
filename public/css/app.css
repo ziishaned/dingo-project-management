@@ -577,3 +577,7 @@ ul.commentList li {
     color: #333;
     font-weight: 700;
 }
+
+.stared-board-list-con li a:hover {
+  font-weight: 500;
+}

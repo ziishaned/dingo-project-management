@@ -7,7 +7,7 @@
         <div class="row boards-col">
             @foreach($boards as $board)
                 <div class="col-lg-3">
-                    <a data-toggle="modal" href="{{ url('board?id=' . $board->id) }}" class="board-main-link-con">
+                    <a data-toggle="modal" href="{{ url('board/' . $board->id) }}" class="board-main-link-con">
                         <div class="board-link">
                             <div class="row">
                                 <div class="col-lg-8">

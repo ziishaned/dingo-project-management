@@ -1,4 +1,6 @@
-<h1 style="color: #393333; text-align: center;font-family: arvo;font-weight: 800;position: fixed;top: 8px;margin: 0px;/* left: 50%; */width: 100%;"><span id="brand-name"></span></h1>
+@if(!Auth::check())
+    <h1 style="color: #393333; text-align: center;font-family: arvo;font-weight: 800;position: fixed;top: 8px;margin: 0px;/* left: 50%; */width: 100%;"><span id="brand-name"></span></h1>
+@endif
 @if (Auth::check())
     <button type="button" class="navbar-toggle toggle-left pull-left" data-toggle="sidebar" data-target=".sidebar-left" style="border-color: #ddd; margin-left: 10px; position: absolute; z-index: 1000;">
       <span class="icon-bar" style="background-color: #888;"></span>
@@ -48,20 +50,22 @@
                         </div>
                         <div id="starred-board" class="panel-collapse collapse">
                             <div class="panel-body">
-                                @foreach($boards as $board)
-                                    <a href="{{ $board['id'] }}" style="color: #393333;">{{ $board["boardTitle"] }}</a>
-                                @endforeach
+                                <ul style="padding-left: 0px;" class="stared-board-list-con">
+                                    @foreach($boards as $board)
+                                        <li style="margin-bottom: 5px;"><a href="{{ url('board') . '/' . $board['id'] }}" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px; mar">{{ $board["boardTitle"] }}</a></li>
+                                    @endforeach
+                                </ul>
                             </div>     
                         </div>
                     </div>
                 </div>
             </li>
             <li style="padding-left: 15px; padding-right: 30px;">
-                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Create a new Board</a>                
+                <a data-toggle="modal" href="#create-new-board" style="color: #393333;"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Create a new Board</a>                
             </li>
             <hr>
             <li style="padding-left: 15px; padding-right: 30px;">
-                <a href="#" style="color: #393333;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>                
+                <a href="{{ route('user.dashboard') }}" style="color: #393333;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>                
             </li>
             <li style="padding-left: 15px; padding-right: 30px;">
                 <a href="{{ route('user.profile') }}" style="color: #393333;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Profile</a>

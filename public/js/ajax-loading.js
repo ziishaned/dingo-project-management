@@ -19,7 +19,7 @@ $(document).ready(function() {
             setTimeout(function() {
               $(".overlay").fadeOut('slow');
               $(".spinner").hide();
-            }, 1000);
+            }, 500);
             // $("#loadingbar").width("101%").delay(200).fadeOut(400, function() {
             //     $(this).remove();
             // });         

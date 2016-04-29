@@ -363,6 +363,7 @@ $(document).ready(function() {
                                 perTaskCompleted = Math.floor(data.totalTasksCompleted/data.totalTasks*100);
                             } else {
                                 perTaskCompleted = 0;
+                                $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks').remove();
                             }
 
                             $(document).find(".per-tasks-completed").addClass('active');

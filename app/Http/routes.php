@@ -10,7 +10,7 @@ Route::get('dashboard', ['uses' => 'UserController@getDashboard', 'as' => 'user.
 Route::get('profile', ['uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
 
 Route::get('board/{id?}', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
-Route::post('board/postBoard', ['uses' => 'BoardController@postBoard', ]);
+Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
 
 Route::post('board/postListName', ['uses' => 'ListController@postListName', ]);
 Route::post('board/delete-list', ['uses' => 'ListController@deleteList', ]);

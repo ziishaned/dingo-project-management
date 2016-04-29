@@ -16,8 +16,10 @@ class UserController extends Controller
     public function getDashboard()
     {
         $boards = Board::where(['user_id' => Auth::id(), ])->get();
-        $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
-        return view('user.home', compact('boards', 'recentBoards'));
+        // $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
+        $starredBoards = Board::where(['user_id' => Auth::id(), 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
+
+        return view('user.home', compact('boards', 'recentBoards', 'starredBoards'));
     }
 
     public function getBoard()

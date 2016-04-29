@@ -52,7 +52,7 @@
                             <div class="panel-body">
                                 <ul style="padding-left: 0px;" class="stared-board-list-con">
                                     @foreach($boards as $board)
-                                        <li style="margin-bottom: 5px;"><a href="{{ url('board') . '/' . $board['id'] }}" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px; mar">{{ $board["boardTitle"] }}</a></li>
+                                        <li style="margin-bottom: 5px;" data-boardid="{{ $board->id }}"><a href="{{ url('board') . '/' . $board['id'] }}" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px;">{{ $board["boardTitle"] }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>     

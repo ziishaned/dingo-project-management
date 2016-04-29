@@ -167,6 +167,12 @@ $(document).ready(function() {
                     var boardCon = $(this).closest('.col-lg-3').clone();
                     $(boardCon).find(".col-lg-2").remove();
                     $(".my-fv-board").find(".boards-col").prepend(boardCon);
+                    var boardTitle = $(boardCon).find("h2").text().trim();
+                    $("ul.stared-board-list-con").prepend(
+                        '<li style="margin-bottom: 5px;" data-boardid="'+boardId+'">'+
+                            '<a href="http://localhost:8000/board/'+boardId+'" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px; mar">'+boardTitle+'</a>'+
+                        '</li>'
+                    );
                 } else {
                     $(this).css('color', "#FFF");
                     isFavourite = 0;
@@ -174,6 +180,7 @@ $(document).ready(function() {
                     if ($(".my-fv-board").find(".boards-col .col-lg-3").length == 0 ) {
                         $(".my-fv-board").css('display', 'none');
                     };
+                    $("ul.stared-board-list-con").find("li").filter("[data-boardid="+boardId+"]").remove();
                 }
                 that.updateBoardFavourite(boardId, isFavourite);
             }); 

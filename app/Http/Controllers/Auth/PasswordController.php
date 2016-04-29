@@ -21,9 +21,14 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     /**
-     * Create a new password controller instance.
+     * Home page url
      *
-     * @return void
+     * @var string
+     */
+    protected $redirectTo = '/dashboard';
+
+    /**
+     * Create a new password controller instance.
      */
     public function __construct()
     {

@@ -14,6 +14,8 @@
 Route::get('/', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as' => 'auth.login',]);
 Route::get('login', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as' => 'auth.login',]);
 Route::post('login', ['middleware' => 'guest', 'uses' => 'UserController@postLogin',]);
+//Route::get('password/reset/{token?}', ['middleware' => 'guest', 'uses' => 'UserController@reset',]);
+//Route::post('password/reset', ['middleware' => 'guest', 'uses' => 'UserController@resetPassword',]);
 Route::get('logout', function () {
     Auth::logout();
 
@@ -31,7 +33,7 @@ Route::post('postBoard', ['middleware' => 'auth', 'uses' => 'BoardController@pos
  * Board
  */
 Route::group(
-    ['prefix' => 'board', 'namespace' => 'App\Http\Controllers'],
+    ['prefix' => 'board'],
     function () {
         Route::post('/postListName', ['uses' => 'ListController@postListName',]);
         Route::post('/delete-list', ['uses' => 'ListController@deleteList',]);
@@ -50,5 +52,21 @@ Route::group(
         Route::post('/update-task-completed', ['uses' => 'TaskController@updateTaskCompleted',]);
 
         Route::get('/{id?}', ['middleware' => 'auth', 'uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail',]);
+    }
+);
+
+/**
+ * Password Reset
+ */
+Route::group(
+    ['prefix' => 'password'],
+    function () {
+        // Password reset link request routes...
+        Route::get('/email', 'Auth\PasswordController@getEmail');
+        Route::post('/email', 'Auth\PasswordController@postEmail');
+
+        // Password reset routes...
+        Route::get('/reset/{token}', 'Auth\PasswordController@getReset');
+        Route::post('/reset', 'Auth\PasswordController@postReset');
     }
 );

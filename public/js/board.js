@@ -58,7 +58,7 @@ $(document).ready(function() {
                 });
             }); 
         },
-        bindUI: function () {
+        bindUI: function () { 
             var that = this;
 
             $(".create-board-form").on("submit", function(e) {
@@ -155,19 +155,25 @@ $(document).ready(function() {
             $(document).on('click', '#make-fv-board', function(event) {
                 event.preventDefault();
                 event.stopPropagation();
+
                 var starColor = $(this).css('color');
                 var boardId = $(this).closest('.board-link').attr("data-boardid");
                 var isFavourite;
                 if (starColor == "rgb(255, 255, 255)") {
-                    $(this).css('color', "#FFEB3B");
                     isFavourite = 1;
+
+                    $(this).css('color', "#FFEB3B");
+                    var boardCon = $(this).closest('.col-lg-3').clone();
+                    var boardTitle = $(boardCon).find("h2").text().trim();
+                    if ($(".my-fv-board").find('h1.board-starred-heading').length == 0) {
+                        $(".my-fv-board").prepend('<h1 class="board-starred-heading" style="margin-top: 10px;margin-left: 15px;font-weight: 500;font-size: 25px;"><span class="glyphicon glyphicon-star-empty starred-boards" aria-hidden="true"></span> Starred Boards</h1>');
+                    };                   
+
                     if ($(".my-fv-board").find(".boards-col .col-lg-3").length == 0 ) {
                         $(".my-fv-board").css('display', 'block');
                     }
-                    var boardCon = $(this).closest('.col-lg-3').clone();
                     $(boardCon).find(".col-lg-2").remove();
                     $(".my-fv-board").find(".boards-col").prepend(boardCon);
-                    var boardTitle = $(boardCon).find("h2").text().trim();
                     $("ul.stared-board-list-con").prepend(
                         '<li style="margin-bottom: 5px;" data-boardid="'+boardId+'">'+
                             '<a href="http://localhost:8000/board/'+boardId+'" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px; mar">'+boardTitle+'</a>'+
@@ -185,11 +191,16 @@ $(document).ready(function() {
                 that.updateBoardFavourite(boardId, isFavourite);
             }); 
 
+            $(".board-link").hover(function() {
+                $(this).find("#make-fv-board").slideDown("fast");
+            }, function() {
+                $(this).find("#make-fv-board").slideUp("fast");
+            });
+
             $(document).on('click', '.board-link', function() {
                 var boardId = $(this).attr("data-boardid");
                 window.location.replace("board/"+boardId);
             }); 
-
         },
         updateBoardFavourite: function (boardId, isFavourite) {
             $.ajax({
@@ -201,7 +212,7 @@ $(document).ready(function() {
                     isFavourite: isFavourite
                 },
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                 },
                 error: function (error) {
                     console.log(error); 

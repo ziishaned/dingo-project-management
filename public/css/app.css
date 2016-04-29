@@ -591,3 +591,7 @@ ul.commentList li {
   border-radius: 4px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.17);
 }
+
+#make-fv-board {
+    display: none;
+}

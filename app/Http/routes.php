@@ -1,16 +1,17 @@
 <?php
 
-Route::get('/', ['uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
-Route::get('login', ['uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
-Route::post('login', ['uses' => 'UserController@postLogin', ]);
+Route::get('/', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
+Route::get('login', ['middleware' => 'guest', 'uses' => 'UserController@getLogin', 'as'   => 'auth.login', ]);
+Route::post('login', ['middleware' => 'guest', 'uses' => 'UserController@postLogin', ]);
 Route::get('logout', function() { Auth::logout(); return redirect('/'); });
-Route::get('register', ['uses' => 'UserController@getRegister', 'as'   => 'auth.register', ]);
-Route::post('register', ['uses' => 'UserController@postRegister', ]);
-Route::get('dashboard', ['uses' => 'UserController@getDashboard', 'as' => 'user.dashboard', ]);
-Route::get('profile', ['uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
+Route::get('register', ['middleware' => 'guest', 'uses' => 'UserController@getRegister', 'as'   => 'auth.register', ]);
+Route::post('register', ['middleware' => 'guest', 'uses' => 'UserController@postRegister', ]);
+Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'UserController@getDashboard', 'as' => 'user.dashboard', ]);
+Route::get('profile', ['middleware' => 'auth', 'uses' => 'UserController@getProfile', 'as' => 'user.profile', ]);
+Route::get('activity', ['middleware' => 'auth', 'uses' => 'UserController@getUserActivity', 'as' => 'user.activity', ]);
 
-Route::get('board/{id?}', ['uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
-Route::post('postBoard', ['uses' => 'BoardController@postBoard', ]);
+Route::get('board/{id?}', ['middleware' => 'auth', 'uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail', ]);
+Route::post('postBoard', ['middleware' => 'auth', 'uses' => 'BoardController@postBoard', ]);
 
 Route::post('board/postListName', ['uses' => 'ListController@postListName', ]);
 Route::post('board/delete-list', ['uses' => 'ListController@deleteList', ]);

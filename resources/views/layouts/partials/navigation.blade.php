@@ -68,6 +68,9 @@
                 <a href="{{ route('user.dashboard') }}" style="color: #393333;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>                
             </li>
             <li style="padding-left: 15px; padding-right: 30px;">
+                <a href="{{ route('user.activity') }}" style="color: #393333;"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> My Activity</a>
+            </li>
+            <li style="padding-left: 15px; padding-right: 30px;">
                 <a href="{{ route('user.profile') }}" style="color: #393333;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Profile</a>
             </li>
             <li style="padding-left: 15px; padding-right: 30px;">

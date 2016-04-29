@@ -72,4 +72,9 @@ class UserController extends Controller
         ]);
         return redirect()->route('auth.login')->with('alert', 'Your account has been created.');
     }
+
+    public function getUserActivity()
+    {
+        return view('user.activity');
+    }
 }

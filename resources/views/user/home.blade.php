@@ -3,12 +3,12 @@
 @section('content')
 <div class="board-list-con" style="padding-left: 10px !important; padding-top: 40px !important; padding-right: 0px; padding-bottom: 0px;">
     @if(sizeof($starredBoards) > 0)
-        <div class="my-board">
-            <h1 class="board-starred-heading" style="margin-top: 10px;margin-left: 15px;font-weight: 500;font-size: 25px;"><span class="glyphicon glyphicon-list-art starred-boards" aria-hidden="true"></span> Starred Boards</h1>
+        <div class="my-fv-board">
+            <h1 class="board-starred-heading" style="margin-top: 10px;margin-left: 15px;font-weight: 500;font-size: 25px;"><span class="glyphicon glyphicon-star-empty starred-boards" aria-hidden="true"></span> Starred Boards</h1>
             <div class="row boards-col">
                 @foreach($starredBoards as $board)
-                    <div class="col-lg-3">
-                        <a data-toggle="modal" href="{{ url('board/' . $board->id) }}" class="board-main-link-con">
+                    <div class="col-lg-3" data-boardid="{{ $board->id }}">
+                        <a href="{{ url('board/' . $board->id) }}" class="board-main-link-con">
                             <div class="board-link">
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -25,7 +25,7 @@
         </div>
     @endif
     <div class="my-board">
-        <h1 class="board-starred-heading" style="margin-top: 10px;margin-left: 15px;font-weight: 500;font-size: 25px;"><span class="glyphicon glyphicon-list-art starred-boards" aria-hidden="true"></span> My Boards</h1>
+        <h1 class="board-starred-heading" style="margin-top: 10px;margin-left: 15px;font-weight: 500;font-size: 25px;"><span class="glyphicon glyphicon-list-alt starred-boards" aria-hidden="true"></span> My Boards</h1>
         <div class="row boards-col">
             @if(sizeof($boards) > 0)
                 @foreach($boards as $board)

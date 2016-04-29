@@ -164,6 +164,10 @@ $(document).ready(function() {
                 } else {
                     $(this).css('color', "#FFF");
                     isFavourite = 0;
+                    $(".my-fv-board").find(".boards-col .col-lg-3").filter("[data-boardid="+boardId+"]").remove();
+                    if ($(".my-fv-board").find(".boards-col .col-lg-3").length == 0 ) {
+                        $(".my-fv-board").css('display', 'none');
+                    };
                 }
                 that.updateBoardFavourite(boardId, isFavourite);
             }); 
@@ -674,7 +678,6 @@ $(document).ready(function() {
                 data: data,
                 success: function (data) {
                     $(that.targetList).find('.card-con').append(
-                        // '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'"><a data-toggle="modal" href="#card-detail">'+ data.card_title +'</a></li>'
                         '<li class="list-group-item board-list-items ui-sortable-handle" id="card_'+data.id+'" data-cardid="'+ data.id +'" data-toggle="modal" href="#card-detail">'+
                             '<div class="row">'+
                                 '<div class="col-lg-12">'+

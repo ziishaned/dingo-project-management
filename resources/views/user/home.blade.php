@@ -29,7 +29,7 @@
         <div class="row boards-col">
             @if(sizeof($boards) > 0)
                 @foreach($boards as $board)
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" data-boardid="{{ $board->id }}">
                         <div class="board-link" style="cursor: pointer;" data-boardid="{{ $board->id }}">
                             <div class="row">
                                 <div class="col-lg-10">

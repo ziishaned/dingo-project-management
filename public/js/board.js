@@ -161,6 +161,12 @@ $(document).ready(function() {
                 if (starColor == "rgb(255, 255, 255)") {
                     $(this).css('color', "#FFEB3B");
                     isFavourite = 1;
+                    if ($(".my-fv-board").find(".boards-col .col-lg-3").length == 0 ) {
+                        $(".my-fv-board").css('display', 'block');
+                    }
+                    var boardCon = $(this).closest('.col-lg-3').clone();
+                    $(boardCon).find(".col-lg-2").remove();
+                    $(".my-fv-board").find(".boards-col").prepend(boardCon);
                 } else {
                     $(this).css('color', "#FFF");
                     isFavourite = 0;

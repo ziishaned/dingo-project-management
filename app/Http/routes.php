@@ -18,7 +18,6 @@ Route::post('login', ['middleware' => 'guest', 'uses' => 'UserController@postLog
 //Route::post('password/reset', ['middleware' => 'guest', 'uses' => 'UserController@resetPassword',]);
 Route::get('logout', function () {
     Auth::logout();
-
     return redirect('/');
 });
 Route::get('register', ['middleware' => 'guest', 'uses' => 'UserController@getRegister', 'as' => 'auth.register',]);
@@ -28,6 +27,7 @@ Route::get('profile', ['middleware' => 'auth', 'uses' => 'UserController@getProf
 Route::get('activity', ['middleware' => 'auth', 'uses' => 'UserController@getUserActivity', 'as' => 'user.activity',]);
 
 Route::post('postBoard', ['middleware' => 'auth', 'uses' => 'BoardController@postBoard',]);
+Route::post('update-board-favourite', ['middleware' => 'auth', 'uses' => 'BoardController@updateBoardFavourite',]);
 
 /**
  * Board

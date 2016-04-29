@@ -150,8 +150,46 @@ $(document).ready(function() {
                 }
             });
 
-            that.makeEditable('#select-board'); 
+            that.makeEditable('#select-board');
 
+            $(document).on('click', '#make-fv-board', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                var starColor = $(this).css('color');
+                var boardId = $(this).closest('.board-link').attr("data-boardid");
+                var isFavourite;
+                if (starColor == "rgb(255, 255, 255)") {
+                    $(this).css('color', "#FFEB3B");
+                    isFavourite = 1;
+                } else {
+                    $(this).css('color', "#FFF");
+                    isFavourite = 0;
+                }
+                that.updateBoardFavourite(boardId, isFavourite);
+            }); 
+
+            $(document).on('click', '.board-link', function() {
+                var boardId = $(this).attr("data-boardid");
+                window.location.replace("board/"+boardId);
+            }); 
+
+        },
+        updateBoardFavourite: function (boardId, isFavourite) {
+            $.ajax({
+                url: 'update-board-favourite',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    boardId: boardId,
+                    isFavourite: isFavourite
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(error); 
+                }
+            });
         },
         updateTaskCompleted: function (taskId, isCompleted) {
             var cardId = $(document).find('#card-detail').attr("data-cardid");
@@ -673,17 +711,22 @@ $(document).ready(function() {
                 success: function (data) {
                     $(that.params['createBoardLink']).closest(".col-lg-3").before(
                         '<div class="col-lg-3">'+
-                            '<a data-toggle="modal" href="http://localhost:8000/board?id='+data.id+'" class="board-main-link-con">'+
-                                '<div class="board-link">'+
-                                    '<div class="row">'+
-                                        '<div class="col-lg-8">'+
-                                            '<h2 style="font-size: 20px; ">'+
+                            '<div class="board-link" style="cursor: pointer;" data-boardid="'+data.id+'">'+
+                                '<div class="row">'+
+                                    '<div class="col-lg-10">'+
+                                        '<h2 style="margin-top: 5px;">'+
+                                            '<a href="http://localhost:8000/board?id='+data.id+'" class="board-main-link-con" style="font-size: 20px; color: #FFF;">'+
                                                 data.boardTitle +
-                                            '</h2>'+
-                                        '</div>'+
+                                            '</a>'+
+                                        '</h2>'+
+                                    '</div>'+
+                                    '<div class="col-lg-2">'+
+                                        '<p style="margin-top: 12px;">'+
+                                            '<a href="#" style="font-size: 20px; color: #FFF;" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>'+
+                                        '</p>'+
                                     '</div>'+
                                 '</div>'+
-                            '</a>'+
+                            '</div>'+
                         '</div>'
                     );
                     that.params['createNewBoardModal'].modal('hide') 

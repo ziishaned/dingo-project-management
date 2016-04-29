@@ -21,19 +21,6 @@
                         </a>
                     </div>
                 @endforeach
-                <div class="col-lg-3">
-                    <a data-toggle="modal" href='#create-new-board' class="board-create-link">
-                        <div class="board-create">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h1 class="board-create-head">
-                                        Create New board...
-                                    </h1>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
     @endif
@@ -43,17 +30,22 @@
             @if(sizeof($boards) > 0)
                 @foreach($boards as $board)
                     <div class="col-lg-3">
-                        <a data-toggle="modal" href="{{ url('board/' . $board->id) }}" class="board-main-link-con">
-                            <div class="board-link">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <h2 style="font-size: 20px; ">
+                        <div class="board-link" style="cursor: pointer;" data-boardid="{{ $board->id }}">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <h2 style="margin-top: 5px;">
+                                        <a href="{{ url('board/' . $board->id) }}" class="board-main-link-con" style="font-size: 20px; color: #FFFFFF;">
                                             {{ $board->boardTitle }}
-                                        </h2>
-                                    </div>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div class="col-lg-2">
+                                    <p style="margin-top: 12px;">
+                                        <a href="#" style="font-size: 20px; {{ ($board->is_starred == 1) ? 'color: #FFEB3B;' : 'color: #FFF;' }}" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
+                                    </p>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 @endforeach
             @endif

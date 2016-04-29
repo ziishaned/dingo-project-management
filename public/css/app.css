@@ -581,3 +581,13 @@ ul.commentList li {
 .stared-board-list-con li a:hover {
   font-weight: 500;
 }
+
+.user-profile-intro {
+  background-image: url("../img/profile-bg.svg");
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #393333;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.17);
+}

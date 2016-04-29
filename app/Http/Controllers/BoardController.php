@@ -64,4 +64,12 @@ class BoardController extends Controller
         return view('user.board', compact('boardDetail', 'lists', 'cards', 'cardTaskCount', 'boards', 'recentBoards'));
     }
 
+    public function updateBoardFavourite(Request $request)
+    {
+        $boardId = $request->get("boardId");
+        $isFavourite = $request->get("isFavourite");
+
+        return Board::where("id", $boardId)->update(["is_starred" => $isFavourite,]);
+    }
+
 }

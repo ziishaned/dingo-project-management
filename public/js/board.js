@@ -201,6 +201,14 @@ $(document).ready(function() {
                 var boardId = $(this).attr("data-boardid");
                 window.location.replace("board/"+boardId);
             }); 
+
+            $(document).on('submit', '#selet-board-form', function(event) {
+                event.preventDefault();
+                var boardId = $("#select-board").val();
+                if(boardId.length > 0) {
+                    window.location.replace("board/"+boardId);
+                }
+            }); 
         },
         updateBoardFavourite: function (boardId, isFavourite) {
             $.ajax({

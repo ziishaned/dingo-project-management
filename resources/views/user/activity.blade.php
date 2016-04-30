@@ -7,7 +7,7 @@
 	    <div class="row" style="margin-top: 15px;">
 	    	<div class="col-lg-5 col-lg-offset-3">
 			    <ul class="nav nav-tabs" role="tablist" style="padding-left: 150px;">
-                    <li role="presentation" class="">
+                    <li role="presentation" @if($page=='activity') class="active" @endif>
                         <a href="{{ route('user.activity') }}"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Activity</a>
                     </li>
                     <li role="presentation" @if($page=='profile') class="active" @endif>
@@ -16,6 +16,11 @@
                 </ul>
 	    	</div>
 	    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                
+            </div>
+        </div>
     </div>
 </div>
 @endsection

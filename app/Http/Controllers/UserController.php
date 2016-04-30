@@ -30,8 +30,8 @@ class UserController extends Controller
     public function getProfile()
     {
         $boards = Board::where(['user_id' => Auth::id(),])->get();
-
-        return view('user.profile', compact('boards'));
+        $page = 'profile';
+        return view('user.profile', compact('boards', 'page'));
     }
 
     public function getLogin()
@@ -78,6 +78,8 @@ class UserController extends Controller
 
     public function getUserActivity()
     {
-        return view('user.activity');
+        $boards = Board::where(['user_id' => Auth::id(),])->get();
+        $page = 'activity';
+        return view('user.activity', compact('page', 'boards'));
     }
 }

@@ -24,7 +24,7 @@
                 </div>
             </li>
             <li>
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" role="search" id="selet-board-form">
                     <div class="form-group">
                         <select id="select-board">
                         <option value="">Select a board...</option>

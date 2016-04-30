@@ -583,7 +583,7 @@ ul.commentList li {
 }
 
 .user-profile-intro {
-  background-image: url("../img/profile-bg.svg");
+  background-color: rgba(96, 125, 139, 0.02);
   padding-top: 30px;
   padding-bottom: 30px;
   color: #393333;

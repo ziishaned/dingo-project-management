@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <p style="margin-top: 12px;">
-                                        <a href="#" style="font-size: 20px; {{ ($board->is_starred == 1) ? 'color: #FFEB3B; display: block;' : 'color: #FFF;' }}" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
+                                        <a href="#" style="font-size: 20px; {{ ($board->is_starred == 1) ? 'color: #FFEB3B;' : 'color: #FFF;' }}" id="make-fv-board"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
                                     </p>
                                 </div>
                             </div>

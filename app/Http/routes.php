@@ -52,6 +52,8 @@ Route::group(
         Route::post('/update-task-completed', ['uses' => 'TaskController@updateTaskCompleted',]);
 
         Route::get('/{id?}', ['middleware' => 'auth', 'uses' => 'BoardController@getBoardDetail', 'as' => 'user.boardDetail',]);
+
+        Route::post('create-user-activity', ['uses' => 'UserActivityController@createUserActivity']);
     }
 );
 
@@ -70,3 +72,5 @@ Route::group(
         Route::post('/reset', 'Auth\PasswordController@postReset');
     }
 );
+
+Route::post('create-user-activity', ['uses' => 'UserActivityController@createUserActivity']);

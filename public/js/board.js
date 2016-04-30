@@ -40,6 +40,7 @@ $(document).ready(function() {
             });
         },
         initEditableListName: function () {
+            var that = this;
             $(".board-panel-title").each(function(index, el) {
                 $.fn.editable.defaults.mode = 'popup';
                 $(el).editable({
@@ -53,7 +54,11 @@ $(document).ready(function() {
                     placement: 'right', 
                     send:'always',
                     ajaxOptions: {
-                        dataType: 'json'
+                        dataType: 'json',
+                        success: function() {
+                            var listId = $(el).attr("data-pk");
+                            that.createActivity(listId, 'board_list', 'edit list name');
+                        }
                     }
                 });
             }); 
@@ -179,6 +184,7 @@ $(document).ready(function() {
                             '<a href="http://localhost:8000/board/'+boardId+'" style="color: #393333; padding-left: 0px; line-height: 20px; height: 20px; mar">'+boardTitle+'</a>'+
                         '</li>'
                     );
+                    that.createActivity(boardId, 'board', 'fav a board');
                 } else {
                     $(this).css('color', "#FFF");
                     isFavourite = 0;
@@ -187,6 +193,7 @@ $(document).ready(function() {
                         $(".my-fv-board").css('display', 'none');
                     };
                     $("ul.stared-board-list-con").find("li").filter("[data-boardid="+boardId+"]").remove();
+                    that.createActivity(boardId, 'board', 'un-fav a board');
                 }
                 that.updateBoardFavourite(boardId, isFavourite);
             }); 
@@ -209,6 +216,41 @@ $(document).ready(function() {
                     window.location.replace("board/"+boardId);
                 }
             }); 
+
+            $(document).on('click', '.delete-list', function() {
+                var listId = $(this).data("listid");
+                that.deleteList(listId, this);
+            });
+        },
+        deleteList: function(listId, listTrash) {
+            var that = this;
+            swal({   
+                title: "Are you sure?",   
+                text: "You will not be able to recover this List with cards!",   
+                type: "warning",   
+                showCancelButton: true,   
+                confirmButtonColor: "#DD6B55",   
+                confirmButtonText: "Yes, delete it!",   
+                closeOnConfirm: false 
+                }, function(){   
+                    $.ajax({
+                        url: 'delete-list',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            listId: listId 
+                        },
+                        success: function (data) {
+                            $(listTrash).closest(".bcategory-list").remove();
+                            swal("Deleted!", "Your file was successfully deleted!", "success");
+                            that.createActivity(listId, 'board_list', 'deleted a list');
+                        },
+                        error: function (error) {
+                            var response = JSON.parse(error.responseText);
+                            swal("Oops", "We couldn't connect to the server!", "error");
+                        }
+                    });
+            });
         },
         updateBoardFavourite: function (boardId, isFavourite) {
             $.ajax({
@@ -300,6 +342,7 @@ $(document).ready(function() {
                         $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalTasks a').attr("data-totaltask", totalTasks);                                                            
                     }
                     that.reInitializeToolTip();
+                    that.createActivity(cardId, 'card_task', 'task is added');    
                 },
                 error: function (error) {
                     console.log(error);
@@ -337,7 +380,7 @@ $(document).ready(function() {
                     $("#card-detail").find("ul.commentList").prepend(comment);
                     $('#card-detail').find("#comment-input").val("");
                     
-                     if ($(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro  #totalComments').length == 0) {
+                    if ($(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro  #totalComments').length == 0) {
                         $(".list-group-item").filter("[data-cardid="+cardId+"]").find('ul.card-description-intro').append(
                             '<li id="totalComments">'+
                                 '<a href="#" data-placement="bottom" data-toggle="tooltip" title="" data-totalcomments="1" data-original-title="This card have 1 comments."><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>'+
@@ -349,6 +392,8 @@ $(document).ready(function() {
                         $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-original-title", "This card have "+ totalComments +" comments.");                                                            
                         $(".list-group-item").filter("[data-cardid="+cardId+"]").find('#totalComments a').attr("data-totalComments", totalComments);                                                            
                     }
+
+                    that.createActivity(data[0].id, 'comment', 'posted a comment'); 
                     that.reInitializeToolTip();
                 },
                 error: function (error) {
@@ -395,6 +440,7 @@ $(document).ready(function() {
 
                     that.reInitializeToolTip();
                     $('.modal#card-detail').modal("hide");
+                    that.createActivity(data.cardId, 'board_card', 'card is edited');
                 },
                 error: function (error) {
                     console.log(error);
@@ -405,6 +451,7 @@ $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
         },
         deleteTask: function (taskId, deleteTaskBtn) {
+            var that = this;
             var cardId = $(document).find('#card-detail').attr("data-cardid");
             swal({   
                     title: "Are you sure?",   
@@ -447,7 +494,7 @@ $(document).ready(function() {
                             setTimeout(function () {
                                 $(document).find(".per-tasks-completed").removeClass('active');
                             }, 2000);
-                            
+                            that.createActivity(cardId, 'card_task', 'task is deleted'); 
                             swal("Deleted!", "Your file was successfully deleted!", "success");
                         },
                         error: function (error) {
@@ -673,6 +720,7 @@ $(document).ready(function() {
             }
         },
         deleteCard: function (cardId, cardIdCon) {
+            var that = this;
             swal({   
                 title: "Are you sure?",   
                 text: "You will not be able to recover this List with cards!",   
@@ -692,6 +740,7 @@ $(document).ready(function() {
                         success: function (data) {
                             $(cardIdCon).remove();
                             $('.modal#card-detail').modal("hide");
+                            that.createActivity(data.id, 'board_card', 'deleted a card');
                             swal("Deleted!", "Your file was successfully deleted!", "success");
                         },
                         error: function (error) {
@@ -722,6 +771,7 @@ $(document).ready(function() {
                     $(that.targetList).find('form').hide();
                     $(that.targetList).find('form textarea').val('');
                     $(that.targetList).find('a.show-input-field').show();
+                    that.createActivity(data.id, 'board_card', 'created a card');
                 },
                 error: function (error) {
                     var response = JSON.parse(error.responseText);
@@ -768,6 +818,7 @@ $(document).ready(function() {
                     that.params['boardTitle'].val('');
                     that.params['boardTitleCon'].removeClass('has-error');
                     that.params['boardTitleCon'].find('.help-block').remove();
+                    that.createActivity(data.id, 'board', 'created a board');
                 },
                 error: function (error) {
                     var response = JSON.parse(error.responseText);
@@ -778,6 +829,24 @@ $(document).ready(function() {
                     });
                 }
             }); 
+        },
+        createActivity: function(activity_in_id, changed_in, activity_description) {
+            $.ajax({
+                url: 'create-user-activity',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    activity_in_id: activity_in_id, 
+                    changed_in: changed_in, 
+                    activity_description: activity_description
+                }, 
+                success: function (data) {
+                    console.log("data")
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         },
         saveList: function (data, curentBtnClicked) {
             that = this;
@@ -829,6 +898,7 @@ $(document).ready(function() {
                     that.params['boardTitle'].val('');
                     that.params['boardTitleCon'].removeClass('has-error');
                     that.params['boardTitleCon'].find('.alert').remove();
+                    that.createActivity(data.id, 'board_list', 'created a list');
                 },
                 error: function (error) {
                     var response = JSON.parse(error.responseText);

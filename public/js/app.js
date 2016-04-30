@@ -1,37 +1,4 @@
 $(document).ready(function() {
-    $(document).on('click', '.delete-list', function() {
-        var that = this;
-        swal({   
-            title: "Are you sure?",   
-            text: "You will not be able to recover this List with cards!",   
-            type: "warning",   
-            showCancelButton: true,   
-            confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Yes, delete it!",   
-            closeOnConfirm: false 
-            }, function(){   
-                var listId = $(that).data("listid");
-                $.ajax({
-                    url: 'delete-list',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        listId: listId 
-                    },
-                    success: function (data) {
-                        $(that).closest(".bcategory-list").remove();
-                        swal("Deleted!", "Your file was successfully deleted!", "success");
-                    },
-                    error: function (error) {
-                        var response = JSON.parse(error.responseText);
-                        swal("Oops", "We couldn't connect to the server!", "error");
-                    }
-                });
-        });
-    });
-});
-
-$(document).ready(function() {
     $.fn.editable.defaults.mode = 'popup';
     // $('#card_color').editable({
     //     inputclass: 'select-input',

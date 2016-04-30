@@ -48,9 +48,7 @@ class CardController extends Controller
         $cardId = $request->get("cardId");
         $card = BoardCard::find($cardId);
         $card->delete();
-        return [
-            'success' => 'success', 
-        ];   
+        return $card;   
     }
 
     public function getCardDetail(Request $request)

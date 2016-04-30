@@ -9,9 +9,19 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use \App\Models\UserActivity;
+use \App\Models\Board;
 
 class UserActivityController extends Controller
-{
+{   
+    public function getUserActivity()
+    {
+        $boards = Board::where(['user_id' => Auth::id(),])->get();
+        $userActivity = UserActivity::where("user_id", Auth::id())->get();;
+
+        $page = 'activity';
+        return view('user.activity', compact('page', 'boards', 'userActivity'));
+    }
+
     public function createUserActivity(Request $request)
     {
     	$activity_in_id 		= $request->get("activity_in_id");

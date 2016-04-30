@@ -9,6 +9,7 @@ $(document).ready(function() {
         initCradDrag: function () {
             $(".card-con").each(function(index, el) {
                 $(el).sortable({
+                    scroll: true,
                     connectWith: ".card-con",
                     placeholder: "dashed-placeholder",
                     revert: 200,

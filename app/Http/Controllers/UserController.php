@@ -75,11 +75,4 @@ class UserController extends Controller
 
         return redirect()->route('auth.login')->with('alert', 'Your account has been created.');
     }
-
-    public function getUserActivity()
-    {
-        $boards = Board::where(['user_id' => Auth::id(),])->get();
-        $page = 'activity';
-        return view('user.activity', compact('page', 'boards'));
-    }
 }

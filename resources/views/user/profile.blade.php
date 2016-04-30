@@ -16,6 +16,20 @@
                 </ul>
 	    	</div>
 	    </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-lg-5 col-lg-offset-3">
+                <form action="" method="POST" role="form">                
+                    <div class="form-group">
+                        <label for="">Username: </label>
+                        <a href="#" data-type="text" class="input-editable editable-click" id="card_title_editable" style="text-transform: capitalize;">{{ Auth::user()->name }}</a>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email: </label>
+                        <a href="#" data-type="text" class="input-editable editable-click" id="card_title_editable" style="text-transform: capitalize;">{{ Auth::user()->email }}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

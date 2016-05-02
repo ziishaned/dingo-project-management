@@ -16,6 +16,11 @@ use \App\Models\CardTask;
 
 class CardController extends Controller
 {
+    /**
+     * Creates a new card in database 
+     * @param  Request $request have the input data
+     * @return object created card
+     */
     public function postCard(Request $request)
     {
         $this->validate($request, [
@@ -35,6 +40,13 @@ class CardController extends Controller
         ]);
     }
 
+    /**
+     * Change the card list. For example if the card is in list x then you drag it to the
+     * other list named y. So, now using this function card list has been updaed to list_id 
+     * of y in database.
+     * @param  Request $request has input data for the function
+     * @return object updated data
+     */
     public function changeCardList(Request $request)
     {
         $listId = $request->get('listId');
@@ -43,6 +55,11 @@ class CardController extends Controller
           ->update(['list_id' => $listId]);
     }
 
+    /**
+     * Delete a card from a list.
+     * @param  Request $request has the id of the card
+     * @return boolean if the card is deleted or not
+     */
     public function deleteCard(Request $request)
     {
         $cardId = $request->get("cardId");
@@ -51,6 +68,11 @@ class CardController extends Controller
         return $card;   
     }
 
+    /**
+     * Get a card detail from database.
+     * @param  Request $request has the data that is being used in this function
+     * @return object card detail
+     */
     public function getCardDetail(Request $request)
     {
         $cardId = $request->get("cardId");
@@ -74,6 +96,11 @@ class CardController extends Controller
         ];     
     }
 
+    /**
+     * Update card date in database.
+     * @param  Request $request has the input data for this function
+     * @return object updated data
+     */
     public function updateCardData(Request $request)
     {
         $cardId = $request->get("cardId");

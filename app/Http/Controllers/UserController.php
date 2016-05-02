@@ -12,21 +12,31 @@ use Validator;
 
 class UserController extends Controller
 {
+    /**
+     * Get the dashboard view
+     * @return view home view
+     */
     public function getDashboard()
     {
         $boards        = Board::where(['user_id' => Auth::id(),])->get();
         $starredBoards = Board::where(['user_id' => Auth::id(), 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
 
-        // $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
-
         return view('user.home', compact('boards', 'recentBoards', 'starredBoards'));
     }
 
+    /**
+     * Get the board view
+     * @return view board view
+     */
     public function getBoard()
     {
         return view('user.board');
     }
 
+    /**
+     * Gets the user profile
+     * @return view profile view
+     */
     public function getProfile()
     {
         $boards = Board::where(['user_id' => Auth::id(),])->get();
@@ -34,11 +44,20 @@ class UserController extends Controller
         return view('user.profile', compact('boards', 'page'));
     }
 
+    /**
+     * Get the user login page or view.
+     * @return view user login page or view
+     */
     public function getLogin()
     {
         return view('auth.login');
     }
 
+    /**
+     * Validate the user login input data against the user data in database.
+     * @param  Request $request have the input data for this function
+     * @return view reirect to specific view
+     */
     public function postLogin(Request $request)
     {
         $this->validate($request, [
@@ -54,11 +73,20 @@ class UserController extends Controller
         return redirect()->route('user.dashboard')->with('info', 'You are logged in.');
     }
 
+    /**
+     * Get the user register view
+     * @return view user register view or page
+     */
     public function getRegister()
     {
         return view('auth.register');
     }
 
+    /**
+     * Create a new user account or register a user into our website "Dingo"
+     * @param  Request $request has the user registeration data
+     * @return view reirect to specific view
+     */
     public function postRegister(Request $request)
     {
         $this->validate($request, [

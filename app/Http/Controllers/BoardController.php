@@ -16,6 +16,11 @@ use \App\Models\BoardList;
 
 class BoardController extends Controller
 {
+    /**
+     * Creates a new Board
+     * @param  Request $request have the input data
+     * @return object return the newly created board            
+     */
     public function postBoard(Request $request)
     {
         $this->validate($request, [
@@ -34,6 +39,11 @@ class BoardController extends Controller
         ]);
     }
 
+    /**
+     * Get the Board details
+     * @param  Request $request have the input data
+     * @return view board page or view
+     */
     public function getBoardDetail(Request $request)
     {
        $boardId = $request->id;
@@ -64,6 +74,11 @@ class BoardController extends Controller
         return view('user.board', compact('boardDetail', 'lists', 'cards', 'cardTaskCount', 'boards', 'recentBoards'));
     }
 
+    /**
+     * Update the board is_favourite attribute in the database. 
+     * @param  Request $request have the input data
+     * @return object the updated data           
+     */
     public function updateBoardFavourite(Request $request)
     {
         $boardId = $request->get("boardId");

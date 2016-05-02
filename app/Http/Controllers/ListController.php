@@ -14,6 +14,11 @@ use \App\Models\BoardList;
 
 class ListController extends Controller
 {
+    /**
+     * Creates a new list in the database.
+     * @param  Request $request has the input data for this function.
+     * @return object created list
+     */
 	public function postListName(Request $request)
     {
         // Made this unique for his board not to other
@@ -32,6 +37,11 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * Delete a list from the database.
+     * @param  Request $request has the input of the database.
+     * @return object wether a list is deleted or not
+     */
     public function deleteList(Request $request)
     {
         $listId = $request->get("listId");
@@ -42,6 +52,11 @@ class ListController extends Controller
         ];
     }
 
+    /**
+     * Update a list name in database.
+     * @param  Request $request has the input for this function
+     * @return boolean wether the list name is updated or not
+     */
     public function updateListName(Request $request)
     {
         $listName = $request->get('value');

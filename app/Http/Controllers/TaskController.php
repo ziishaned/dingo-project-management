@@ -11,6 +11,11 @@ use \App\Models\CardTask;
 
 class TaskController extends Controller
 {
+    /**
+     * Updates the task is completed or not
+     * @param  Request $request has the input that is used in this fnuction
+     * @return object have the total task and total task that is completed 
+     */
     public function updateTaskCompleted(Request $request)
     {
         $taskId = $request->get("taskId");
@@ -29,6 +34,11 @@ class TaskController extends Controller
 
     }
 
+    /**
+     * Delete a task from the database.
+     * @param  Request $request have the task id and card id
+     * @return object have the total task and total task that is completed 
+     */
     public function deleteTask(Request $request)
     {
         $taskId = $request->get("taskId");   
@@ -46,6 +56,11 @@ class TaskController extends Controller
 
     }
 
+    /**
+     * Create or insert a new task into the database 
+     * @param  Request $request have the task title and card id
+     * @return object have the total task and total task that is completed and total card 
+     */
     public function saveTask(Request $request)
     {
         $taskTitle = $request->get("taskTitle");

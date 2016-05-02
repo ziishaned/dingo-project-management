@@ -14,6 +14,11 @@ use \App\Models\Comment;
 
 class CommentController extends Controller
 {
+    /**
+     * Crates or insert a new comment in the database.
+     * @param  Request $request have the comment as input for this function
+     * @return object newly inserted comment in database
+     */
     public function saveComment(Request $request)
     {
         $comment = $request->get("comment");

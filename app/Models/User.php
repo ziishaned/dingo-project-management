@@ -22,4 +22,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Finds the user by email
+     * @param  string $email Email of the user
+     * @return User
+     */
+    public function findByEmail($email) 
+    {
+        return $this->where('email', $email)->first();
+    }
 }

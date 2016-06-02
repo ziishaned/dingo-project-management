@@ -3,6 +3,13 @@
 @section('content')
     <div class="row" style="position: relative; top: 100px;">
         <div class="col-lg-4 col-md-offset-4">
+
+            @if(Session::has('status'))
+                <div class="alert alert-success">
+                    <p>{{ Session::get('status') }}</p>
+                </div>
+            @endif
+
             <h1 style="margin-bottom: 25px; font-family: Arvo; font-size: 24px; font-weight: 600; color: #666666; ">
                 Login To Dingo</h1>
             <form role="form" method="POST" action="{{ url('/login') }}">

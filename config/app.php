@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Karachi',
+    'timezone' => env("TIMEZONE","Asia/Karachi"),
 
     /*
     |--------------------------------------------------------------------------

@@ -14,6 +14,12 @@ use \App\Models\Comment;
 
 class CommentController extends Controller
 {
+    protected $comment;
+
+    public function __construct(Comment $comment)
+    {
+      $this->comment = $comment;
+    }
     /**
      * Crates or insert a new comment in the database.
      * @param  Request $request have the comment as input for this function
@@ -21,21 +27,8 @@ class CommentController extends Controller
      */
     public function saveComment(Request $request)
     {
-        $comment = $request->get("comment");
-        $cardId = $request->get("cardId");
-        $userId  = Auth::id();
-
-        $commentDetail = Comment::create([
-            'card_id' => $cardId,
-            'user_id' => $userId,
-            'comment_description' => $comment,  
-        ]);
-
-        return DB::table('comment')
-          ->select('comment.*', 'users.name')
-          ->join('users','users.id','=','comment.user_id')
-          ->where('comment.id','=',$commentDetail["id"])
-          ->get();
+        $commentDetail = $this->comment->saveComment($request, Auth::id());
+        return $this->comment->getComment($commentDetail["id"]);
     }
     
 }

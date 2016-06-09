@@ -12,16 +12,23 @@ use Validator;
 
 class UserController extends Controller
 {
+    protected $board;
+
+    public function __construct(Board $board)
+    {
+        $this->board = $board;
+    }
+
     /**
      * Get the dashboard view
      * @return view home view
      */
     public function getDashboard()
     {
-        $boards        = Board::where(['user_id' => Auth::id(),])->get();
-        $starredBoards = Board::where(['user_id' => Auth::id(), 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
+        $boards = $this->board->getUserBoards(Auth::id());
+        $starredBoards = $this->board->getUserStarredBoards(Auth::id());
 
-        return view('user.home', compact('boards', 'recentBoards', 'starredBoards'));
+        return view('user.home', compact('boards', 'starredBoards'));
     }
 
     /**

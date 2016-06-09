@@ -12,15 +12,25 @@ use \App\Models\UserActivity;
 use \App\Models\Board;
 
 class UserActivityController extends Controller
-{   
+{ 
+    
+    protected $board;
+    protected $user;
+
+    public function __construct(Board $board, UserActivity $userActivity)
+    {
+        $this->board = $board;
+        $this->userActivity = $userActivity;
+    }
+
     /**
      * Gets user activity from the database for a specifc user that is currently logged in.
      * @return view User activity page or view
      */
     public function getUserActivity()
     {
-        $boards = Board::where(['user_id' => Auth::id(),])->get();
-        $userActivity = UserActivity::where("user_id", Auth::id())->get();;
+        $boards = $this->board->getUserBoards(Auth::id());
+        $userActivity = $this->userActivity->getUserActivity(Auth::id());
 
         $page = 'activity';
         return view('user.activity', compact('page', 'boards', 'userActivity'));
@@ -33,15 +43,6 @@ class UserActivityController extends Controller
      */
     public function createUserActivity(Request $request)
     {
-    	$activity_in_id 		= $request->get("activity_in_id");
-    	$changed_in				= $request->get("changed_in");
-    	$activity_description 	= $request->get("activity_description");
-    	$userId 				= Auth::id();
-    	UserActivity::create([
-    		'user_id' 				=> $userId,
-    		'changed_in' 			=> $changed_in,
-    		'activity_in_id' 		=> $activity_in_id,
-    		"activity_description"	=> $activity_description,
-    	]);
+        $this->userActivity->createUserActivity($request, Auth::id()); 
     }
 }

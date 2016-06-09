@@ -13,9 +13,25 @@ use \App\Models\User;
 use \App\Models\Board;
 use \App\Models\CardTag;
 use \App\Models\BoardList;
+use \App\Models\BoardCard;
 
 class BoardController extends Controller
 {
+    protected $board;
+    protected $user;
+    protected $cardTag;
+    protected $boardList;
+    protected $boardCard;
+
+    public function __construct(Board $board, User $user, CardTag $cardTag, BoardList $boardList, BoardCard $boardCard)
+    {
+        $this->board = $board;
+        $this->user = $user;
+        $this->cardTag = $cardTag;
+        $this->boardList = $boardList;
+        $this->boardCard = $boardCard;
+    }
+
     /**
      * Creates a new Board
      * @param  Request $request have the input data
@@ -28,15 +44,7 @@ class BoardController extends Controller
             'boardPrivacyType'  => 'required',   
         ]);
         
-        $boardPrivacyType = $request->get('boardPrivacyType');  
-        $boardTitle = $request->get('boardTitle');  
-        $userId = Auth::id();
-        
-        return Board::create([
-            'user_id' => $userId,
-            'boardTitle' => $boardTitle,
-            'boardPrivacyType' => $boardPrivacyType,  
-        ]);
+        return $this->board->createBoard($request, Auth::id());
     }
 
     /**
@@ -46,30 +54,12 @@ class BoardController extends Controller
      */
     public function getBoardDetail(Request $request)
     {
-       $boardId = $request->id;
-       $boardDetail = Board::findOrFail(['id' => $boardId])->first();
-       $lists = BoardList::where(["board_id" => $boardId,])->get();
-
-        $cards =  DB::table('board_card')->select([
-                'board_card.*',
-                DB::raw("COUNT(comment.id) as totalComments"),
-            ])
-            ->leftJoin('comment', 'board_card.id', '=', 'comment.card_id')
-            ->groupBy('board_card.id')
-            ->get();
-        $cards = json_decode(json_encode($cards), True);
-        
-        $cardTaskCount =  DB::table('board_card')->select([
-            'board_card.*',
-            DB::raw("COUNT(card_task.id) as totalTasks"),
-        ])
-        ->leftJoin('card_task', 'board_card.id', '=', 'card_task.card_id')
-        ->groupBy('board_card.id')
-        ->get();
-        $cardTaskCount = json_decode(json_encode($cardTaskCount), True);
-
-        $boards = Board::where(['user_id' => Auth::id(), ])->get();
-        $recentBoards = Board::where(['user_id' => Auth::id(), ])->orderBy('created_at', 'desc')->take(3)->get();
+        $boardDetail = $this->board->getBoard($request->id);
+        $lists = $this->boardList->getBoardList($request->id);
+        $cards = json_decode(json_encode($this->boardCard->getBoardCards()), True);
+        $cardTaskCount = json_decode(json_encode($this->boardCard->cardTotalTask()), True);
+        $boards = $this->board->getUserBoards(Auth::id());
+        $recentBoards = $this->board->getUserRecentBoards(Auth::id());
 
         return view('user.board', compact('boardDetail', 'lists', 'cards', 'cardTaskCount', 'boards', 'recentBoards'));
     }
@@ -81,10 +71,7 @@ class BoardController extends Controller
      */
     public function updateBoardFavourite(Request $request)
     {
-        $boardId = $request->get("boardId");
-        $isFavourite = $request->get("isFavourite");
-
-        return Board::where("id", $boardId)->update(["is_starred" => $isFavourite,]);
+        return $this->board->updateBoardFavourite($request);
     }
 
 }

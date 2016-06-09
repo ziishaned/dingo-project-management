@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class BoardCard extends Model
 {
@@ -48,5 +49,27 @@ class BoardCard extends Model
             "due_date" => date("Y-m-d H:i:s", strtotime($input->get("cardDueDate"))),
         ]);
         return true;
+    }
+
+    public function getBoardCards()
+    {
+        return BoardCard::select([
+                'board_card.*',
+                DB::raw("COUNT(comment.id) as totalComments"),
+            ])
+            ->leftJoin('comment', 'board_card.id', '=', 'comment.card_id')
+            ->groupBy('board_card.id')
+            ->get();
+    }
+
+    public function cardTotalTask()
+    {
+        return BoardCard::select([
+            'board_card.*',
+            DB::raw("COUNT(card_task.id) as totalTasks"),
+        ])
+        ->leftJoin('card_task', 'board_card.id', '=', 'card_task.card_id')
+        ->groupBy('board_card.id')
+        ->get();
     }
 }

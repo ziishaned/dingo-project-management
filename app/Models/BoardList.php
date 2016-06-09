@@ -32,4 +32,9 @@ class BoardList extends Model
     	BoardList::where('id', $input->get('pk'))->update(['list_name' => $input->get('value')]);
 		return true;                
     }
+
+    public function getBoardList($boardId)
+    {
+        return BoardList::where(["board_id" => $boardId,])->get();
+    }
 }

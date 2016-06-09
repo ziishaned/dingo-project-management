@@ -21,4 +21,28 @@ class Board extends Model
     {
     	return Board::where(['user_id' => $user_id, 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
     }
+
+    public function createBoard($input, $user_id)
+    {
+        return Board::create([
+            'user_id' => $user_id,
+            'boardTitle' => $input->get('boardTitle'),
+            'boardPrivacyType' => $input->get('boardPrivacyType'),  
+        ]);
+    }
+
+    public function getBoard($board_id)
+    {
+        return Board::findOrFail(['id' => $board_id])->first();
+    }
+
+    public function getUserRecentBoards($user_id)
+    {
+        return Board::where(['user_id' => $user_id, ])->orderBy('created_at', 'desc')->take(3)->get();
+    }
+
+    public function updateBoardFavourite($input)
+    {
+        return Board::where("id", $input->get("boardId"))->update(["is_starred" => $input->get("isFavourite"),]);
+    }
 }

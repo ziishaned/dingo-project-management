@@ -42,4 +42,9 @@ class CardTask extends Model
             "is_completed" => 0,
         ]);
     }
+
+    public function getCardTasks($card_id)
+    {
+        return CardTask::where('card_id', '=', $card_id)->latest()->get();
+    }
 }

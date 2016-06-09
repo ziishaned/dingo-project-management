@@ -28,4 +28,13 @@ class Comment extends Model
           ->where('comment.id','=', $commentId)
           ->get();
     }
+
+    public function getCardComment($card_id)
+    {
+        return Comment::select('comment.*', 'users.name')
+          ->join('users','users.id','=','comment.user_id')
+          ->where('card_id','=',$card_id)
+          ->latest()
+          ->get();
+    }
 }

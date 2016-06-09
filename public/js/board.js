@@ -326,6 +326,9 @@ $(document).ready(function() {
                     $('#card-detail').find("#task-description-input").val("");
                     
                     var perTaskCompleted = Math.floor(data.totalTasksCompleted/data.totalTasks*100);
+                    if(isNaN(perTaskCompleted)) {
+                        perTaskCompleted = 0;
+                    };
                     $(document).find(".per-tasks-completed").addClass('active');
                     $(document).find(".per-tasks-completed").attr("aria-valuenow", perTaskCompleted);
                     $(document).find(".per-tasks-completed").css('width', perTaskCompleted+"%");

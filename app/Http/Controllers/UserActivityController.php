@@ -15,7 +15,7 @@ class UserActivityController extends Controller
 { 
     
     protected $board;
-    protected $user;
+    protected $userActivity;
 
     public function __construct(Board $board, UserActivity $userActivity)
     {

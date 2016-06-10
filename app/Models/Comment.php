@@ -14,7 +14,7 @@ class Comment extends Model
 
     public function saveComment($input, $user_id)
     {
-    	return Comment::create([
+    	return $this->create([
             'card_id' => $input->get("cardId"),
             'user_id' => $user_id,
             'comment_description' => $input->get("comment"),  
@@ -23,7 +23,7 @@ class Comment extends Model
 
     public function getComment($commentId)
     {
-    	return Comment::select('comment.*', 'users.name')
+    	return $this->select('comment.*', 'users.name')
           ->join('users','users.id','=','comment.user_id')
           ->where('comment.id','=', $commentId)
           ->get();
@@ -31,7 +31,7 @@ class Comment extends Model
 
     public function getCardComment($card_id)
     {
-        return Comment::select('comment.*', 'users.name')
+        return $this->select('comment.*', 'users.name')
           ->join('users','users.id','=','comment.user_id')
           ->where('card_id','=',$card_id)
           ->latest()

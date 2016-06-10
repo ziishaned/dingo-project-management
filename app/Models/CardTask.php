@@ -14,29 +14,29 @@ class CardTask extends Model
 
     public function updateTaskIsCompleted($input)
     {
-    	CardTask::where("id", "=", $input->get("taskId"))->update(["is_completed" => $input->get("isCompleted"),]);
+    	$this->where("id", "=", $input->get("taskId"))->update(["is_completed" => $input->get("isCompleted"),]);
     	return true;
     }
 
     public function totalTasksCompleted($input)
     {
-    	return CardTask::where(['card_id' => $input->get("cardId"), "is_completed" => 1])->count();
+    	return $this->where(['card_id' => $input->get("cardId"), "is_completed" => 1])->count();
     }
 
     public function totalTasks($input)
     {
-    	return CardTask::where(['card_id' => $input->get("cardId")])->count();
+    	return $this->where(['card_id' => $input->get("cardId")])->count();
     }
 
     public function deleteTask($input)
     {
-        CardTask::where("id", "=", $input->get("taskId"))->delete();
+        $this->where("id", "=", $input->get("taskId"))->delete();
         return true;
     }
 
     public function createTask($input)
     {
-        return CardTask::create([
+        return $this->create([
             "task_title" => $input->get("taskTitle"),
             "card_id" => $input->get("cardId"),
             "is_completed" => 0,
@@ -45,6 +45,6 @@ class CardTask extends Model
 
     public function getCardTasks($card_id)
     {
-        return CardTask::where('card_id', '=', $card_id)->latest()->get();
+        return $this->where('card_id', '=', $card_id)->latest()->get();
     }
 }

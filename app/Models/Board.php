@@ -14,17 +14,17 @@ class Board extends Model
 
     public function getUserBoards($user_id)
     {
-    	return Board::where(['user_id' => $user_id,])->get();
+    	return $this->where(['user_id' => $user_id,])->get();
     }
 
     public function getUserStarredBoards($user_id)
     {
-    	return Board::where(['user_id' => $user_id, 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
+    	return $this->where(['user_id' => $user_id, 'is_starred' => 1])->orderBy('created_at', 'desc')->get();
     }
 
     public function createBoard($input, $user_id)
     {
-        return Board::create([
+        return $this->create([
             'user_id' => $user_id,
             'boardTitle' => $input->get('boardTitle'),
             'boardPrivacyType' => $input->get('boardPrivacyType'),  
@@ -33,16 +33,16 @@ class Board extends Model
 
     public function getBoard($board_id)
     {
-        return Board::findOrFail(['id' => $board_id])->first();
+        return $this->findOrFail(['id' => $board_id])->first();
     }
 
     public function getUserRecentBoards($user_id)
     {
-        return Board::where(['user_id' => $user_id, ])->orderBy('created_at', 'desc')->take(3)->get();
+        return $this->where(['user_id' => $user_id, ])->orderBy('created_at', 'desc')->take(3)->get();
     }
 
     public function updateBoardFavourite($input)
     {
-        return Board::where("id", $input->get("boardId"))->update(["is_starred" => $input->get("isFavourite"),]);
+        return $this->where("id", $input->get("boardId"))->update(["is_starred" => $input->get("isFavourite"),]);
     }
 }

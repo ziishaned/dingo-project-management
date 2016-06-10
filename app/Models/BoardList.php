@@ -14,7 +14,7 @@ class BoardList extends Model
 
     public function createList($input, $user_id)
     {
-    	return BoardList::create([
+    	return $this->create([
             'board_id' => $input->get('board_id'),
             'list_name' => $input->get('list_name'),
             'user_id' => $user_id,
@@ -23,18 +23,18 @@ class BoardList extends Model
 
     public function deleteList($input)
     {
-    	BoardList::find($input->get("listId"))->delete();
+    	$this->find($input->get("listId"))->delete();
     	return true;
     }
 
     public function updateListName($input)
     {
-    	BoardList::where('id', $input->get('pk'))->update(['list_name' => $input->get('value')]);
+    	$this->where('id', $input->get('pk'))->update(['list_name' => $input->get('value')]);
 		return true;                
     }
 
     public function getBoardList($boardId)
     {
-        return BoardList::where(["board_id" => $boardId,])->get();
+        return $this->where(["board_id" => $boardId,])->get();
     }
 }

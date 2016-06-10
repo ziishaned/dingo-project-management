@@ -14,12 +14,12 @@ class CardTag extends Model
 
     public function getCardTag($card_id)
     {
-    	return CardTag::where('card_id', '=', $card_id)->get();
+    	return $this->where('card_id', '=', $card_id)->get();
     }
 
     public function deleteCardTag($card_id)
     {
-    	return CardTag::where("card_id", '=', $card_id)->delete();
+    	return $this->where("card_id", '=', $card_id)->delete();
     }
 
     public function createCardTag($input)
@@ -27,7 +27,7 @@ class CardTag extends Model
     	$cardTagsList = explode(",", $input->get("cardTags"));
 
     	foreach ($cardTagsList as $value) {
-            CardTag::create([
+            $this->create([
                 "card_id" => $input->get("cardId"),
                 "tag_title" => $value,
             ]);

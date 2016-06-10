@@ -14,12 +14,12 @@ class UserActivity extends Model
 
     public function getUserActivity($user_id)
 	{
-		return UserActivity::where("user_id", $user_id)->get();;	
+		return $this->where("user_id", $user_id)->get();;	
 	}   
 
 	public function createUserActivity($input, $user_id)
 	{
-		return UserActivity::create([
+		return $this->create([
     		'user_id' 				=> $user_id,
     		'changed_in' 			=> $input->get("changed_in"),
     		'activity_in_id' 		=> $input->get("activity_in_id"),

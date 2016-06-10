@@ -35,7 +35,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function createUserAccount($input)
     {
-        User::create([
+        $this->create([
             'name'     => $input->get('name'),
             'email'    => $input->get('email'),
             'password' => \Hash::make($input->get('password')),

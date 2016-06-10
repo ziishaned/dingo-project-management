@@ -15,7 +15,7 @@ class BoardCard extends Model
 
     public function createCard($input, $user_id)
     {
-    	return BoardCard::create([
+    	return $this->create([
             'board_id' => $input->get('board_id'),
             'user_id' => $user_id,
             'list_id' => $input->get('list_id'),
@@ -25,24 +25,24 @@ class BoardCard extends Model
 
     public function updateCardListid($input)
     {
-        return BoardCard::where('id', $input->get('cardId'))->update(['list_id' => $input->get('listId')]);
+        return $this->where('id', $input->get('cardId'))->update(['list_id' => $input->get('listId')]);
     }
 
     public function deleteCard($input)
     {
-    	$card = BoardCard::find($input->get("cardId"));
-    	BoardCard::find($input->get("cardId"))->delete();
+    	$card = $this->find($input->get("cardId"));
+    	$this->find($input->get("cardId"))->delete();
     	return $card;
     }
 
     public function getCard($cardId)
     {
-    	return BoardCard::findOrFail($cardId);
+    	return $this->findOrFail($cardId);
     }
 
     public function updateCard($input)
     {
-    	BoardCard::where('id', $input->get("cardId"))->update([
+    	$this->where('id', $input->get("cardId"))->update([
             "card_title" => $input->get("cardName"),
             "card_description" => ($input->get("cardDescription") != "Empty") ? $input->get("cardDescription") : '',
             "card_color" => $input->get("cardColor"),
@@ -53,7 +53,7 @@ class BoardCard extends Model
 
     public function getBoardCards()
     {
-        return BoardCard::select([
+        return $this->select([
                 'board_card.*',
                 DB::raw("COUNT(comment.id) as totalComments"),
             ])
@@ -64,7 +64,7 @@ class BoardCard extends Model
 
     public function cardTotalTask()
     {
-        return BoardCard::select([
+        return $this->select([
             'board_card.*',
             DB::raw("COUNT(card_task.id) as totalTasks"),
         ])

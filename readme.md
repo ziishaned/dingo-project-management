@@ -1,36 +1,15 @@
 # Dingo Project Managment
+A full-featured personal project management tool with task boards. — Edit
 
-__The support for assigning tasks to users is in progress, so for now you can use it for personal projects__
+##Installation
+You can install the library using the following way:
+- Clone the project git clone git@github.com:zeeshanu/dingo-project-managment.git
+- Run composer install inside the directory composer install
+- Create database and run migrations php artisan migrate
+- Run the server php artisan serve
+- 
+##Feedback
+If you notice that there might be some improvements in code you can create a pull request or report an issue. You can also contact me at <a href="mailto:ziishaned@gmail.com">ziishaned@gmail.com</a>.
 
-## Login Page
-![Login Page](http://i.imgur.com/qkjOckv.png)
-
-## Register Page
-![Register Page](http://i.imgur.com/fc2qhAs.png)
-
-## Dashboard Page
-![Dashboard Page](http://i.imgur.com/dykbObE.png)
-
-## Board Detail Page
-![Board Detail Page](http://i.imgur.com/SKGYw9r.png)
-
-## Delete List
-![Delete List](http://i.imgur.com/KQ1opUC.png)
-
-## Card Detail Tab-1
-![Card Detail 1](http://i.imgur.com/uwPLJ8s.png)
-
-## Card Detail Tab-2
-![Card Detail 2](http://i.imgur.com/QE67D0K.png)
-
-## Card Detail Tab-3
-![Card Detail 3](http://i.imgur.com/49f6ssq.png)
-
-## Card Detail Tab-4
-![Card Detail 4](http://i.imgur.com/Y9wwPnl.png)
-
-## Add Card
-![Add Card](http://i.imgur.com/zuGcGjp.png)
-
-## Edit List Name
-![Edit List Name](http://i.imgur.com/GbI7ItV.png)
+## License
+The MIT License (MIT).

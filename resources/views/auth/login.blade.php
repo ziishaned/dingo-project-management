@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <input class="magic-checkbox" type="checkbox" name="layout" id="remember-me" value="option">
-                    <label for="remember-me">Remeber Me</label>
+                    <label for="remember-me">Remember Me</label>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">

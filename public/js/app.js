@@ -2,7 +2,7 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'popup';
     // $('#card_color').editable({
     //     inputclass: 'select-input',
-    //     value: 1,    
+    //     value: 1,
     //     source: [
     //           {value: 1, text: ''},
     //           {value: 2, text: 'Yellow'},
@@ -18,7 +18,7 @@ $(document).ready(function() {
     //     combodate: {
     //         firstItem: 'name'
     //     }
-    // }); 
+    // });
 });
 
 $(document).ready(function() {
@@ -38,13 +38,13 @@ $("button.navbar-toggle").on("click", function () {
 
 $(function(){
     $("#brand-name").typed({
-        strings: ["Dingo Project Managment Tool", "Created using Laravel PHP Framework", "Dingo :)"],
+        strings: ["Dingo Project Management Tool", "Created using Laravel PHP Framework", "Dingo :)"],
         typeSpeed: 100
     });
 });
 
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 // var listCards = [];
@@ -54,6 +54,6 @@ $(document).ready(function(){
 //     var cards = $(list).find('.ui-sortable').sortable('toArray');
 //     listCards.push({
 //         listId: updateListId,
-//         cards: cards 
+//         cards: cards
 //     });
 // });

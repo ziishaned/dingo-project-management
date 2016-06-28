@@ -1,9 +1,9 @@
-# Dingo Project Managment
+# Dingo Project Management
 A full-featured personal project management tool with task boards. — Edit
 
 ##Installation
 You can install using the following way:
-- Clone the project git clone `git@github.com:zeeshanu/dingo-project-managment.git`
+- Clone the project git clone `git@github.com:zeeshanu/dingo-project-management.git`
 - Run `composer install` inside the directory composer install
 - Create database and run migrations `php artisan migrate`
 - Run the server `php artisan serve`

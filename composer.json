@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "Dingo - Project Management",
+    "description": "A full-featured personal project management tool with task boards.",
+    "keywords": ["dingo", "team", "managment", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {

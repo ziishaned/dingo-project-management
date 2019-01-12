@@ -1,4 +1,18 @@
-# Dingo Project Management
+<div align="center">
+  <h1 align="center">Dingo Project Management</h1>
+  <p align="center">
+    <a href="https://twitter.com/home?status=dingo-project-management%20by%20%40ziishaned%20http%3A//github.com/ziishaned/dingo-project-management">
+      <img src="https://img.shields.io/badge/twitter-tweet-blue.svg?style=flat-square"/>
+    </a>
+    <a href="https://twitter.com/ziishaned">
+      <img src="https://img.shields.io/badge/feedback-@ziishaned-blue.svg?style=flat-square" />
+    </a>
+      <a href="https://github.com/ziishaned/dingo-project-management">
+          <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License">
+      </a>
+  </p>
+</div>
+
 A full-featured personal project management tool with task boards.
 
 ## Installation
